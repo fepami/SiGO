@@ -15,9 +15,6 @@ app.get('/', function(request, response) {
 });
 
 app.get('/db', function (request, response) {
-  // var database_url = process.env.DATABASE_URL ||
-  	// 'postgres://sigo:coop16@localhost:5432/sigo';
-  // console.log(database_url);
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     if (err){
       console.error(err);
@@ -27,7 +24,7 @@ app.get('/db', function (request, response) {
     client.query('SELECT * FROM test_table', function(err, result) {
       done();
       if (err)
-       { console.error(err); response.send("Error " + err); }
+       { console.error(err); response.send("Error: " + err); }
       else
        { response.render('pages/db', {results: result.rows} ); }
     });
