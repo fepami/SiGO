@@ -22,5 +22,5 @@ The MIT License (MIT) - Copyright (c) 2015
 http://opensource.org/licenses/MIT
 
 </content>
-  <tabTrigger>readme</tabTrigger>
+  <tabTrigger></tabTrigger>
 </snippet>
