@@ -1,10 +1,10 @@
 <snippet>
-  <content><![CDATA[
+  <content>
 #SiGO
 
 Project developed during the (Software Engineering Lab - PCS-2033) module of the Computer Engineering course at the Polytechnic School of the University of São Paulo. 
 
-## Project Description (Portuguese)
+## Project Description
 
 The system developed in this project aims to manage the Service Orders (SO) executed in an automobile repair shop (garage), as well the custumer service scheduling.
 
@@ -21,7 +21,7 @@ Vinícius Adaime Alves de Melo
 
 The MIT License (MIT)
 
-Copyright (c) [year] [fullname]
+Copyright (c) 2015 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -41,6 +41,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-]]></content>
+</content>
   <tabTrigger>readme</tabTrigger>
 </snippet>
