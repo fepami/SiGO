@@ -1,0 +1,11 @@
+include ../partials/header.jade
+div.container
+  div.jumbotron
+    h1 Bem-vindo ao SiGO
+    h4 Realize o login para entrar no sistema
+    form
+      input.form-control(type="text", placeholder="Usuário ou e-mail")
+      input.form-control(type="password", placeholder="Senha")
+    a.btn.btn-primary(href="/login") Entrar
+    h4 Ainda não possui cadastro?
+    a Registre-se

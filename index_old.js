@@ -8,7 +8,7 @@ app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
   response.render('pages/index')
@@ -16,21 +16,17 @@ app.get('/', function(request, response) {
 
 app.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    if (err) {
-      console.log(err);
+    if (err){
+      console.error(err);
       response.send("Error " + err);
       return;
     }
     client.query('SELECT * FROM test_table', function(err, result) {
-      if (err) { 
-        console.log(err); response.send("Error: " + err);
-      }
-      else { 
-        console.log('\nBanco:');
-        console.log(result.rows);
-        response.render('pages/db', {results: result.rows} ); 
-      }
       done();
+      if (err)
+       { console.error(err); response.send("Error: " + err); }
+      else
+       { response.render('pages/db', {results: result.rows} ); }
     });
   });
 })
@@ -38,5 +34,3 @@ app.get('/db', function (request, response) {
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
-
-

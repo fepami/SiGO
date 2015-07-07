@@ -9,7 +9,8 @@
   "dependencies": {
     "pg": "^4.4.x",
     "ejs": "^2.3.2",
-    "express": "~4.13.x"
+    "express": "~4.13.x",
+    "bootstrap": "3.3.5"
   },
   "engines": {
     "node": "0.12.5"
