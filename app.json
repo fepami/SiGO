@@ -1,7 +1,0 @@
-{
-  "name": "SiGO",
-  "description": "Sistema de gerenciamento de Oficinas",
-  "repository": "https://github.com/fepami/SiGO",
-  "logo": "http://node-js-sample.herokuapp.com/node.svg",
-  "keywords": ["node", "static"]
-}
