@@ -1,0 +1,11 @@
+/* START: Login Page */
+
+body.sigo_login {
+  display: flex;
+}
+
+body.sigo_login .container {
+  align-self: center;
+}
+
+/* END: Login Page */
