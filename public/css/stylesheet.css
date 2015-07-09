@@ -6,6 +6,26 @@ body.sigo_login {
 
 body.sigo_login .container {
   align-self: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+body.sigo_login .jumbotron{
+  
+}
+
+body.sigo_login img{
+  width: 300px;
+  margin-bottom: 50px;
+}
+
+body.sigo_login input{
+  margin-bottom: 30px;
+}
+
+body.sigo_login .btn{
+  background-color: #FF9800;
+  border: 0px;
 }
 
 /* END: Login Page */

@@ -1,10 +1,10 @@
 {
-  "name": "SiGO",
-  "version": "0.1.0",
-  "description": "Sistema de gerenciamento de Oficinas",
-  "main": "server.js",
+  "name"        : "SiGO",
+  "version"     : "0.1.0",
+  "description" : "Sistema de Gerenciamento de Oficinas",
+  "main"        : "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start"     : "node server.js"
   },
   "dependencies": {
     "bootstrap" : "3.3.5",
@@ -14,11 +14,11 @@
     "jade"      : "1.11.0"
   },
   "engines": {
-    "node": "0.12.5"
+    "node"      : "0.12.5"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/fepami/SiGO"
+    "type"      : "git",
+    "url"       : "https://github.com/fepami/SiGO"
   },
   "keywords": [
     "node",
