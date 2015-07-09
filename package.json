@@ -7,10 +7,10 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "pg": "^4.4.x",
-    "ejs": "^2.3.2",
-    "express": "~4.13.x",
-    "bootstrap": "3.3.5"
+    "bootstrap": "3.3.5",
+    "ejs": "2.3.2",
+    "express": "4.13.1",
+    "pg": "4.4.x"
   },
   "engines": {
     "node": "0.12.5"
