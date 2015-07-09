@@ -5,8 +5,8 @@ body.sigo_login {
 }
 
 body.sigo_login .container {
-  align-self: center;
   display: flex;
+  align-self: center;
   justify-content: space-between;
 }
 
@@ -21,6 +21,12 @@ body.sigo_login img{
 
 body.sigo_login input{
   margin-bottom: 30px;
+}
+
+body.sigo_login div#buttons{
+  display: flex;
+  align-self: center;
+  justify-content: space-around;
 }
 
 body.sigo_login .btn{
