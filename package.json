@@ -2,15 +2,16 @@
   "name": "SiGO",
   "version": "0.1.0",
   "description": "Sistema de gerenciamento de Oficinas",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "dependencies": {
-    "bootstrap": "3.3.5",
-    "ejs": "2.3.2",
-    "express": "4.13.1",
-    "pg": "4.4.x"
+    "bootstrap" : "3.3.5",
+    "ejs"       : "2.3.2",
+    "express"   : "4.13.1",
+    "pg"        : "4.4.x",
+    "jade"      : "1.11.0"
   },
   "engines": {
     "node": "0.12.5"
