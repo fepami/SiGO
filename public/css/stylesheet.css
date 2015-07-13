@@ -1,4 +1,43 @@
-/* START: Login Page */
+/* START: Menu Lateral */
+
+div.sigo_menu_lateral{
+  background-color: #2196F3;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+
+div.sigo_menu_lateral img{
+  width: 100px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+div.sigo_menu_lateral ul{
+  list-style: none;
+  padding: 0px;
+}
+
+div.sigo_menu_lateral li{
+  text-align: center;
+  margin-bottom: 50px;
+
+}
+
+div.sigo_menu_lateral li:hover{
+  color: rgba(255,255,255,0.7);
+}
+
+div.sigo_menu_lateral span{
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+/* END: Menu lateral */
+
+
+/* START: Pagina de login */
 
 body.sigo_login {
   display: flex;
@@ -10,8 +49,12 @@ body.sigo_login .container {
   justify-content: space-between;
 }
 
-body.sigo_login .jumbotron{
-  
+body.jumbotron{
+  box-shadow: 10px 10px 5px rgba(0,0,0,0.5);
+}
+
+body.sigo_login form{
+  margin-bottom: 10px;
 }
 
 body.sigo_login img{
@@ -19,14 +62,20 @@ body.sigo_login img{
   margin-bottom: 50px;
 }
 
-body.sigo_login input{
+body.sigo_login input:first-child{
   margin-bottom: 30px;
+}
+
+body.sigo_login a p{
+  text-align: right;
+  font-size: 14px;
 }
 
 body.sigo_login div#buttons{
   display: flex;
   align-self: center;
   justify-content: space-around;
+  margin-top: 30px;
 }
 
 body.sigo_login .btn{
@@ -34,4 +83,46 @@ body.sigo_login .btn{
   border: 0px;
 }
 
-/* END: Login Page */
+/* END: Pagina de Login */
+
+
+/* START: Pagina de Agendamento */
+
+body.sigo_agendamento {
+  display: flex;
+}
+
+body.sigo_agendamento .container {
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+body.sigo_agendamento h2{
+  color: #999;
+  text-shadow: 2px 2px #fff;
+}
+
+body.sigo_agendamento h2 span{
+  font-size: 50px;
+  line-height: 50px;
+  line-height: 50px;
+}
+
+body.sigo_agendamento .btn{
+  background-color: #FF9800;
+  border: 0px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  text-align: center;
+}
+
+body.sigo_agendamento .btn p span{
+  line-height: 35px;
+}
+
+body.sigo_agendamento .btn:hover{
+  background-color: #ffaa32;
+}

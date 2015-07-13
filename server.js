@@ -11,7 +11,14 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
 app.get('/', function(request, response) {
-  response.render('pages/index')
+  response.render('pages/login')
+});
+
+app.get('/agendamento', function(request, response) {
+  response.render('pages/agendamento', {
+    usuario: 'foo',
+    nivel_acesso: '0',
+  })
 });
 
 app.get('/db', function (request, response) {
@@ -21,7 +28,7 @@ app.get('/db', function (request, response) {
       response.send("Error " + err);
       return;
     }
-    client.query('SELECT * FROM test_table', function(err, result) {
+    client.query('SELECT * FROM veiculo', function(err, result) {
       if (err) { 
         console.log(err); response.send("Error: " + err);
       }
