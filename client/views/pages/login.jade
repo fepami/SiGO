@@ -6,11 +6,11 @@ html
     div.container
       div.jumbotron
         img(src='assets/image/logo_sigo.png')
-        form
-          input.form-control(type="text", placeholder="Usuário ou e-mail")
-          input.form-control(type="password", placeholder="Senha")
-        a(href='#') 
-          p (Esqueci minha senha)
-        div#buttons
-          a.btn.btn-primary(href="#") Entrar
-          a.btn.btn-primary(href="#") Registrar-se
+        form(name="login", action="/login", method="post")
+          input.form-control(type="text", placeholder="Usuário ou e-mail", name="username")
+          input.form-control(type="password", placeholder="Senha", name="password")
+          a(href='#')
+            p (Esqueci minha senha)
+          div#buttons
+            input.btn.btn-primary(type="submit", value="Entrar")
+            a.btn.btn-primary(href="#") Registrar-se

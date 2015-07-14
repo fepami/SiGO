@@ -1,21 +1,32 @@
 var express 		 = require('express');
 var router  		 = express.Router();
-var pg      		 = require('pg');
-var connectionString = process.env.DATABASE_URL || 'postgres://tvlqxxjctmdinm:z2rBw-iPhbMbzira6MOliQuEOk@ec2-107-20-222-114.compute-1.amazonaws.com:5432/dekl0ddiqrurco:5432';
-
+var login 			 = require('../models/login.js')
 /**
 *	Rota para a tela de login
 */
 router.get('/', function(req, res) {
-  res.render('pages/login')
+	res.render('pages/login')
 });
 
 /**
 *	Rota para a tela de agendamento
 */
-router.get('/agendamento', function(req, res) {
-  res.render('pages/agendamento');
+router.get('/agendamento', login.restrict, function(req, res) {
+  	res.render('pages/agendamento');
 });
 
+/**
+*	Comando Login
+*/
+router.get('/login', function(req, res){
+	res.redirect('/');
+});
+
+router.post('/login', login.do_login);
+
+/**
+*	Comando Logout
+*/
+router.get('/logout', login.do_logout);
 
 module.exports = router;
