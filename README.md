@@ -14,9 +14,9 @@
 
 ## License
 
-The MIT License (MIT) - Copyright (c) 2015  
+*The MIT License (MIT) - Copyright (c) 2015  
 
-http://opensource.org/licenses/MIT
+*http://opensource.org/licenses/MIT
 
 </content>
   <tabTrigger></tabTrigger>
