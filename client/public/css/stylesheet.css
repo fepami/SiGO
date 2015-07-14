@@ -1,3 +1,37 @@
+/* START: Global */
+
+hr.fancy-line { 
+    border: 0; 
+    height: 1px;
+    position: relative;
+    margin: 0.5em 0; /* Keep other elements away from pseudo elements*/
+}
+hr.fancy-line:before {
+    top: -0.5em;
+    height: 1em;
+}
+hr.fancy-line:after {
+    content:'';
+    height: 0.5em;   /* half the height of :before */
+    top: 1px;        /* height of hr*/
+}
+
+hr.fancy-line:before, hr.fancy-line:after {
+    content: '';
+    position: absolute;
+}
+
+hr.fancy-line, hr.fancy-line:before {
+    background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 75%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 75%, color-stop(0%,rgba(0,0,0,0.2)), color-stop(75%,rgba(0,0,0,0)));
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 75%);
+    background: -o-radial-gradient(center, ellipse cover, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 75%);
+    background: -ms-radial-gradient(center, ellipse cover, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 75%);
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 75%);
+}
+
+/* END: Global */
+
 /* START: Menu Lateral */
 
 div.sigo_menu_lateral{
@@ -6,7 +40,15 @@ div.sigo_menu_lateral{
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+}
+
+div.sigo_menu_lateral a{
   color: #fff;
+}
+
+div.sigo_menu_lateral a:hover{
+  text-decoration: none;
 }
 
 div.sigo_menu_lateral img{
@@ -22,12 +64,14 @@ div.sigo_menu_lateral ul{
 
 div.sigo_menu_lateral li{
   text-align: center;
-  margin-bottom: 50px;
-
+  padding: 10px;  
+  margin-bottom: 40px;
+  cursor: pointer;
+  border-radius: 2px;
 }
 
 div.sigo_menu_lateral li:hover{
-  color: rgba(255,255,255,0.7);
+  background-color: #4ba9f2;
 }
 
 div.sigo_menu_lateral span{
@@ -94,9 +138,28 @@ body.sigo_agendamento {
 
 body.sigo_agendamento .container {
   display: flex;
+  flex-direction: column;
   align-self: center;
   justify-content: space-between;
   text-align: center;
+}
+
+body.sigo_agendamento div.btn-group{
+  margin-bottom: 20px;
+}
+
+body.sigo_agendamento button#button_clientes{
+  height:34px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border:0px;
+}
+
+body.sigo_agendamento button#button_cadastar_cliente{
+  background-color: #FF9800;
+  color: #ffffff;
+  border: 0px;
+  height:34px;
 }
 
 body.sigo_agendamento h2{
@@ -110,19 +173,10 @@ body.sigo_agendamento h2 span{
   line-height: 50px;
 }
 
-body.sigo_agendamento .btn{
-  background-color: #FF9800;
-  border: 0px;
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  text-align: center;
-}
-
-body.sigo_agendamento .btn p span{
-  line-height: 35px;
-}
-
-body.sigo_agendamento .btn:hover{
-  background-color: #ffaa32;
+div.calendario{
+  width: 50%;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0px 2px 0px rgba(0,0,0,0.2);
 }

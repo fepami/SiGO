@@ -10,6 +10,7 @@ app.use(express.static(__dirname + '/client/public'));
 app.set('views', __dirname + '/client/views');
 app.set('view engine', 'jade');
 
+
 app.use('/', routes);
 
 app.listen(app.get('port'), function() {
