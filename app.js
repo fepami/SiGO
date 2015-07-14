@@ -10,11 +10,7 @@ app.use(express.static(__dirname + '/client/public'));
 app.set('views', __dirname + '/client/views');
 app.set('view engine', 'jade');
 
-app.get('/', function(request, response) {
-  response.render('pages/login')
-});
-
-
+app.use('/', routes);
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
