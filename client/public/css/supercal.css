@@ -1,0 +1,43 @@
+.supercal th, td{
+	text-align: center;
+}
+
+.supercal .btn{
+  background-color: #FF9800;
+  border: 0px;
+  color: #ffffff;
+}
+
+.supercal .supercal-header{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 50px;
+	background-color: #2196F3;
+}
+
+.supercal .prev-month{
+	float:left;
+	order: 1;
+	height: 40px;
+	width:  40px;
+	border-radius: 20px;
+	align-self: center;
+	margin-left:10px;
+}
+
+.supercal .month{
+	order:2;
+	align-self: center;
+	color: #ffffff;
+}
+
+.supercal .next-month{
+  float:right;
+  order: 3;
+  height: 40px;
+  width:  40px;
+  border-radius: 20px;
+  align-self: center;
+  margin-right:10px;
+}
