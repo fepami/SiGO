@@ -30,6 +30,6 @@ router.post('/login', login.do_login);
 */
 router.get('/logout', login.do_logout);
 
-router.put('/agendamento', agendamento.doCreateAgendamento )
+router.put('/agendamento', login.restrict, agendamento.doCreateAgendamento )
 
 module.exports = router;

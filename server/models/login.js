@@ -1,20 +1,6 @@
 var crypto	= require('crypto');
 var db		= require('./database.js');
-
-var salt_len = Number(process.env.SALT_LEN || 128)
-var hash_iterations = Number(process.env.HASH_ITERATIONS || 12000)
-
-function salt(fn){
-	crypto.randomBytes(salt_len, function(err, salt){
-		if (err)
-			return fn(err);
-		fn(null, salt.toString('base64'));
-	});
-}
-
-function hash(pwd, salt, fn){
-	crypto.pbkdf2(pwd, salt, hash_iterations, salt_len, fn);
-}
+var util	= require('./util.js');
 
 function authenticate(name, pass, fn) {
 	console.log('authenticating %s:%s', name, pass);
@@ -22,11 +8,11 @@ function authenticate(name, pass, fn) {
 		if (error)
 			return fn(error);
 
-		hash(pass, user.salt, function(err, hash){
+		util.hash(pass, user.salt, function(err, hash){
 			if(err)
 				return fn(err);
 
-			if (hash.toString() == user.hash)
+			if (hash == user.hash)
 				return fn(null, user);
 
 			fn(new Error('invalid password'));
@@ -65,6 +51,4 @@ module.exports = {
 	restrict : restrict,
 	do_login : do_login,
 	do_logout : do_logout,
-	salt : salt,
-	hash : hash,
 };

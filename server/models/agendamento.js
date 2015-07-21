@@ -16,8 +16,8 @@ function doCreateAgendamento(req, res) {
 	agendamento.data = req.body.data;
 	agendamento.hora = req.body.hora;
 	agendamento.renavan_veiculo = req.body.renavan_veiculo;
-	// if(req.session.user.nivel_acesso != 0)
-	// 	agendamento.funcionario = req.session.user.nome_usuario;
+	if(req.session.user.nivel_acesso != 0)
+		agendamento.funcionario = req.session.user.nome_usuario;
 	db.createAgendamento(agendamento, function(err, agendamento){
 		if(err){
 			req.session.error = 'Falha ao inserir agendamento';
