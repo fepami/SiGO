@@ -4,26 +4,6 @@ var db		= require('./database.js');
 var salt_len = Number(process.env.SALT_LEN || 128)
 var hash_iterations = Number(process.env.HASH_ITERATIONS || 12000)
 
-var users = {
-	  admin: {
-	  		nome_usuario: 'admin',
-	  		nivel_acesso: 1
-	  }
-};
-
-salt(function(err, salt){
-	if (err)
-		return console.error(err);
-
-	users['admin'].salt = salt;
-
-	hash('admin', salt, function(err, hash){
-		if (err)
-			return console.error(err);
-		users['admin'].hash = hash.toString();
-	});
-});
-
 function salt(fn){
 	crypto.randomBytes(salt_len, function(err, salt){
 		if (err)
@@ -38,19 +18,19 @@ function hash(pwd, salt, fn){
 
 function authenticate(name, pass, fn) {
 	console.log('authenticating %s:%s', name, pass);
-	var user = users[name];
+	db.findUserByName(name, function(error, user){
+		if (error)
+			return fn(error);
 
-	if (!user)
-		return fn(new Error('cannot find user'));
+		hash(pass, user.salt, function(err, hash){
+			if(err)
+				return fn(err);
 
-	hash(pass, user.salt, function(err, hash){
-		if(err)
-			return fn(err);
+			if (hash.toString() == user.hash)
+				return fn(null, user);
 
-		if (hash.toString() == user.hash)
-			return fn(null, user);
-
-		fn(new Error('invalid password'));
+			fn(new Error('invalid password'));
+		});
 	});
 }
 

@@ -6,6 +6,8 @@ module.exports = {
 	end: end,
 	createAgendamento : createAgendamento,
 	createUsuario : createUsuario,
+	findUserByName : findUserByName,
+	allAgendamento : allAgendamento,
 };
 
 function end(){
@@ -50,8 +52,52 @@ function createAgendamento(agendamento, callback){
 	});
 }
 
-function findUserByName(name, callback){
+function allAgendamento(callback){
+	pg.connect(connectionString, function(err, client, done){
+		checkConnectionError(err, callback);
+	    var query = client.query({
+      		text: 'SELECT id, data, hora, renavan_veiculo, funcionario FROM agendamento',
+      		values: [],
+      		name: 'all_agendamento'
+    	});
+    	query.on('row', function(row, result) {
+      		result.addRow(row);
+    	});
+    	query.on('error', function(error) {
+      		checkQueryError(error, client, done, callback);
+    	});
+    	query.on('end', function(result) {
+      		 done();
+      		 callback(null, result.rows);
+    	});
+	});
+}
 
+function findUserByName(name, callback){
+	pg.connect(connectionString, function(err, client, done){
+		checkConnectionError(err, callback);
+	    var query = client.query({
+      		text: 'SELECT nome_usuario, salt, hash, nivel_acesso FROM usuario ' +
+				'WHERE nome_usuario=$1',
+      		values: [name],
+      		name: 'findUserByName'
+    	});
+    	query.on('row', function(row, result) {
+      		result.addRow(row);
+    	});
+    	query.on('error', function(error) {
+      		checkQueryError(error, client, done, callback);
+    	});
+    	query.on('end', function(result) {
+      		 done();
+      		 if(result.rowCount != 1){
+      		 	callback(new Error('user not found'));
+      		 }else{
+				var user = result.rows[0];
+				callback(null, user);
+      		 }
+    	});
+	});
 }
 
 function createUsuario(user, callback){

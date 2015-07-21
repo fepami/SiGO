@@ -12,9 +12,7 @@ router.get('/', function(req, res) {
 /**
 *	Rota para a tela de agendamento
 */
-router.get('/agendamento', login.restrict, function(req, res) {
-  	res.render('pages/agendamento');
-});
+router.get('/agendamento', login.restrict, agendamento.doAllAgendamentos);
 
 /**
 *	Comando Login

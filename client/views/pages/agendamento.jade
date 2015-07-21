@@ -5,31 +5,29 @@ html
     link(href='css/supercal.css', rel='stylesheet')
   body.sigo_agendamento
     include ../partials/menu_lateral.jade
-    
+
     script(src='js/jquery_supercal.js')
 
     div.container
-    
-      div.jumbotron
-        
-        div(class="btn-group", role="group", aria-label="...")  
 
-          button(id="button_clientes", type="button", class="btn btn-default dropdown-toggle", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") Selecione um cliente 
+      div.jumbotron
+
+        div(class="btn-group", role="group", aria-label="...")
+
+          button(id="button_clientes", type="button", class="btn btn-default dropdown-toggle", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") Selecione um cliente
             span.caret
           ul.dropdown-menu
-            li
-              a(href="#") Cliente 1
-            li
-              a(href="#") Cliente 2
-          
+            each item in agendamentos
+              li
+                a(href="#") #{item.id}
+
           div(class="btn-group", role="group")
             button(type="button", class="btn btn-default", id="button_cadastar_cliente") ou cadastre um novo
         hr.fancy-line
-        
-        h2 Selecione uma data para o agendamento 
+
+        h2 Selecione uma data para o agendamento
         div.calendario
         script.
           $('.calendario').supercal();
 
 
-        
