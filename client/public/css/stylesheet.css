@@ -107,7 +107,7 @@ body.sigo_login img{
 }
 
 body.sigo_login input:first-child{
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 body.sigo_login a p{
@@ -115,16 +115,19 @@ body.sigo_login a p{
   font-size: 14px;
 }
 
-body.sigo_login div#buttons{
+/*body.sigo_login div#buttons{
   display: flex;
   align-self: center;
   justify-content: space-around;
   margin-top: 30px;
-}
+}*/
 
 body.sigo_login .btn{
   background-color: #FF9800;
   border: 0px;
+  height: 34px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 /* END: Pagina de Login */
