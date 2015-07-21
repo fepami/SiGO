@@ -18,7 +18,13 @@ html
 
           div(class="btn-group", role="group", aria-label="...")  
 
-            select.form-control(id="nome_cliente")
+            select.form-control(id="cliente_nome")
+              option Selecione um cliente
+              each Cliente in clientes
+                option #{Cliente.nome}
+
+            select.form-control(id="cliente_veiculo")
+              option selecione um veículo
               each Cliente in clientes
                 option #{Cliente.nome}
             

@@ -148,11 +148,24 @@ body.sigo_agendamento .container {
   text-align: center;
 }
 
+
+body.sigo_agendamento #cliente_nome{
+  width: 30%;
+  
+}
+
+body.sigo_agendamento #cliente_veiculo{
+  width: 30%;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+
 body.sigo_agendamento div.btn-group{
   margin-bottom: 20px;
   display: flex;
   flex-direction: row;
-  align-self: center;
+  justify-content: center;
   
 }
 

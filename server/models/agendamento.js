@@ -6,15 +6,38 @@ module.exports = {
 };
 
 function doAgendamento(req, res){
-	db.allCliente(function(err, clientes){
-		if(err){
-			req.session.error = 'Falha ao pesquisar clientes';
-        	console.error(err);
-		} else {
-			res.render('pages/agendamento', { clientes: clientes });
-		}
-		res.end();
-	});
+	
+	// Usado pelo AJAX para retornar veiculos do cliente
+	if ( req.query.nomecliente != undefined){ 
+
+		db.veiculoByUsuario(req.query.nomecliente, function(err, veiculos){
+			
+			if(err){
+				
+				req.session.error = 'Falha ao pesquisar Veiculos';
+        		console.error(err);
+			} else {
+			
+				res.send({ veiculos: veiculos });
+			}
+			
+		});
+	} 
+	else{
+		
+		db.allCliente(function(err, clientes){
+		
+			if(err){
+				req.session.error = 'Falha ao pesquisar clientes';
+	        	console.error(err);
+			} else {
+				
+				res.render('pages/agendamento', { clientes: clientes });
+			}
+		});
+	}
+
+	res.end();
 }
 
 function doCreateAgendamento(req, res) {

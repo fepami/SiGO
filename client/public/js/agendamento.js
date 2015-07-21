@@ -27,3 +27,10 @@ $(".change-month span").click(function(){
 
 	$(".change-month").toggle();
 });
+
+
+$("#cliente_nome").change(function(){
+
+	alert("teste");
+
+});
