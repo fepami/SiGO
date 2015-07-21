@@ -1,11 +1,13 @@
-var crypto = require('crypto');
+var crypto	= require('crypto');
+var db		= require('./database.js');
+
 var salt_len = Number(process.env.SALT_LEN || 128)
 var hash_iterations = Number(process.env.HASH_ITERATIONS || 12000)
 
 var users = {
 	  admin: {
-	  		name: 'admin',
-	  		user_role: 1
+	  		nome_usuario: 'admin',
+	  		nivel_acesso: 1
 	  }
 };
 

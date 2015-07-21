@@ -1,0 +1,13 @@
+drop table equipe_mecanico;
+drop table agendamento;
+drop table veiculo;
+drop table funcionario;
+drop table cliente;
+drop table usuario;
+drop table mecanico;
+drop table servico;
+drop table os;
+drop table equipe;
+drop table tipo_servico;
+drop table peca;
+drop table tipo_peca;

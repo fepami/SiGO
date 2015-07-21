@@ -1,6 +1,7 @@
-var express 		 = require('express');
-var router  		 = express.Router();
-var login 			 = require('../models/login.js')
+var express 		= require('express');
+var router  		= express.Router();
+var login 			= require('../models/login.js');
+var agendamento		= require('../models/agendamento.js');
 /**
 *	Rota para a tela de login
 */
@@ -28,5 +29,7 @@ router.post('/login', login.do_login);
 *	Comando Logout
 */
 router.get('/logout', login.do_logout);
+
+router.put('/agendamento', agendamento.doCreateAgendamento )
 
 module.exports = router;

@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 var cookieSession = require('cookie-session')
 var app     = express();
 var routes  = require('./server/routes/index.js');
+var db		= require('./server/models/database.js');
 
 app.set('port', (process.env.PORT || 5000));
 
