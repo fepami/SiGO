@@ -132,6 +132,10 @@ body.sigo_login .btn{
 
 /* START: Pagina de Agendamento */
 
+body.sigo_agendamento h2{
+  margin-bottom: 40px;
+}
+
 body.sigo_agendamento {
   display: flex;
 }
@@ -146,9 +150,13 @@ body.sigo_agendamento .container {
 
 body.sigo_agendamento div.btn-group{
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  
 }
 
-body.sigo_agendamento button#button_clientes{
+body.sigo_agendamento select.form-control{
   height:34px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -173,10 +181,63 @@ body.sigo_agendamento h2 span{
   line-height: 50px;
 }
 
-div.calendario{
+body.sigo_agendamento div.calendario{
   width: 50%;
   margin: 50px auto;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0px 2px 0px rgba(0,0,0,0.2);
+}
+
+body.sigo_agendamento div.select_hour li.hour{
+ margin: 20px 40px;
+}
+
+body.sigo_agendamento div.select_hour ul{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-self: space-between;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 0px;
+}
+
+body.sigo_agendamento div.select_hour ul a{
+  padding: 10px;
+  background-color: #2196F3;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+body.sigo_agendamento div.select_hour ul a.disabled{
+  padding: 10px;
+  background-color: #BBDEFB;
+  color: #ffffff;
+  cursor: default;
+}
+
+body.sigo_agendamento div.select_hour ul a.disabled:hover{
+  padding: 10px;
+  background-color: #BBDEFB;
+  color: #ffffff;
+}
+
+body.sigo_agendamento div.select_hour ul a:hover{
+  background-color: #FF9800;
+  color: #ffffff;
+  text-decoration: none;
+  
+}
+
+body.sigo_agendamento div.select_hour ul a[data-selected=true]{
+  background-color: #FF9800;
+  color: #ffffff;
+  text-decoration: none;
+  
+}
+
+body.sigo_agendamento div.submit_area .btn{
+  background-color: #FF9800;
+  border: 0px;
 }

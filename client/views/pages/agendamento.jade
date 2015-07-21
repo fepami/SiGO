@@ -12,24 +12,60 @@ html
     
       div.jumbotron
         
-        div(class="btn-group", role="group", aria-label="...")  
+        form
 
-          button(id="button_clientes", type="button", class="btn btn-default dropdown-toggle", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") Selecione um cliente 
-            span.caret
-          ul.dropdown-menu
-            li
-              a(href="#") Cliente 1
-            li
-              a(href="#") Cliente 2
+          h2 Selecione ou cadastre um cliente 
+
+          div(class="btn-group", role="group", aria-label="...")  
+
+            select.form-control(id="nome_cliente")
+              each nomeCliente in pageData.nomeCliente
+                option #{nomeCliente}
+            
+            div(class="btn-group", role="group")
+              button(type="button", class="btn btn-default", id="button_cadastar_cliente") ou cadastrar cliente          
+          div.select_date
+            hr.fancy-line
+            br/
+            h2 Escolha a data do agendamento 
+            div.calendario
+            script.
+              $('.calendario').supercal();
+
+          div.select_hour
+            hr.fancy-line
+            br/
+            h2 Escolha a hora
+            ul.hour_list
+              li.hour
+                a(data-hour-id="1", data-selected="", class="") 08:00 - 09:00 
+              li.hour
+                a(data-hour-id="2", data-selected="", class="") 09:00 - 10:00 
+              li.hour
+                a(data-hour-id="3", data-selected="", class="") 10:00 - 11:00
+              li.hour
+                a(data-hour-id="4", data-selected="", class="") 11:00 - 12:00 
+              li.hour
+                a(data-hour-id="5", data-selected="", class="") 12:00 - 13:00 
+              li.hour
+                a(data-hour-id="6", data-selected="", class="") 13:00 - 14:00 
+              li.hour
+                a(data-hour-id="7", data-selected="", class="") 14:00 - 15:00 
+              li.hour
+                a(data-hour-id="8", data-selected="", class="") 15:00 - 16:00 
+              li.hour
+                a(data-hour-id="9", data-selected="", class="") 16:00 - 17:00 
+              li.hour
+                a(data-hour-id="10", data-selected="", class="") 17:00 - 18:00 
+            br/
           
-          div(class="btn-group", role="group")
-            button(type="button", class="btn btn-default", id="button_cadastar_cliente") ou cadastre um novo
-        hr.fancy-line
-        
-        h2 Selecione uma data para o agendamento 
-        div.calendario
-        script.
-          $('.calendario').supercal();
+
+          div.submit_area
+            hr.fancy-line
+            br/
+            br/
+            a.btn.btn-primary(id="button_confirmacao", href="#") Confirmar Agendamento
 
 
-        
+
+          script(src='js/agendamento.js')

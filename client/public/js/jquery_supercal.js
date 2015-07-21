@@ -7,6 +7,8 @@
  * https://github.com/jamwaffles/SuperCal
  **/
 
+var data;
+
 (function(factory) {
 	if(typeof define === 'function' && define.amd) {
 		define(['jquery'], factory);
@@ -144,12 +146,12 @@
 
 				$('<button />')
 					.addClass('prev-month change-month btn')
-					.html('<span class="glyphicon glyphicon-search" aria-hidden="true"></span>') // texto do Botão mês anterior
+					.html('<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>') // texto do Botão mês anterior
 					.appendTo(header);
 
 				$('<button />')
 					.addClass('next-month change-month btn') 
-					.html('<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>') //texto do botão próximo mês
+					.html('<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>') //texto do botão próximo mês
 					.appendTo(header);
 
 				$('<span />')
@@ -264,20 +266,22 @@
 					footer.hide();
 				}
 
-				if(options.todayButton) {
+				data = pMethods.formatDate(date, options);
+
+				/*if(options.todayButton) {
 					$('<button />')
 						.text('Today')
 						.addClass('btn supercal-today')
 						.attr('type', 'button')
 						.appendTo(footer);
 				}
-
+				
 				if(options.showInput) {
 					$('<span />')
 						.text(pMethods.formatDate(date, options))
 						.addClass('supercal-input uneditable-input span2')
 						.appendTo(footer);
-				}
+				}*/
 
 				$('<input />')
 					.prop('type', 'hidden')
@@ -307,6 +311,7 @@
 							e.stopPropagation();
 
 							methods.changeMonth.apply($(this).closest('.supercal'), [ $(this).hasClass('next-month') ? 1 : -1, $(this).closest('.supercal').data('options') ]);
+													
 						})
 						.on('click.supercal', '.supercal-today', function() {
 							methods.changeMonth.apply($(this).closest('.supercal'), [ now, $(this).closest('.supercal').data('options') ]);

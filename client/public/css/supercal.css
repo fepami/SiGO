@@ -1,5 +1,6 @@
 .supercal th, td{
 	text-align: center;
+	text-transform: uppercase;
 }
 
 .supercal .btn{
@@ -24,12 +25,15 @@
 	border-radius: 20px;
 	align-self: center;
 	margin-left:10px;
+	background-color: #2196F3;
+	display: none;
 }
 
 .supercal .month{
 	order:2;
 	align-self: center;
 	color: #ffffff;
+	font-weight: bold;
 }
 
 .supercal .next-month{
@@ -40,4 +44,32 @@
   border-radius: 20px;
   align-self: center;
   margin-right:10px;
+  background-color: #2196F3;
 }
+
+.supercal .table{
+	margin: 0px;
+}
+
+.supercal .supercal-footer{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.supercal .supercal-today{
+	margin-bottom: 20px;
+	align-self: center;
+}
+
+.supercal .selected{
+	background-color: #FF9800;
+	color: #ffffff;
+}
+
+.supercal .month-next, .month-prev{
+	color: #cccccc;
+}
+
+.supercal .today{
+	font-weight: bold;
