@@ -1,145 +1,19 @@
-create table tipo_peca
-(
-id 			serial				primary key,
-nome 		varchar(150),
-descricao 	varchar(300),
-preco 		real,
-quantidade 	int
-);
+\i bd_tables_create_script.sql
 
-
-create table peca
-(
-numero_serie	varchar(100)	primary key,
-validade		varchar(12),
-status			int,
-id_tipo_peca	int				references tipo_peca(id)
-);
-
-create table tipo_servico
-(
-id				serial			primary key,
-nome 			varchar(150),
-descricao		varchar(300),
-especialidade	int,
-valor_mao_obra	real
-);
-
-create table equipe
-(
-id				serial			primary key
-);
-
-create table os
-(
-numero_os		serial			primary key,
-data_emissao	varchar(12),
-valor			real,
-data_conclusao	varchar(12),
-status			int,
-motivo_suspensao int,
-total_pecas		int,
-id_equipe		int				references equipe(id)		
-);
-
-create table servico
-(
-id				serial			primary key,
-valor			real,
-numero_pecas	int,
-numero_serie_peca varchar(100)	references tipo_peca(numero_serie),
-id_tipo_servico	int				references tipo_servico(id),
-numero_os		int				references os(numero_os)
-);
-
-create table mecanico
-(
-codigo_mecanico	serial			primary key,
-nome			varchar(150),
-end_rua			varchar(150),
-end_complemento	varchar(50),
-end_cep			varchar(10),
-end_cidade		varchar(50),
-end_estado		varchar(50),
-telefone_1		varchar(20),
-telefone_2		varchar(20),
-especialidade	int
-);
-
-create table usuario
-(
-nome_usuario	varchar(20)		primary key,
-senha			varchar(50),
-nivel_acesso	int
-);
-
-create table cliente
-(
-nome_usuario	varchar(20) 	primary key references usuario,
-nome			varchar(150),
-end_rua			varchar(150),
-end_complemento	varchar(50),
-end_cep			varchar(10),
-end_cidade		varchar(50),
-end_estado		varchar(50),
-telefone_1		varchar(20),
-telefone_2		varchar(20)
-);
-
-create table funcionario
-(
-nome_usuario	varchar(20)		primary key references usuario,
-nome			varchar(150),
-end_rua			varchar(150),
-end_complemento	varchar(50),
-end_cep			varchar(10),
-end_cidade		varchar(50),
-end_estado		varchar(50),
-telefone_1		varchar(20),
-telefone_2		varchar(20),
-salario			real,
-cargo			varchar(50)
-);
-
-create table veiculo
-(
-renavan			int				primary key,
-placa			varchar(10),	
-marca			varchar(20),
-modelo			varchar(20),
-ano				varchar(12),
-nome_usuario	varchar(20)		references cliente
-);
-
-create table agendamento
-(
-id				serial			primary key,
-data			varchar(12),
-hora			varchar(12),
-renavan_veiculo	int				references veiculo(renavan),
-funcionario		varchar(20)		references funcionario(nome_usuario)
-);
-
-create table equipe_mecanico
-(
-codigo_mecanico_1	int	 		references mecanico(codigo_mecanico),
-codigo_mecanico_2	int			references mecanico(codigo_mecanico),
-id_equipe			int			references equipe(id),
-primary key (codigo_mecanico_1, codigo_mecanico_2, id_equipe)
-);
-
-insert into usuario values ('gerente','senha',0);
-insert into usuario values ('atendente','senha',1);
-insert into usuario values ('tecnico1','senha',2);
-insert into usuario values ('tecnico2','senha',2);
-insert into usuario values ('tecnico3','senha',2);
-insert into usuario values ('tecnico4','senha',2);
-insert into usuario values ('cliente1','senha',3);
-insert into usuario values ('cliente2','senha',3);
-insert into usuario values ('cliente3','senha',3);
-insert into usuario values ('cliente4','senha',3);
-insert into usuario values ('cliente5','senha',3);
-insert into usuario values ('cliente6','senha',3);
+--Todas as senhas são 'senha'
+insert into usuario values ('gerente', 'aj20zxsGYUfQmnyMYLnaRUyKC1X/Qg1IE7/+ML4bM8y1s1kVx1hO/Tz4yL0+Rc1E/uanrXp9B6v0Jk/F4d0gWbHY7ZSgrQ3kel8ZynRqC4F6mvG09zfe4t60KPdJ8eqlHe/v91p5ENevHe22ByS8d7EnBn/PV0Cq/ib3zKFo8J0=', 'PAqD2o3m8uR+ZveTh5PRY+A/eIQQYLlPFId/2bXtOHjsdlHtvcWHU7I9rJEvnmSdsBPhgzB8SQiIZqZOSlWFA0jptoswa6t3BeUvCExhtOAr6KvJ+IrcYZnbVLypZ/Pr/U42XsQDvCloVrM2iCmxV+ZekwNqu7P9ceudxZn84s8=',0);
+insert into usuario values ('atendente', '7kk5fTiYoMEMlLvjcfLS/2J1K+WbMwGhesO3gQfGGNP7fHqlTNzJfItTxX42oaVlJaCU3MXudRoP6HG2Xgyx+Yh5SvnQi06dx4+8tafYT60r1N/wDgrDwlY/VUjsra280oAJ0U8yDBpS192/qclyl8AyYTVBsIdSkiMnJ02gtoI=', 'NdciOy7LHEq6DDY7K/SXPg/CM3fBWumAZXfev3KhEnHaHfGB2F6w9JtqgNTpek7iw3lIuqOtFk5vM9S07OVNhiCx0wmmwJzPfGet4phpEse+FNSajRjWGhLiyVaqGHnKmGzNiJDynDSwIWcwKPIWTby4H9LuxLk6QkggUE6wQ3I=',1);
+insert into usuario values ('tecnico1', 'Jkpbrs7r0WkPo6V3AuxptXiPoHrcIOaBpjebNgutrfBwzhGHTb50aKpDYhSZxu6pwzGucRirnJEsicGWjuOFp6tBS9eAsnzIeJY71rJyXXs8NoMjA8/+fc8ZxlZ5Xyh4WV+0u5a6dbB91blUDEwHnWfk6FX52f2g+5bHa0cq0N0=', 'HKjQJOyMRrbv6WqxBQePS6d0aVcin1MqKfDLWUiLpVn85Xcn7q+84LRjM3c0ezC05m1gSDWaVIee2zC8CdXh9xq9XVkdhChV7bkulbTfLr7QQe0X3kC1RGqYAixqSgGJ2X4I8SxkLX8785Ywyw4VToGOtDf4STMC7BZ5sn3EXw4=',2);
+insert into usuario values ('tecnico2', 'ZodLTyKFR2iUfLAb8TWDEbPx7w/Yl4zY5UuAoXKjqocbT7C6BeitkUGWCFJE66odDHzSKE21rF/hXmziFYtDKyrD8QtdtK1LLNEf1z4zZasLxm3BEHaF7YXu5FALh6RFvl4m0xfXAUpw6szbvxdNlXCo2npga4e+2y54s93yjxg=', 'KuF4AjgQDBj/BPl8wGFu/ksBKQPVMUT26mNeDjC9L+yWFAbY3wCccL/65bsuP5xotTRxpVZp77nbt/lqcJPIc7dsCz4h/oN7q7yR2+e1+nlkLnqUcRUxiAdAzbKn/rLDO1c5NMou1zqPCG1wbZ3PRojxsI9o8jPTTHADINYUyjU=',2);
+insert into usuario values ('tecnico3', 'RE4j61l+7hwx4nb3uwAbb4V6cjMlTxryPcXN0Ugy5s7v4V5DQNp5beNr1m7RigCK3Je/s/FSlgbgYXS3BQwXy7JSbto8wfujZ4xrm9byHJfnGGlCRLpvLAIemwoxqrE9TmAX8v+/PWm/cNaKRYLnaylwWHm8Q749zfwb95E5m7U=', '9gH5NqONSxHJBJJc9E0BV/HMr6fmY1d+qY60gdKB+ce60dWj8C+0c+qNK8+SIM10jFnwMJnluwhUGbPzVxpaXBAcwkM/ZAsI/jzA7Ez3zy0COsGIpIHlAmu6kbG62/X8aBh64SSohslMHm9zaCiLbKS6SM5vAEDs/5AQkOa+6q0=',2);
+insert into usuario values ('tecnico4', 'i7AjduN2Fnp0OKZtHl7Ao/Cd/2Bm3Ztexowe42MGZwgboKVsodKXE2HM4e3Dokg3tBxYdMMVCp69xhxaDQByqKOsDMCgUF8/dGCtuUq6BIGBU5n0kEYoLgnNL0aRCic4szpPJWLLYFKjaw8Dw5NuIgX5ZVBI2hOpOGrJQri8dn8=', 'PXyF3dpw6SI2a81kLDc13G59st2as8LbmKTQ4fPiAqcMQ8vaHD/Rff/MV1kKcgVzSODSLSXr6I90bcooEbjNLU1TfZV2KETLRq2o/uWkhA+3avPBBZSOPceA6CtH451AVeOz0+Qz9j1XCaqVY59fCQ9YnK3rXDAxgkSuOaxs3HE=',2);
+insert into usuario values ('cliente1', '+XybNlek6/lCbiX1XP0Tr8OOXiCNcp4gtMGsFQlruOfIT/YXUet7Xe2VwRStwzrJbxZ5gArtvjirYY8o3/MIIqbH7LYJpgTwZ9CA+2cUq2wVoM4uAXcJ6EsedNK4+6mmTi8fWCHTKlMvz17jtQLQQ0u/Js1v91vRataH+ymLBak=', 'DygErMoDl8zQnZ7PsjWGYEZeTJ+1OjJFVBLwC3P5Q+yQKI/COkf9WSUOr8s/hVF47gKyJ5CzDDDp8YuOqyZbuEKtwr4KkrkEIzKxTpT8U00xrW5dRyeUtHnv8leA8EdodNR7Ca5UwQO73EQE/+n4dT5x7kqqjf7k14x2Sca/aYQ=',3);
+insert into usuario values ('cliente2', 'OdRvKAQk+hChzkIVMZT9EsTU6hiNdE0LbNbGrNQgCKwdqnaNY0r46viXE0OJx27DXKGpSiTiIPkEqisfpMudMNpqMy6hjlhCOinCbxJo5RgrD6BwcE1rmDBLs1BBCRSAXAFzAdjy62yr0aZ0CkzROp4x70eSZ44/gfBK0fEE57w=', '+6UXTsSu7BLvkuAZ36QnPqJ/Oghkdz/ADoSKidIARE6CLE6t7GsfNbhgJBTFb1E7DLVvQ9MZbNQ24LEHIRBBnXRWtCcRoxOZd1o3FAsRgTULYtcC5WWnVHahVG8dP0PmCz84EuK3a2SVL0SQJaKOpM8x2OKe8wxcEbTX+hq79Ss=',3);
+insert into usuario values ('cliente3', 'O63rywiDM/acWbt3aAln2DIusajOkq17s1aQ9mTmFV6Kfmn1CVTqndT5UBojMfYO2I1dX2+oZ6I2ejSrl38z03/j2x++UjTKzAbjrforcCsZvTLLH9MxoogJdiICqeUEXrfa+zRPJv9ir4ryUD5/eREavTu/G+3GFkMQenthh40=', 'nwPV/777Q2Y7jFOxc3thQSYQddTL3t0OGIjIx4BFBXYumJKTYPLx9BrDOJ2RN7arCAi4Lb+JSgzsuVf/sfcCamJRPBzUPILuVI4+kkxTkjh1B82y70kV4AyBMpg+AAseGcLcXBDhgmBje9QdS5eJ9GyMXbpG5nJ6Z0wKSFrrFs8=',3);
+insert into usuario values ('cliente4', 'lL2XCMVZ67RpPUV0ezDWJz+w6vB7EXosrhHtFBHeYMaD5UAaiV0oVvFbumU31RufNe79b8iJeW3ZJJeDflvGqtvXYDk3ctuwoN3idhmskT+RuWIEcvopnFGB4aLz00tghYCnM7vL0nrY2zySXOgmkv3nPLuwAc4eqeHv79LyGYc=', 'hJWOOoSK5t/2b/xbpKcoo7o2fyL+lUcuTRe6i85jU8hWBav+hbIyurmlE/D+iBfXzjPIW3Pi9/sQ3FU+IgPGn5djlcKGtJV7TVh0YJfiURcM9Rj+McjhyndRORQlLTphiYbYeEhu/Xcg8pZKfeIFfomWpzskC8Uq1vou546YUKs=',3);
+insert into usuario values ('cliente5', 'WY12cIQBLKYmSC4ulz1taoj/d5npbF0kHpfWD7SRkcF2ZC+CuWrxPDYFS0+bRNQAb6d4XKP9qbgncngd7A9/AeqAShnjASuaWDvSFsl4ZNqv3zZ3uE11CRyDAV6P1NM6Gi+b2ROJNGEs9zcVZ6hWyBaCSvBQaCVC3Gg08vmFA9o=', '3D7W7XY31lRpX8L5wO02DefiLTQhACDjqI2RwTy3pS2tfwA9FItd2q/+942JxvvjNv8edhzwgBcIoFfz1vVBlDoTjqQhL6Nad51XQIAxSWVl0d7Q83mBC+d15WL+X07ggbD77bygPw4dxRzjv48Q1eaohvyAqEISWQjaBlqZzf0=',3);
+insert into usuario values ('cliente6', 'OOz4+f5bmAM6rtJd87K4+lCD9lcykiqAyjOCX0MqoOE6hI6/EVplTIqhzY6fW5kOqlqSB66FOJ6MIDDQq3FQKXxnrucAlFuvKpFCd0DF2SxxwiVGW1B7skWv/m6i/2wLbRePQZNTiWXqrnKdptxD942dFX2vzYDcPq3zwMwRltc=', 'feEMk+BthLYKXwfPHWIeM/v43SVpjkjy6tTzlUHmUL0OzrAFXxKSXCq7qFOnpzWskrbsybnakE9GyijuReFiSvHkNZGBr8P/B0pHyomXiCqZPnUkxKAjYwigCnq78TxaqGirM4ofQggBLp/8vVMbfKPzwVOFocfjzX/QgH3uhNY=',3);
+insert into usuario values ('admin', 'QmrZR2ytFDRSqGcZbcpQTQTo2e/4N5FxG1t4KYtYhyT87qg4TwSUlbtEgq8sIwVjepoe3jeYXxhb6ratMA6TOTAYINigHH644V6ePpCsziKidmKO1l/zwvq+WLlFjLuvPFYWlETBiuIwZZTsoPQmI9b8QC3ZggmcYZ4RxAV4yjw=', 'LcMkbwvLZDHo08XzY19WyvpQjzV8uYcqAcwdCO4ckxFHg6JgEiYrQmIVRM4C27D+T+vC0q/dZ6AAKAyuBv4f5FGkiDD+ZsJkYobPn6K9Z7ZXT3ak6uw9vF+aExaInCaf3tssUddcSNuef2IIbp8lTlDWlGDF7KffvKZ9f3BsuCY=', 0);
 
 insert into funcionario values ('gerente','Matheus Carvalho Pereira','Rua Alcino Vicente, 1858','','51900-122','Poços de Caldas','MG','3770-4354','',10000,'gerente');
 insert into funcionario values ('atendente','Vitória Pinto Ferreira','Rua Jorge Moreira de Sousa, 309','','50200-122','São Paulo','SP','(11) 2657-2935','',20000,'atendente');
