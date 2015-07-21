@@ -12,6 +12,19 @@ router.get('/', function(req, res) {
 /**
 *  R O T A S   P A R A   A S   T E L A S   D E   L O G I N  /  L O G O U T
 */
+router.get('/agendamento', login.restrict, agendamento.doAllAgendamentos);
+
+/**
+*	Rota para a tela de Serviços e Peças
+*/
+
+router.get('/serv_pecas', function(req, res){
+	res.render('pages/serv_pecas')
+});
+
+/**
+*	Comando Login
+*/
 router.get('/login', function(req, res){
   res.redirect('/');
 });
