@@ -11,8 +11,7 @@ html
     div.container
 
       div.jumbotron
-
-        
+  
         form
 
           h2 Selecione ou cadastre um cliente 
@@ -20,8 +19,8 @@ html
           div(class="btn-group", role="group", aria-label="...")  
 
             select.form-control(id="nome_cliente")
-              each nomeCliente in pageData.nomeCliente
-                option #{nomeCliente}
+              each Cliente in clientes
+                option #{Cliente.nome}
             
             div(class="btn-group", role="group")
               button(type="button", class="btn btn-default", id="button_cadastar_cliente") ou cadastrar cliente          
