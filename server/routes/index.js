@@ -1,39 +1,35 @@
-var express 		 = require('express');
-var router  		 = express.Router();
-var pg      		 = require('pg');
-var connectionString = process.env.DATABASE_URL || 'postgres://tvlqxxjctmdinm:z2rBw-iPhbMbzira6MOliQuEOk@ec2-107-20-222-114.compute-1.amazonaws.com:5432/dekl0ddiqrurco:5432';
 
-var client = new pg.Client(connectionString);
+var express 		= require('express');
+var router  		= express.Router();
+var login 			= require('../models/login.js');
+var agendamento		= require('../models/agendamento.js');
+
 /**
 *	Rota para a tela de login
 */
 router.get('/', function(req, res) {
-  res.render('pages/login')
+	res.render('pages/login')
 });
 
 /**
 *	Rota para a tela de agendamento
 */
-router.get('/agendamento', function(req, res) {
-  	
-  	client.connect(function(err) {
-  		if(err) {
-    		return console.error('could not connect to postgres', err);
-  	}
+router.get('/agendamento', login.restrict, agendamento.doAllAgendamentos);
 
-	  	var query = client.query("SELECT nome FROM cliente");
-
-	  	query.on("row", function (row, result) {
-    		result.addRow(row);
-		});
-
-		query.on("end", function (result) {
-    		console.log(JSON.stringify(result.rows, null, "    "));
-    		res.render('pages/agendamento');
-    		client.end();
-    	});
-	});
+/**
+*	Comando Login
+*/
+router.get('/login', function(req, res){
+	res.redirect('/');
 });
 
+router.post('/login', login.do_login);
+
+/**
+*	Comando Logout
+*/
+router.get('/logout', login.do_logout);
+
+router.put('/agendamento', agendamento.doCreateAgendamento )
 
 module.exports = router;
