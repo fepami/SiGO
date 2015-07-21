@@ -1,4 +1,3 @@
-var crypto	= require('crypto');
 var db		= require('./database.js');
 var util	= require('./util.js');
 
