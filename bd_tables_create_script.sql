@@ -1,6 +1,6 @@
 create table tipo_peca
 (
-	id 			serial					primary key,
+	id 			serial				primary key,
 	nome 		varchar(150),
 	descricao 	varchar(300),
 	preco 		real,
@@ -18,7 +18,7 @@ create table peca
 
 create table tipo_servico
 (
-	id				serial				primary key,
+	id				serial			primary key,
 	nome 			varchar(150),
 	descricao		varchar(300),
 	especialidade	int,
@@ -27,12 +27,12 @@ create table tipo_servico
 
 create table equipe
 (
-	id				serial				primary key
+	id				serial			primary key
 );
 
 create table os
 (
-	numero_os		serial				primary key,
+	numero_os		serial			primary key,
 	data_emissao	varchar(12),
 	valor			real,
 	data_conclusao	varchar(12),
@@ -44,7 +44,7 @@ create table os
 
 create table servico
 (
-	id				serial				primary key,
+	id				serial			primary key,
 	valor			real,
 	numero_pecas	int,
 	id_tipo_servico	int				references tipo_servico(id),
@@ -53,7 +53,7 @@ create table servico
 
 create table mecanico
 (
-	codigo_mecanico	serial				primary key,
+	codigo_mecanico	serial			primary key,
 	nome			varchar(150),
 	end_rua			varchar(150),
 	end_complemento	varchar(50),
@@ -100,7 +100,7 @@ create table funcionario
 
 create table veiculo
 (
-	renavan			int				primary key,
+	renavan			bigint			primary key,
 	placa			varchar(10),
 	marca			varchar(20),
 	modelo			varchar(20),
@@ -110,7 +110,7 @@ create table veiculo
 
 create table agendamento
 (
-	id				serial				primary key,
+	id				serial			primary key,
 	data			varchar(12),
 	hora			varchar(12),
 	renavan_veiculo	int				references veiculo(renavan),
