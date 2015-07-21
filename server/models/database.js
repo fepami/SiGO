@@ -3,11 +3,12 @@ var pg = require('pg');
 var connectionString = process.env.DATABASE_URL || 'postgres://tvlqxxjctmdinm:z2rBw-iPhbMbzira6MOliQuEOk@ec2-107-20-222-114.compute-1.amazonaws.com:5432/dekl0ddiqrurco:5432';
 
 module.exports = {
-	end: end,
-	createAgendamento : createAgendamento,
-	createUsuario : createUsuario,
-	findUserByName : findUserByName,
-	allAgendamento : allAgendamento,
+  end                : end,
+	createAgendamento  : createAgendamento,
+	createUsuario      : createUsuario,
+	findUserByName     : findUserByName,
+	allAgendamento     : allAgendamento,
+  allCliente         : allCliente,
 };
 
 function end(){
@@ -149,6 +150,28 @@ function createCliente(cliente, callback){
 	});
 }
 
+function allCliente(callback){
+  pg.connect(connectionString, function(err, client, done){
+    checkConnectionError(err, callback);
+      var query = client.query({
+          text: 'SELECT * FROM cliente',
+          values: [],
+          name: 'all_clients'
+      });
+      query.on('row', function(row, result) {
+          result.addRow(row);
+      });
+      query.on('error', function(error) {
+          checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+           done();
+           callback(null, result.rows);
+      });
+  });
+}
+
+
 function createFuncionario(funcionario, callback){
 	pg.connect(connectionString, function(err, client, done){
 		checkConnectionError(err, callback);
@@ -198,4 +221,3 @@ function allFuncionario(callback){
     	});
 	});
 }
-

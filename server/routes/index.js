@@ -1,20 +1,23 @@
 
-var express 		= require('express');
-var router  		= express.Router();
-var login 			= require('../models/login.js');
+var express 		  = require('express');
+var router  		  = express.Router();
+var login 			  = require('../models/login.js');
 var agendamento		= require('../models/agendamento.js');
+var cliente       = require('../models/cliente.js');
 
 /**
-*	Rota para a tela de login
+*	 R O T A S   P A R A   A S   T E L A S   D E   L O G I N 
 */
 router.get('/', function(req, res) {
 	res.render('pages/login')
 });
 
 /**
-*	Rota para a tela de agendamento
+*	 R O T A S   P A R A   A S   T E L A S   D E   A G E N D A M E N T O
 */
-router.get('/agendamento', login.restrict, agendamento.doAllAgendamentos);
+router.get('/agendamento'       , agendamento.doAgendamento);
+router.get('/agendamento/criar' ,login.restrict, agendamento.doCreateAgendamento);
+
 
 /**
 *	Comando Login
@@ -30,6 +33,6 @@ router.post('/login', login.do_login);
 */
 router.get('/logout', login.do_logout);
 
-router.put('/agendamento', login.restrict, agendamento.doCreateAgendamento )
+
 
 module.exports = router;
