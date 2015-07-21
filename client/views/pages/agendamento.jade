@@ -16,9 +16,15 @@ html
 
           h2 Selecione ou cadastre um cliente 
 
-          div(class="btn-group", role="group", aria-label="...")  
+          div(class="btn-group main", role="group", aria-label="...")  
 
-            select.form-control(id="nome_cliente")
+            select.form-control(id="cliente")
+              option Selecione um cliente
+              each Cliente in clientes
+                option #{Cliente.nome}
+
+            select.form-control(id="cliente_veiculo")
+              option Selecione um veículo
               each Cliente in clientes
                 option #{Cliente.nome}
             
