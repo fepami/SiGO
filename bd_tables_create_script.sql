@@ -102,7 +102,7 @@ cargo			varchar(50)
 
 create table veiculo
 (
-renavan			bigint				primary key,
+renavam			bigint			primary key,
 placa			varchar(10),
 marca			varchar(20),
 modelo			varchar(20),

@@ -9,6 +9,11 @@ module.exports = {
 	findUserByName     : findUserByName,
 	allAgendamento     : allAgendamento,
   allCliente         : allCliente,
+  createFuncionario  : createFuncionario,
+  allFuncionario     : allFuncionario,
+  createVeiculo      : createVeiculo,
+  veiculoByUsuario   : veiculoByUsuario,
+
 };
 
 function end(){
@@ -246,13 +251,13 @@ function createVeiculo(veiculo, callback){
 	});
 }
 
-function veiculoByUsuario(nome_usuario, callback){
+function veiculoByUsuario(nome, callback){
 	pg.connect(connectionString, function(err, client, done){
 		checkConnectionError(err, callback);
 	    var query = client.query({
-      		text: 'SELECT renavan, placa, marca, modelo, ano, nome_usuario ' +
+      		text: 'SELECT renavam, placa, marca, modelo, ano, nome_usuario ' +
       			'FROM veiculo WHERE nome_usuario = $1',
-      		values: [nome_usuario],
+      		values: [nome],
       		name: 'veiculo_by_usuario'
     	});
     	query.on('row', function(row, result) {

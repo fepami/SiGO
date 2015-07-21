@@ -21,15 +21,13 @@ html
             select.form-control(id="cliente_nome")
               option Selecione um cliente
               each Cliente in clientes
-                option #{Cliente.nome}
+                option(data-nomeusuario="#{Cliente.nome_usuario}") #{Cliente.nome}
 
             select.form-control(id="cliente_veiculo")
               option selecione um veículo
-              each Cliente in clientes
-                option #{Cliente.nome}
             
             div(class="btn-group", role="group")
-              button(type="button", class="btn btn-default", id="button_cadastar_cliente") ou cadastrar cliente          
+              button(type="button", class="btn btn-default", id="button_cadastar_cliente") cadastrar cliente     
           div.select_date
             hr.fancy-line
             br/

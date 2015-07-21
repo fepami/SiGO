@@ -35,6 +35,7 @@ insert into veiculo values ('899009531','POL-2256','Renault','Duster','2014','cl
 insert into veiculo values ('293359498','BEF-1847','Chevrolet','Astra','2009','cliente4');
 insert into veiculo values ('735868371','CAR-3874','Ford','Focus','2013','cliente5');
 insert into veiculo values ('491584678','BEQ-1432','Volvo','XC 90','2014','cliente6');
+insert into veiculo values ('491534278','BWQ-1534','BMW','M5','2014','cliente1');
 
 insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
 	values ('Paulo Gomes Cardoso','Rua Suzana Dias, 1571','','13300-045','Itu','SP','(11) 8129-7288','',0);

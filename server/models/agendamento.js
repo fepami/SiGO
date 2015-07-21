@@ -8,21 +8,23 @@ module.exports = {
 function doAgendamento(req, res){
 	
 	// Usado pelo AJAX para retornar veiculos do cliente
-	if ( req.query.nomecliente != undefined){ 
+	if ( req.query.nuc != undefined){ 
 
-		db.veiculoByUsuario(req.query.nomecliente, function(err, veiculos){
+		db.veiculoByUsuario(req.query.nuc, function(err, veiculos){
 			
 			if(err){
 				
 				req.session.error = 'Falha ao pesquisar Veiculos';
         		console.error(err);
 			} else {
-			
-				res.send({ veiculos: veiculos });
+				
+				res.json( { veiculos :  veiculos });
 			}
-			
+
+			res.end();		
 		});
 	} 
+	// Tela de criar agendamento inicial
 	else{
 		
 		db.allCliente(function(err, clientes){
@@ -34,10 +36,10 @@ function doAgendamento(req, res){
 				
 				res.render('pages/agendamento', { clientes: clientes });
 			}
+
+			res.end();
 		});
 	}
-
-	res.end();
 }
 
 function doCreateAgendamento(req, res) {

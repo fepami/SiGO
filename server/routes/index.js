@@ -15,9 +15,7 @@ router.get('/', function(req, res) {
 /**
 *	 R O T A S   P A R A   A S   T E L A S   D E   A G E N D A M E N T O
 */
-router.get ('/agendamento'       , agendamento.doAgendamento);
-
-router.get ('/agendamento/criar' ,login.restrict, agendamento.doCreateAgendamento);
+router.get ('/agendamento'/*, login.restrict*/, agendamento.doAgendamento);
 
 
 /**
