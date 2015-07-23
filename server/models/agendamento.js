@@ -24,6 +24,23 @@ function doAgendamento(req, res){
 			res.end();		
 		});
 	} 
+
+	// Usado pelo AJAX para retornar os horarios ja agendados
+	else if ( req.query.d != undefined){ 
+
+		db.agendamentoByDia(req.query.d, function(err, horas){
+			
+			if(err){
+				
+				req.session.error = 'Falha ao pesquisar Agendamento';
+	      		console.error(err);
+			} else {
+				
+				res.json( { horas :  horas });
+			}			res.end();		
+		});
+		 
+	}
 	// Tela de criar agendamento inicial
 	else{
 		

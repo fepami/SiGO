@@ -82,3 +82,8 @@ insert into peca values ('214545454545-4785','15/02/17', 0, 2);
 insert into peca values ('123323255455-4785','17/01/18', 0, 2);
 insert into peca values ('211221222255-4785','10/05/16', 0, 3);
 insert into peca values ('215413335455-4785','11/08/18', 0, 3);
+
+insert into agendamento (data, hora, renavam_veiculo, funcionario)
+	values ('24/07/15','3', 491534278, 'tecnico1');
+insert into agendamento (data, hora, renavam_veiculo, funcionario)
+	values ('24/07/15','5', 293359498, 'tecnico2');

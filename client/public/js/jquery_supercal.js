@@ -268,21 +268,6 @@ var data;
 
 				data = pMethods.formatDate(date, options);
 
-				/*if(options.todayButton) {
-					$('<button />')
-						.text('Today')
-						.addClass('btn supercal-today')
-						.attr('type', 'button')
-						.appendTo(footer);
-				}
-				
-				if(options.showInput) {
-					$('<span />')
-						.text(pMethods.formatDate(date, options))
-						.addClass('supercal-input uneditable-input span2')
-						.appendTo(footer);
-				}*/
-
 				$('<input />')
 					.prop('type', 'hidden')
 					.val(parseInt(date.getTime() / 1000), 10)
@@ -350,6 +335,33 @@ var data;
 
 							// Set date on input element if it exists
 							$(originalElement).children('.supercal-popup-trigger').val(formattedDate).trigger('change');
+						
+/*
+*	A J A X   P A R A   R E C E B E R   H O R A R I O S   J A   R E S E R V A D O S
+**/
+alert(formattedDate);
+							$.getJSON("?d=" + formattedDate, function(data, status){
+						     		
+						     	var i;
+
+						     	$(".horario").css("visibility","visible");
+
+								for ( i in data.horas)
+									
+									$(".horario").each(function(){
+										if( $(this).attr("data-hour-id") == data.horas[i].hora )
+											$(this).css("visibility","hidden");
+									});
+
+									
+										
+									
+						    });
+
+/*
+*	F I M   A J A X   P A R A   R E C E B E R   H O R A R I O S   J A   R E S E R V A D O S
+**/
+
 						});
 
 					$(document).data('supercal-events', true);

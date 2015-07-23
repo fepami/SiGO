@@ -13,7 +13,7 @@ module.exports = {
   allFuncionario     : allFuncionario,
   createVeiculo      : createVeiculo,
   veiculoByUsuario   : veiculoByUsuario,
-
+  agendamentoByDia   : agendamentoByDia,
 };
 
 function end(){
@@ -271,5 +271,29 @@ function veiculoByUsuario(nome, callback){
       		 callback(null, result.rows);
     	});
 	});
+}
+
+function agendamentoByDia(dia, callback){
+  pg.connect(connectionString, function(err, client, done){
+    checkConnectionError(err, callback);
+      var query = client.query({
+          text: 'SELECT id, data, hora, renavam_veiculo, funcionario ' +
+            'FROM agendamento WHERE data = $1',
+          values: [dia],
+          name: 'agendamento_by_dia'
+      });
+      query.on('row', function(row, result) {
+          result.addRow(row);
+      });
+      query.on('error', function(error) {
+          checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+           done();
+           console.log(dia);
+           console.log(result);
+           callback(null, result.rows);
+      });
+  });
 }
 

@@ -223,14 +223,14 @@ body.sigo_agendamento div.select_hour ul a{
   cursor: pointer;
 }
 
-body.sigo_agendamento div.select_hour ul a.disabled{
+body.sigo_agendamento div.select_hour ul a[data-disabled=true]{
   padding: 10px;
   background-color: #BBDEFB;
   color: #ffffff;
   cursor: default;
 }
 
-body.sigo_agendamento div.select_hour ul a.disabled:hover{
+body.sigo_agendamento div.select_hour ul a[data-disabled=true]:hover{
   padding: 10px;
   background-color: #BBDEFB;
   color: #ffffff;
