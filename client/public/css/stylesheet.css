@@ -1,5 +1,9 @@
 /* START: Global */
 
+.jumbotron {
+  margin-top: 10px;
+}
+
 .list-group-item {
   background-color: inherit;
   border: none;
