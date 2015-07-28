@@ -1,7 +1,13 @@
 /* START: Global */
 
+.form-control {
+  margin-bottom: 10px;
+}
+
 .jumbotron {
   margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .list-group-item {
@@ -139,16 +145,13 @@ body.sigo_login form{
 
 body.sigo_login img{
   width: 300px;
-  margin-bottom: 50px;
-}
-
-body.sigo_login input:first-child{
-  margin-bottom: 10px;
+  margin-bottom: 40px;
 }
 
 body.sigo_login a p{
   text-align: right;
   font-size: 14px;
+  margin-top: -10px;
 }
 
 /* END: Pagina de Login */
@@ -278,3 +281,25 @@ body.sigo_agendamento div.submit_area .btn{
   background-color: #FF9800;
   border: 0px;
 }
+
+/* START: Registro */
+
+body.sigo_registro img {
+  width: 280px;
+}
+
+body.sigo_registro h2 {
+  color: #999;
+  text-shadow: 2px 2px #fff;
+}
+
+body.sigo_registro .btn {
+  width: 250px;
+}
+
+body.sigo_registro .right-block {
+  display: block;
+  margin-left: auto;
+}
+
+/* END: Registro */
