@@ -331,25 +331,13 @@
 
 							// Set date on input element if it exists
 							$(originalElement).children('.supercal-popup-trigger').val(formattedDate).trigger('change');
-						
+
 /*
 *	A J A X   P A R A   R E C E B E R   H O R A R I O S   J A   R E S E R V A D O S
 **/
 							data = formattedDate;
 
-							$.getJSON("?d=" + formattedDate, function(data, status){
-						     		
-						     	var i;
-
-						     	$(".horario").css("visibility","visible");
-
-								for ( i in data.horas)
-									
-									$(".horario").each(function(){
-										if( $(this).attr("data-hour-id") == data.horas[i].hora )
-											$(this).css("visibility","hidden");
-									});				
-						    });
+							refreshHour();
 
 /*
 *	F I M   A J A X   P A R A   R E C E B E R   H O R A R I O S   J A   R E S E R V A D O S

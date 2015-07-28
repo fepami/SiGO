@@ -2,6 +2,22 @@ var hora;
 var renavamVeiculo;
 var data;
 
+function  refreshHour(){
+	$.getJSON("?d=" + data, function(res, status){
+
+		var i;
+
+		$(".horario").css("visibility","visible");
+
+		for ( i in res.horas)
+
+			$(".horario").each(function(){
+			if( $(this).attr("data-hour-id") == res.horas[i].hora )
+				$(this).css("visibility","hidden");
+			});
+	});
+}
+
 $("li.hour a").click(function(){
 
 	$("li.hour a").each(function(){
@@ -22,11 +38,20 @@ $("a#button_confirmacao").click(function(){
 	renavamVeiculo = $("#cliente_veiculo option:selected").attr("data-renavam");
 	//TODO: Checar erros
 	$.getJSON("criar/criar?nr=" + renavamVeiculo + "&d=" + data +
-			  "&h=" + hora, function(data, status){
+			  "&h=" + hora, function(res, status){
 
-     		var i;
-
-			console.log(data.agendamento);
+     		if(res != false){
+     			refreshHour();
+     			$("#status-message").attr({ class 	: "alert alert-success",
+     										role	: "alert"
+     			});
+     			$("#status-message").html("Agendamento criado com sucesso! <br /> Data: <b>" + res.agendamentos[0].data + "</b> das <b>" + res.agendamentos[0].hora + "</b>");
+     		} else {
+     			$("#status-message").attr({ class 	: "alert alert-danger",
+     										role	: "alert"
+     			});
+     			$("#status-message").html("Erro ao criar agendamento, por favor tente novamente!");
+     		}
 	});
 });
 
@@ -55,3 +80,5 @@ $("#cliente_nome").change(function(){
 				});
     });
 });
+
+

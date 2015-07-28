@@ -9,6 +9,7 @@ html
 
       div.jumbotron
         h2 Agendamentos cadastrados
+        div#status-message
         div.col-sm-6
           a(href="criar")
             div.card.criar-agendamento
@@ -21,8 +22,9 @@ html
                   span(class="glyphicon glyphicon-pencil", aria-hidden='true')
                 a(href="#" id="#{Agendamento.id}" class="trash-btn")
                   span(class="glyphicon glyphicon-trash", aria-hidden='true')
+              br/
+              p Renavam: #{Agendamento.renavam_veiculo}
               p Data: #{Agendamento.data}
               p Hora: #{Agendamento.hora}
-              p Renavam: #{Agendamento.renavam_veiculo}
     script(src='../js/consultar_agendamento.js')
 
