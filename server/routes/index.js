@@ -17,6 +17,13 @@ router.get('/login', function(req, res){
 });
 
 /**
+*  R O T A S   P A R A   A S   T E L A S   D E   R E G I S T R O
+*/
+router.get ('/registro', function(req, res){
+	res.render('pages/registro')
+});
+
+/**
 * R O T A S   P A R A   A S   T E L A S   D E   S E R V I Ç O S / P E Ç A S
 */
 router.get('/serv_pecas', function(req, res){
