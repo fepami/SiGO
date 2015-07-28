@@ -18,7 +18,7 @@ $("a#button_confirmacao").click(function(){
 		}
 	});
 
-	nomeCliente = $("#nome_cliente option:selected").text();
+	nomeCliente = $("#cliente_nome option:selected").text();
 
 	alert(nomeCliente + ", " + data + " as " + hora ); //todas as variaveis estao prontas para enviar a requisicao
 });	
@@ -26,4 +26,25 @@ $("a#button_confirmacao").click(function(){
 $(".change-month span").click(function(){
 
 	$(".change-month").toggle();
+});
+
+
+$("#cliente_nome").change(function(){
+
+	nomeUsuarioCliente = $("#cliente_nome option:selected").attr("data-nomeusuario").split(' ').join('+');
+
+	$.getJSON("?nuc=" + nomeUsuarioCliente, function(data, status){
+     		
+     		var i;
+
+     		$("#cliente_veiculo").html("");
+
+			for ( i in data.veiculos)
+				$("#cliente_veiculo").html(function(index,currentcontent){	
+
+					currentcontent += '<option data-renavam="' + data.veiculos[i].renavam + '">' + data.veiculos[i].marca + " " 
+											+ data.veiculos[i].modelo + " (" + data.veiculos[i].placa + ")</option>"
+					return currentcontent;
+				});		
+    });
 });

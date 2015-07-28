@@ -12,6 +12,7 @@ router.get('/', function(req, res) {
 /**
 *  R O T A S   P A R A   A S   T E L A S   D E   L O G I N  /  L O G O U T
 */
+router.get ('/agendamento'/*, login.restrict*/, agendamento.doAgendamento);
 router.get('/login', function(req, res){
   res.redirect('/');
 });

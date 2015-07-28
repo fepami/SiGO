@@ -35,6 +35,7 @@ insert into veiculo values ('899009531','POL-2256','Renault','Duster','2014','cl
 insert into veiculo values ('293359498','BEF-1847','Chevrolet','Astra','2009','cliente4');
 insert into veiculo values ('735868371','CAR-3874','Ford','Focus','2013','cliente5');
 insert into veiculo values ('491584678','BEQ-1432','Volvo','XC 90','2014','cliente6');
+insert into veiculo values ('491534278','BWQ-1534','BMW','M5','2014','cliente1');
 
 insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
 	values ('Paulo Gomes Cardoso','Rua Suzana Dias, 1571','','13300-045','Itu','SP','(11) 8129-7288','',0);
@@ -81,3 +82,8 @@ insert into peca values ('214545454545-4785','15/02/17', 0, 2);
 insert into peca values ('123323255455-4785','17/01/18', 0, 2);
 insert into peca values ('211221222255-4785','10/05/16', 0, 3);
 insert into peca values ('215413335455-4785','11/08/18', 0, 3);
+
+insert into agendamento (data, hora, renavam_veiculo, funcionario)
+	values ('24/07/15','3', 491534278, 'tecnico1');
+insert into agendamento (data, hora, renavam_veiculo, funcionario)
+	values ('24/07/15','5', 293359498, 'tecnico2');

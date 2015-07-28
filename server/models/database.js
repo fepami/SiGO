@@ -3,12 +3,17 @@ var pg = require('pg');
 var connectionString = process.env.DATABASE_URL || 'postgres://tvlqxxjctmdinm:z2rBw-iPhbMbzira6MOliQuEOk@ec2-107-20-222-114.compute-1.amazonaws.com:5432/dekl0ddiqrurco:5432';
 
 module.exports = {
-  	end                : end,
+  end                : end,
 	createAgendamento  : createAgendamento,
 	createUsuario      : createUsuario,
 	findUserByName     : findUserByName,
 	allAgendamento     : allAgendamento,
-  	allCliente         : allCliente,
+  allCliente         : allCliente,
+  createFuncionario  : createFuncionario,
+  allFuncionario     : allFuncionario,
+  createVeiculo      : createVeiculo,
+  veiculoByUsuario   : veiculoByUsuario,
+  agendamentoByDia   : agendamentoByDia,
 };
 
 function end(){
@@ -246,13 +251,13 @@ function createVeiculo(veiculo, callback){
 	});
 }
 
-function veiculoByUsuario(nome_usuario, callback){
+function veiculoByUsuario(nome, callback){
 	pg.connect(connectionString, function(err, client, done){
 		checkConnectionError(err, callback);
 	    var query = client.query({
-      		text: 'SELECT renavan, placa, marca, modelo, ano, nome_usuario ' +
+      		text: 'SELECT renavam, placa, marca, modelo, ano, nome_usuario ' +
       			'FROM veiculo WHERE nome_usuario = $1',
-      		values: [nome_usuario],
+      		values: [nome],
       		name: 'veiculo_by_usuario'
     	});
     	query.on('row', function(row, result) {
@@ -266,5 +271,29 @@ function veiculoByUsuario(nome_usuario, callback){
       		 callback(null, result.rows);
     	});
 	});
+}
+
+function agendamentoByDia(dia, callback){
+  pg.connect(connectionString, function(err, client, done){
+    checkConnectionError(err, callback);
+      var query = client.query({
+          text: 'SELECT id, data, hora, renavam_veiculo, funcionario ' +
+            'FROM agendamento WHERE data = $1',
+          values: [dia],
+          name: 'agendamento_by_dia'
+      });
+      query.on('row', function(row, result) {
+          result.addRow(row);
+      });
+      query.on('error', function(error) {
+          checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+           done();
+           console.log(dia);
+           console.log(result);
+           callback(null, result.rows);
+      });
+  });
 }
 

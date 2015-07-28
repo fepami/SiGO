@@ -16,53 +16,48 @@ html
 
           h2 Selecione ou cadastre um cliente 
 
-          div(class="btn-group main", role="group", aria-label="...")  
+          div(class="btn-group", role="group", aria-label="...")  
 
-            select.form-control(id="cliente")
+            select.form-control(id="cliente_nome")
               option Selecione um cliente
               each Cliente in clientes
-                option #{Cliente.nome}
+                option(data-nomeusuario="#{Cliente.nome_usuario}") #{Cliente.nome}
 
             select.form-control(id="cliente_veiculo")
-              option Selecione um veículo
-              each Cliente in clientes
-                option #{Cliente.nome}
+              option selecione um veículo
             
             div(class="btn-group", role="group")
-              button(type="button", class="btn btn-default", id="button_cadastar_cliente") ou cadastrar cliente          
+              button(type="button", class="btn btn-default", id="button_cadastar_cliente") cadastrar cliente     
           div.select_date
             hr.fancy-line
             br/
-            h2 Escolha a data do agendamento 
+            h2 Escolha a data e hora do agendamento 
             div.calendario
             script.
               $('.calendario').supercal();
 
           div.select_hour
-            hr.fancy-line
-            br/
-            h2 Escolha a hora
             ul.hour_list
               li.hour
-                a(data-hour-id="1", data-selected="", class="") 08:00 - 09:00 
+                a(data-hour-id="1", data-selected="", data-disabled="", class="horario") 08:00 - 09:00 
               li.hour
-                a(data-hour-id="2", data-selected="", class="") 09:00 - 10:00 
+                a(data-hour-id="2", data-selected="", data-disabled="", class="horario") 09:00 - 10:00 
               li.hour
-                a(data-hour-id="3", data-selected="", class="") 10:00 - 11:00
+                a(data-hour-id="3", data-selected="", data-disabled="", class="horario") 10:00 - 11:00
               li.hour
-                a(data-hour-id="4", data-selected="", class="") 11:00 - 12:00 
+                a(data-hour-id="4", data-selected="", data-disabled="", class="horario") 11:00 - 12:00 
               li.hour
-                a(data-hour-id="5", data-selected="", class="") 12:00 - 13:00 
+                a(data-hour-id="5", data-selected="", data-disabled="", class="horario") 12:00 - 13:00 
               li.hour
-                a(data-hour-id="6", data-selected="", class="") 13:00 - 14:00 
+                a(data-hour-id="6", data-selected="", data-disabled="", class="horario") 13:00 - 14:00 
               li.hour
-                a(data-hour-id="7", data-selected="", class="") 14:00 - 15:00 
+                a(data-hour-id="7", data-selected="", data-disabled="", class="horario") 14:00 - 15:00 
               li.hour
-                a(data-hour-id="8", data-selected="", class="") 15:00 - 16:00 
+                a(data-hour-id="8", data-selected="", data-disabled="", class="horario") 15:00 - 16:00 
               li.hour
-                a(data-hour-id="9", data-selected="", class="") 16:00 - 17:00 
+                a(data-hour-id="9", data-selected="", data-disabled="", class="horario") 16:00 - 17:00 
               li.hour
-                a(data-hour-id="10", data-selected="", class="") 17:00 - 18:00 
+                a(data-hour-id="10", data-selected="", data-disabled="", class="horario") 17:00 - 18:00 
             br/
           
 

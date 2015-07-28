@@ -102,7 +102,7 @@ cargo			varchar(50)
 
 create table veiculo
 (
-renavan			bigint				primary key,
+renavam			bigint			primary key,
 placa			varchar(10),
 marca			varchar(20),
 modelo			varchar(20),
@@ -114,8 +114,8 @@ create table agendamento
 (
 id				serial			primary key,
 data			varchar(12),
-hora			varchar(12),
-renavan_veiculo	int				references veiculo(renavan),
+hora			int,
+renavam_veiculo	int				references veiculo(renavam),
 funcionario		varchar(20)		references funcionario(nome_usuario)
 );
 
