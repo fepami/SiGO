@@ -298,3 +298,9 @@ body.sigo_agendamento .card-header{
   color: #ffffff;
   text-align: right
 }
+
+body.sigo_agendamento .card-header span{
+  margin-left: 10px;
+  color: #2196F3;
+
+}
