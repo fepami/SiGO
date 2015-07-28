@@ -4,6 +4,7 @@ var router        = express.Router();
 var login         = require('../models/login.js');
 var agendamento   = require('../models/agendamento.js');
 var cliente       = require('../models/cliente.js');
+var cadastro      = require('../models/cadastro.js'); 
 
 router.get('/', function(req, res) {
   res.render('pages/login')
@@ -21,9 +22,10 @@ router.get('/logout', login.do_logout);
 /**
 *  R O T A S   P A R A   A S   T E L A S   D E   R E G I S T R O
 */
-router.get ('/registro', function(req, res){
-	res.render('pages/registro')
+router.get('/cadastro', function(req, res){
+  res.render('pages/cadastro')
 });
+router.post('/cadastro', cadastro.do_cadastro);
 
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   S E R V I Ç O S / P E Ç A S
