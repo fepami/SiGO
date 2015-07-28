@@ -3,13 +3,11 @@ var util	= require('./util.js');
 
 function do_autentication(user, pass, fn){
 	util.hash(pass, user.salt, function(err, hash){
-	if(err)
-		return fn(err);
-
-	if (hash == user.hash)
-		return fn(null, user);
-
-	fn(new Error('invalid password'));
+		if(err)
+			return fn(err);
+		if (hash == user.hash)
+			return fn(null, user);
+		fn(new Error('invalid password'));
 	});
 }
 

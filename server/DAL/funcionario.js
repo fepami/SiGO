@@ -109,7 +109,10 @@ function funcionarioByNomeUsuario(nome_usuario, callback){
     });
     query.on('end', function(result) {
       done();
-      callback(null, result.rows[0]);
+      if(result.rowCount != 1)
+        callback(new Error('funcionario not found'));
+      else
+        callback(null, result.rows[0]);
     });
   });
 }
