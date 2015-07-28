@@ -1,15 +1,51 @@
 /* START: Global */
 
+.jumbotron {
+  margin-top: 10px;
+}
+
+.list-group-item {
+  background-color: inherit;
+  border: none;
+}
+
+.list-group-item 
+h4 {
+  text-align: left;
+}
+
+.list-group-item
+p {
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.btn-primary {
+  background-color: #FF9800;
+  border: 0px;
+  height: 34px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #FF9800;
+}
+
 hr.fancy-line { 
     border: 0; 
     height: 1px;
     position: relative;
     margin: 0.5em 0; /* Keep other elements away from pseudo elements*/
+    margin-top: 20px;
 }
+
 hr.fancy-line:before {
     top: -0.5em;
     height: 1em;
 }
+
 hr.fancy-line:after {
     content:'';
     height: 0.5em;   /* half the height of :before */
@@ -107,24 +143,12 @@ body.sigo_login img{
 }
 
 body.sigo_login input:first-child{
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 body.sigo_login a p{
   text-align: right;
   font-size: 14px;
-}
-
-body.sigo_login div#buttons{
-  display: flex;
-  align-self: center;
-  justify-content: space-around;
-  margin-top: 30px;
-}
-
-body.sigo_login .btn{
-  background-color: #FF9800;
-  border: 0px;
 }
 
 /* END: Pagina de Login */

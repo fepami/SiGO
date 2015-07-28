@@ -1,12 +1,12 @@
 
-var express 		  = require('express');
-var router  		  = express.Router();
-var login 			  = require('../models/login.js');
-var agendamento		= require('../models/agendamento.js');
+var express       = require('express');
+var router        = express.Router();
+var login         = require('../models/login.js');
+var agendamento   = require('../models/agendamento.js');
 var cliente       = require('../models/cliente.js');
 
 router.get('/', function(req, res) {
-	res.render('pages/login')
+  res.render('pages/login')
 });
 
 /**
@@ -18,14 +18,19 @@ router.get('/login', function(req, res){
   res.redirect('/');
 });
 
+/**
+* R O T A S   P A R A   A S   T E L A S   D E   S E R V I Ç O S / P E Ç A S
+*/
+router.get('/serv_pecas', function(req, res){
+  res.render('pages/serv_pecas')
+});
+
 router.post('/login', login.do_login);
 router.get('/logout', login.do_logout);
 /**
-*	 R O T A S   P A R A   A S   T E L A S   D E   A G E N D A M E N T O
+*  R O T A S   P A R A   A S   T E L A S   D E   A G E N D A M E N T O
 */
 router.get('/agendamento'       /*,login.restrict*/, agendamento.doAgendamento); 
 router.get('/agendamento/criar' ,login.restrict, agendamento.doCreateAgendamento);
-
-
 
 module.exports = router;

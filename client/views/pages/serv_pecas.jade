@@ -1,0 +1,35 @@
+html
+  head
+    title SiGO | Agendamento
+    include ../partials/head.jade
+    link(href='css/supercal.css', rel='stylesheet')
+  body.sigo_agendamento
+    include ../partials/menu_lateral.jade
+
+    div.container
+      div.jumbotron
+        h2 Serviços oferecidos
+        div.list-group
+          .list-group-item(href='#')
+            h4.list-group-item-heading Serviço 1
+            p.list-group-item-text  Descrição do serviço 1
+          .list-group-item(href='#')
+            h4.list-group-item-heading Serviço 2
+            p.list-group-item-text  Descrição do serviço 2
+          .list-group-item(href='#')
+            h4.list-group-item-heading Serviço 2
+            p.list-group-item-text  Descrição do serviço 2
+          a.btn.btn-primary.btn-block(href="serv_pecas") Adicionar Serviço
+        hr.fancy-line
+        h2 Peças disponíveis
+        div.list-group
+          .list-group-item(href='#')
+            h4.list-group-item-heading Peça 1
+            p.list-group-item-text  Quantidade: 1
+          .list-group-item(href='#')
+            h4.list-group-item-heading Peça 2
+            p.list-group-item-text  Quantidade: 5
+          .list-group-item(href='#')
+            h4.list-group-item-heading Peça 3
+            p.list-group-item-text  Quantidade: 2
+        a.btn.btn-primary.btn-block(href="serv_pecas") Adicionar Peça
