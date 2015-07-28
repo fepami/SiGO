@@ -67,6 +67,7 @@ especialidade	int
 create table usuario
 (
 nome_usuario	varchar(20)		primary key,
+email			varchar(100)	UNIQUE,
 salt			varchar(200),
 hash			varchar(300),
 nivel_acesso	int
