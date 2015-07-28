@@ -15,6 +15,8 @@ router.get('/', function(req, res) {
 router.get('/login', function(req, res){
   res.redirect('/');
 });
+router.post('/login', login.do_login);
+router.get('/logout', login.do_logout);
 
 /**
 *  R O T A S   P A R A   A S   T E L A S   D E   R E G I S T R O
@@ -30,8 +32,6 @@ router.get('/serv_pecas', function(req, res){
   res.render('pages/serv_pecas')
 });
 
-router.post('/login', login.do_login);
-router.get('/logout', login.do_logout);
 /**
 *  R O T A S   P A R A   A S   T E L A S   D E   A G E N D A M E N T O
 */
