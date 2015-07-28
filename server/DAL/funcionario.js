@@ -3,7 +3,7 @@ var db = require('./database.js');
 module.exports = {
   createFuncionario         : createFuncionario,
   allFuncionario            : allFuncionario,
-  alterFuncionario          : allFuncionario,
+  alterFuncionario          : alterFuncionario,
   funcionarioByNomeUsuario  : funcionarioByNomeUsuario,
 };
 
@@ -46,7 +46,7 @@ function alterFuncionario(funcionario, nome_usuario, callback){
     var query = client.query({
       text: 'UPDATE funcionario SET nome_usuario = $11, nome = $2, end_rua = $3, ' +
         'end_complemento = $4, end_cidade = $5, end_estado = $6, telefone_1 = $7, ' +
-        'telefone_2 = $8, salario = $9, cargo = $10) WHERE nome_usuario = $1',
+        'telefone_2 = $8, salario = $9, cargo = $10 WHERE nome_usuario = $1',
       values: [funcionario.nome_usuario, funcionario.nome, funcionario.end_rua,
         funcionario.end_complemento, funcionario.end_cidade, funcionario.end_estado,
         funcionario.telefone_1, funcionario.telefone_2, funcionario.salario,
@@ -61,8 +61,8 @@ function alterFuncionario(funcionario, nome_usuario, callback){
       });
       query.on('end', function(result) {
            done();
+           console.log('funcionario ' + funcionario.nome_usuario + ' alterado com sucesso');
            funcionario.nome_usuario = nome_usuario;
-           console.log('funcionario ' + nome_usuario + ' alterado com sucesso');
            callback(null, funcionario);
       });
   });
@@ -97,7 +97,7 @@ function funcionarioByNomeUsuario(nome_usuario, callback){
     var query = funcionario.query({
       text: 'SELECT nome_usuario, nome, end_rua, end_complemento, ' +
         'end_cidade, end_estado, telefone_1, telefone_2, salario, cargo ' +
-        'FROM funcionario WHERE s = $1',
+        'FROM funcionario WHERE nome_usuario = $1',
       values: [nome_usuario],
       name: 'funcionario_by_nome_usuario'
     });
