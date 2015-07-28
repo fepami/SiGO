@@ -1,4 +1,5 @@
-\i bd_tables_create_script.sql
+\i drop_tables.sql
+\i bd_tables_create_script.sqls
 
 --Todas as senhas são 'senha'
 insert into usuario values ('gerente', 'aj20zxsGYUfQmnyMYLnaRUyKC1X/Qg1IE7/+ML4bM8y1s1kVx1hO/Tz4yL0+Rc1E/uanrXp9B6v0Jk/F4d0gWbHY7ZSgrQ3kel8ZynRqC4F6mvG09zfe4t60KPdJ8eqlHe/v91p5ENevHe22ByS8d7EnBn/PV0Cq/ib3zKFo8J0=', 'PAqD2o3m8uR+ZveTh5PRY+A/eIQQYLlPFId/2bXtOHjsdlHtvcWHU7I9rJEvnmSdsBPhgzB8SQiIZqZOSlWFA0jptoswa6t3BeUvCExhtOAr6KvJ+IrcYZnbVLypZ/Pr/U42XsQDvCloVrM2iCmxV+ZekwNqu7P9ceudxZn84s8=',0);
@@ -13,6 +14,7 @@ insert into usuario values ('cliente3', 'O63rywiDM/acWbt3aAln2DIusajOkq17s1aQ9mT
 insert into usuario values ('cliente4', 'lL2XCMVZ67RpPUV0ezDWJz+w6vB7EXosrhHtFBHeYMaD5UAaiV0oVvFbumU31RufNe79b8iJeW3ZJJeDflvGqtvXYDk3ctuwoN3idhmskT+RuWIEcvopnFGB4aLz00tghYCnM7vL0nrY2zySXOgmkv3nPLuwAc4eqeHv79LyGYc=', 'hJWOOoSK5t/2b/xbpKcoo7o2fyL+lUcuTRe6i85jU8hWBav+hbIyurmlE/D+iBfXzjPIW3Pi9/sQ3FU+IgPGn5djlcKGtJV7TVh0YJfiURcM9Rj+McjhyndRORQlLTphiYbYeEhu/Xcg8pZKfeIFfomWpzskC8Uq1vou546YUKs=',3);
 insert into usuario values ('cliente5', 'WY12cIQBLKYmSC4ulz1taoj/d5npbF0kHpfWD7SRkcF2ZC+CuWrxPDYFS0+bRNQAb6d4XKP9qbgncngd7A9/AeqAShnjASuaWDvSFsl4ZNqv3zZ3uE11CRyDAV6P1NM6Gi+b2ROJNGEs9zcVZ6hWyBaCSvBQaCVC3Gg08vmFA9o=', '3D7W7XY31lRpX8L5wO02DefiLTQhACDjqI2RwTy3pS2tfwA9FItd2q/+942JxvvjNv8edhzwgBcIoFfz1vVBlDoTjqQhL6Nad51XQIAxSWVl0d7Q83mBC+d15WL+X07ggbD77bygPw4dxRzjv48Q1eaohvyAqEISWQjaBlqZzf0=',3);
 insert into usuario values ('cliente6', 'OOz4+f5bmAM6rtJd87K4+lCD9lcykiqAyjOCX0MqoOE6hI6/EVplTIqhzY6fW5kOqlqSB66FOJ6MIDDQq3FQKXxnrucAlFuvKpFCd0DF2SxxwiVGW1B7skWv/m6i/2wLbRePQZNTiWXqrnKdptxD942dFX2vzYDcPq3zwMwRltc=', 'feEMk+BthLYKXwfPHWIeM/v43SVpjkjy6tTzlUHmUL0OzrAFXxKSXCq7qFOnpzWskrbsybnakE9GyijuReFiSvHkNZGBr8P/B0pHyomXiCqZPnUkxKAjYwigCnq78TxaqGirM4ofQggBLp/8vVMbfKPzwVOFocfjzX/QgH3uhNY=',3);
+--exceto esta que é admin
 insert into usuario values ('admin', 'QmrZR2ytFDRSqGcZbcpQTQTo2e/4N5FxG1t4KYtYhyT87qg4TwSUlbtEgq8sIwVjepoe3jeYXxhb6ratMA6TOTAYINigHH644V6ePpCsziKidmKO1l/zwvq+WLlFjLuvPFYWlETBiuIwZZTsoPQmI9b8QC3ZggmcYZ4RxAV4yjw=', 'LcMkbwvLZDHo08XzY19WyvpQjzV8uYcqAcwdCO4ckxFHg6JgEiYrQmIVRM4C27D+T+vC0q/dZ6AAKAyuBv4f5FGkiDD+ZsJkYobPn6K9Z7ZXT3ak6uw9vF+aExaInCaf3tssUddcSNuef2IIbp8lTlDWlGDF7KffvKZ9f3BsuCY=', 0);
 
 insert into funcionario values ('gerente','Matheus Carvalho Pereira','Rua Alcino Vicente, 1858','','51900-122','Poços de Caldas','MG','3770-4354','',10000,'gerente');
@@ -74,7 +76,6 @@ insert into tipo_peca (nome, descricao, preco, quantidade)
 
 insert into tipo_peca (nome, descricao, preco, quantidade)
 	values ('radiador','', 1000, 50);
-
 
 insert into peca values ('215415455455-4785','11/08/17', 0, 1);
 insert into peca values ('22454554-44555-55','27/10/20', 0, 1);

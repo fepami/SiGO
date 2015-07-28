@@ -1,25 +1,13 @@
-drop table tipo_peca cascade;
-
-drop table peca cascade;
-
-drop table tipo_servico cascade;
-
-drop table equipe cascade;
-
-drop table os cascade;
-
-drop table servico cascade;
-
-drop table mecanico cascade;
-
-drop table usuario cascade;
-
-drop table cliente cascade;
-
-drop table funcionario cascade;
-
-drop table veiculo cascade;
-
-drop table agendamento cascade;
-
-drop table equipe_mecanico cascade;
+DROP TABLE IF EXISTS tipo_peca CASCADE;
+DROP TABLE IF EXISTS peca CASCADE;
+DROP TABLE IF EXISTS tipo_servico CASCADE;
+DROP TABLE IF EXISTS equipe CASCADE;
+DROP TABLE IF EXISTS os CASCADE;
+DROP TABLE IF EXISTS servico CASCADE;
+DROP TABLE IF EXISTS mecanico CASCADE;
+DROP TABLE IF EXISTS usuario CASCADE;
+DROP TABLE IF EXISTS cliente CASCADE;
+DROP TABLE IF EXISTS funcionario CASCADE;
+DROP TABLE IF EXISTS veiculo CASCADE;
+DROP TABLE IF EXISTS agendamento CASCADE;
+DROP TABLE IF EXISTS equipe_mecanico CASCADE;

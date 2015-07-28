@@ -1,4 +1,4 @@
-var db		= require('./database.js');
+var db 		= require('../DAL/usuario.js');
 var util	= require('./util.js');
 
 function authenticate(name, pass, fn) {
