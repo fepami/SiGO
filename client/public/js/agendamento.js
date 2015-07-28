@@ -1,3 +1,7 @@
+var hora;
+var renavamVeiculo;
+var data;
+
 $("li.hour a").click(function(){
 
 	$("li.hour a").each(function(){
@@ -9,19 +13,22 @@ $("li.hour a").click(function(){
 
 $("a#button_confirmacao").click(function(){
 
-	var hora;
-	var nomeCliente;
-
 	$("li.hour a").each(function(){
 		if ( $(this).attr('data-selected') == "true" ){
 			hora = $(this).attr('data-hour-id');
 		}
 	});
 
-	nomeCliente = $("#cliente_nome option:selected").text();
+	renavamVeiculo = $("#cliente_veiculo option:selected").attr("data-renavam");
 
-	alert(nomeCliente + ", " + data + " as " + hora ); //todas as variaveis estao prontas para enviar a requisicao
-});	
+	$.getJSON("agendamento/criar?nr=" + renavamVeiculo + "&d=" + data + 
+			  "&h=" + hora, function(data, status){
+     		
+     		var i;
+
+			console.log(data.agendamento);
+	});
+});		
 
 $(".change-month span").click(function(){
 
@@ -33,7 +40,7 @@ $("#cliente_nome").change(function(){
 
 	nomeUsuarioCliente = $("#cliente_nome option:selected").attr("data-nomeusuario").split(' ').join('+');
 
-	$.getJSON("?nuc=" + nomeUsuarioCliente, function(data, status){
+	$.getJSON("?nr=" + nomeUsuarioCliente, function(data, status){
      		
      		var i;
 
