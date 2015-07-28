@@ -1,0 +1,37 @@
+html
+  head
+    title SiGO | Agendamento
+    link(href='../bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(href='../css/stylesheet.css', rel='stylesheet')
+    script(src='../js/jquery-1.11.3.js')
+  body.sigo_agendamento
+    
+    include ../partials/menu_lateral.jade
+
+    div.container
+
+      div.jumbotron
+  
+        form
+
+          h2 Agendamentos cadastrados
+
+          each Agendamento in agendamentos
+            div.col-sm-6
+              div.card
+                div.card-header
+                  a(href="#")
+                    span(class="glyphicon glyphicon-pencil", aria-hidden='true')
+                  a(href="#")
+                    span(class="glyphicon glyphicon-trash", aria-hidden='true')
+                p Data: #{Agendamento.data}
+                p Hora: #{Agendamento.hora}
+                p Renavam: #{Agendamento.renavam_veiculo}
+
+            
+         
+
+
+
+          //script(src='js/agendamento.js')
+

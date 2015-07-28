@@ -1,9 +1,10 @@
 var db = require('./database.js');
 
 module.exports = {
-	doAgendamento 		: doAgendamento,
-	doCreateAgendamento : doCreateAgendamento,
-	doCriarAgendamento  : doCriarAgendamento,
+	doAgendamento 			: doAgendamento,
+	doCreateAgendamento 	: doCreateAgendamento,
+	doCriarAgendamento  	: doCriarAgendamento,
+	doConsultarAgendamento  : doConsultarAgendamento,
 };
 
 function doAgendamento(req, res){
@@ -38,7 +39,8 @@ function doAgendamento(req, res){
 			} else {
 				
 				res.json( { horas :  horas });
-			}			res.end();		
+			}			
+			res.end();		
 		});
 		 
 	}
@@ -52,7 +54,7 @@ function doAgendamento(req, res){
 	        	console.error(err);
 			} else {
 				
-				res.render('pages/agendamento', { clientes: clientes });
+				res.render('pages/criar_agendamento', { clientes: clientes });
 			}
 
 			res.end();
@@ -83,6 +85,20 @@ function doCriarAgendamento(req, res){
 	}
 } 
 
+function doConsultarAgendamento(req, res){
+	
+	db.allAgendamento(function(err, agendamentos){
+	
+		if(err){
+			req.session.error = 'Falha ao pesquisar agendamentos';
+	       	console.error(err);
+		} else {
+			
+			res.render('pages/consultar_agendamento', { agendamentos: agendamentos });
+		}
+		res.end();
+	});
+} 
 
 function doCreateAgendamento(req, res) {
 	if(!req.body.data || !req.body.hora || !req.body.renavan_veiculo){

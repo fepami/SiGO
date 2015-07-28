@@ -63,7 +63,7 @@ function allAgendamento(callback){
 	pg.connect(connectionString, function(err, client, done){
 		checkConnectionError(err, callback);
 	    var query = client.query({
-      		text: 'SELECT id, data, hora, renavan_veiculo FROM agendamento',
+      		text: 'SELECT id, data, hora, renavam_veiculo FROM agendamento ORDER BY data ASC, hora ASC',
       		values: [],
       		name: 'all_agendamento'
     	});
