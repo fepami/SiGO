@@ -1,5 +1,5 @@
-var db = require('./database.js');
+var db = require('../DAL/cliente.js');
 
 module.exports = {
-	
+
 };
