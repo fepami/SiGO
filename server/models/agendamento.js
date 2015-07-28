@@ -7,6 +7,7 @@ module.exports = {
 	doCreateAgendamento 	: doCreateAgendamento,
 	doCriarAgendamento  	: doCriarAgendamento,
 	doConsultarAgendamento  : doConsultarAgendamento,
+	doRemoverAgendamento	: doRemoverAgendamento,
 };
 
 function doAgendamento(req, res){
@@ -41,12 +42,9 @@ function doAgendamento(req, res){
 			} else {
 
 				res.json( { horas :  horas });
-<<<<<<< HEAD
-			}			
-			res.end();		
-=======
-			}			res.end();
->>>>>>> origin/felipe
+
+			}
+			res.end();
 		});
 
 	}
@@ -59,13 +57,9 @@ function doAgendamento(req, res){
 				req.session.error = 'Falha ao pesquisar clientes';
 	        	console.error(err);
 			} else {
-<<<<<<< HEAD
-				
-				res.render('pages/criar_agendamento', { clientes: clientes });
-=======
 
-				res.render('pages/agendamento', { clientes: clientes });
->>>>>>> origin/felipe
+			res.render('pages/criar_agendamento', { clientes: clientes });
+
 			}
 
 			res.end();
@@ -94,26 +88,21 @@ function doCriarAgendamento(req, res){
 			res.end();
 		});
 	}
-<<<<<<< HEAD
-} 
+
+}
 
 function doConsultarAgendamento(req, res){
-	
-	db.allAgendamento(function(err, agendamentos){
-	
+	db_age.allAgendamento(function(err, agendamentos){
 		if(err){
 			req.session.error = 'Falha ao pesquisar agendamentos';
 	       	console.error(err);
 		} else {
-			
 			res.render('pages/consultar_agendamento', { agendamentos: agendamentos });
 		}
 		res.end();
 	});
-} 
-=======
+
 }
->>>>>>> origin/felipe
 
 function doCreateAgendamento(req, res) {
 	if(req.query.nr == undefined || req.query.d == undefined || req.query.h == undefined){
@@ -138,4 +127,17 @@ function doCreateAgendamento(req, res) {
 		}
 		res.end();
 	});
+}
+
+function doRemoverAgendamento(req, res){
+	db_age.deleteAgendamento(req.query.id, function(err, agendamentos){
+		if(err){
+			req.session.error = 'Falha ao remover agendamento';
+	       	console.error(err);
+		} else {
+			//doConsultarAgendamento(req, res);
+		}
+		res.end();
+	});
+
 }

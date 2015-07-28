@@ -21,7 +21,7 @@ $("a#button_confirmacao").click(function(){
 
 	renavamVeiculo = $("#cliente_veiculo option:selected").attr("data-renavam");
 	//TODO: Checar erros
-	$.getJSON("agendamento/criar?nr=" + renavamVeiculo + "&d=" + data +
+	$.getJSON("criar/criar?nr=" + renavamVeiculo + "&d=" + data +
 			  "&h=" + hora, function(data, status){
 
      		var i;

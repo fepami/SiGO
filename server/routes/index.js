@@ -9,47 +9,24 @@ var cliente       = require('../models/cliente.js');
 /**
 *  R O T A S   P A R A   A S   T E L A S   D E   L O G I N  /  L O G O U T
 */
-router.get('/', function(req, res) {
-  res.render('pages/login')
-});
-router.get('/login', function(req, res){
-  res.redirect('/');
-});
-router.post('/login', login.do_login);
-router.get('/logout', login.do_logout);
+router.get('/', 		function(req, res)	{ res.render('pages/login') });
+router.get('/login', 	function(req, res)	{ res.redirect('/'); });
+router.post('/login', 	login.do_login);
+router.get('/logout', 	login.do_logout);
 
 
 /**
 *  R O T A S   P A R A   A S   T E L A S   D E   A G E N D A M E N T O
 */
-<<<<<<< HEAD
-router.get ('/agendamento'/*, login.restrict*/, agendamento.doAgendamento);
-router.get ('/agendamento/criar'/*, login.restrict*/, agendamento.doCriarAgendamento);
-router.get ('/agendamento/consultar'/*, login.restrict*/, agendamento.doConsultarAgendamento);
 
-=======
-router.get('/login', function(req, res){
-  res.redirect('/');
-});
->>>>>>> origin/felipe
+router.get ('/agendamento/criar'		/*, login.restrict*/, agendamento.doAgendamento);
+router.get ('/agendamento/criar/criar'	/*, login.restrict*/, agendamento.doCriarAgendamento);
+router.get ('/agendamento/remover'		/*, login.restrict*/, agendamento.doRemoverAgendamento);
+router.get ('/agendamento/consultar'	/*, login.restrict*/, agendamento.doConsultarAgendamento);
 
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   S E R V I Ç O S / P E Ç A S
 */
-router.get('/serv_pecas', function(req, res){
-  res.render('pages/serv_pecas')
-});
-
-<<<<<<< HEAD
-
-=======
-router.post('/login', login.do_login);
-router.get('/logout', login.do_logout);
-/**
-*  R O T A S   P A R A   A S   T E L A S   D E   A G E N D A M E N T O
-*/
-router.get('/agendamento'       /*,login.restrict*/, agendamento.doAgendamento);
-router.get('/agendamento/criar' ,login.restrict, agendamento.doCreateAgendamento);
->>>>>>> origin/felipe
+router.get('/serv_pecas', function(req, res){ res.render('pages/serv_pecas') });
 
 module.exports = router;

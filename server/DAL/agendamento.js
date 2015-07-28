@@ -1,10 +1,11 @@
 var db = require('./database.js');
 
 module.exports = {
-  createAgendamento  : createAgendamento,
-  allAgendamento     : allAgendamento,
-  agendamentoByDia   : agendamentoByDia,
-  criarAgendamento   : criarAgendamento,
+  createAgendamento   : createAgendamento,
+  allAgendamento      : allAgendamento,
+  agendamentoByDia    : agendamentoByDia,
+  criarAgendamento    : criarAgendamento,
+  deleteAgendamento   : deleteAgendamento,
 };
 
 function createAgendamento(agendamento, callback){
@@ -35,7 +36,7 @@ function allAgendamento(callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var query = client.query({
-          text: 'SELECT id, data, hora, renavan_veiculo FROM agendamento',
+          text: 'SELECT id, data, hora, renavam_veiculo FROM agendamento',
           values: [],
           name: 'all_agendamento'
       });
@@ -82,6 +83,28 @@ function criarAgendamento(renavam, data, hora, callback){
             'VALUES ($1, $2, $3) RETURNING id',
           values: [data, hora, renavam],
           name: 'criar_agendamento'
+      });
+      query.on('row', function(row, result) {
+          result.addRow(row);
+      });
+      query.on('error', function(error) {
+          db.checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+           done();
+           callback(null, result.rows);
+      });
+  });
+}
+
+function deleteAgendamento(agendamento, callback){
+    db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      var query = client.query({
+          text: 'DELETE FROM agendamento WHERE ' +
+            'id = $1',
+          values: [agendamento],
+          name: 'remover_agendamento'
       });
       query.on('row', function(row, result) {
           result.addRow(row);
