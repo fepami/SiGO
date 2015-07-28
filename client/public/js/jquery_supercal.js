@@ -7,8 +7,6 @@
  * https://github.com/jamwaffles/SuperCal
  **/
 
-var data;
-
 (function(factory) {
 	if(typeof define === 'function' && define.amd) {
 		define(['jquery'], factory);
@@ -266,8 +264,6 @@ var data;
 					footer.hide();
 				}
 
-				data = pMethods.formatDate(date, options);
-
 				$('<input />')
 					.prop('type', 'hidden')
 					.val(parseInt(date.getTime() / 1000), 10)
@@ -339,7 +335,8 @@ var data;
 /*
 *	A J A X   P A R A   R E C E B E R   H O R A R I O S   J A   R E S E R V A D O S
 **/
-alert(formattedDate);
+							data = formattedDate;
+
 							$.getJSON("?d=" + formattedDate, function(data, status){
 						     		
 						     	var i;
@@ -351,11 +348,7 @@ alert(formattedDate);
 									$(".horario").each(function(){
 										if( $(this).attr("data-hour-id") == data.horas[i].hora )
 											$(this).css("visibility","hidden");
-									});
-
-									
-										
-									
+									});				
 						    });
 
 /*

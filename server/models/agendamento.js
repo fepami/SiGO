@@ -3,14 +3,15 @@ var db = require('./database.js');
 module.exports = {
 	doAgendamento 		: doAgendamento,
 	doCreateAgendamento : doCreateAgendamento,
+	doCriarAgendamento  : doCriarAgendamento,
 };
 
 function doAgendamento(req, res){
 	
 	// Usado pelo AJAX para retornar veiculos do cliente
-	if ( req.query.nuc != undefined){ 
+	if ( req.query.nr != undefined){ 
 
-		db.veiculoByUsuario(req.query.nuc, function(err, veiculos){
+		db.veiculoByUsuario(req.query.nr, function(err, veiculos){
 			
 			if(err){
 				
@@ -58,6 +59,30 @@ function doAgendamento(req, res){
 		});
 	}
 }
+
+function doCriarAgendamento(req, res){
+	
+	// Usado pelo AJAX para retornar veiculos do cliente
+	if ( req.query.nr != undefined &&
+		 req.query.d  != undefined &&
+		 req.query.h  != undefined ){ 
+
+		db.criarAgendamento(req.query.nr, req.query.d, req.query.h, function(err, agendamento){
+			
+			if(err){
+				
+				req.session.error = 'Falha ao Criar Agendamento';
+        		console.error(err);
+			} else {
+				console.log(agendamento);
+				res.json( { agendamento :  agendamento });
+			}
+
+			res.end();		
+		});
+	}
+} 
+
 
 function doCreateAgendamento(req, res) {
 	if(!req.body.data || !req.body.hora || !req.body.renavan_veiculo){

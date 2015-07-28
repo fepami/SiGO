@@ -115,8 +115,7 @@ create table agendamento
 id				serial			primary key,
 data			varchar(12),
 hora			int,
-renavam_veiculo	int				references veiculo(renavam),
-funcionario		varchar(20)		references funcionario(nome_usuario)
+renavam_veiculo	int				references veiculo(renavam)
 );
 
 create table equipe_mecanico

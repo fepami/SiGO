@@ -14,6 +14,7 @@ module.exports = {
   createVeiculo      : createVeiculo,
   veiculoByUsuario   : veiculoByUsuario,
   agendamentoByDia   : agendamentoByDia,
+  criarAgendamento   : criarAgendamento,
 };
 
 function end(){
@@ -38,7 +39,7 @@ function createAgendamento(agendamento, callback){
 	pg.connect(connectionString, function(err, client, done){
 		checkConnectionError(err, callback);
 	    var query = client.query({
-      		text: 'INSERT INTO agendamento(data, hora, renavan_veiculo, funcionario) ' +
+      		text: 'INSERT INTO agendamento(data, hora, renavan_veiculo) ' +
       			'VALUES ($1, $2, $3, $4) RETURNING id',
       		values: [agendamento.data, agendamento.hora,
       			agendamento.renavan_veiculo, agendamento.funcionario],
@@ -62,7 +63,7 @@ function allAgendamento(callback){
 	pg.connect(connectionString, function(err, client, done){
 		checkConnectionError(err, callback);
 	    var query = client.query({
-      		text: 'SELECT id, data, hora, renavan_veiculo, funcionario FROM agendamento',
+      		text: 'SELECT id, data, hora, renavan_veiculo FROM agendamento',
       		values: [],
       		name: 'all_agendamento'
     	});
@@ -277,7 +278,7 @@ function agendamentoByDia(dia, callback){
   pg.connect(connectionString, function(err, client, done){
     checkConnectionError(err, callback);
       var query = client.query({
-          text: 'SELECT id, data, hora, renavam_veiculo, funcionario ' +
+          text: 'SELECT id, data, hora, renavam_veiculo ' +
             'FROM agendamento WHERE data = $1',
           values: [dia],
           name: 'agendamento_by_dia'
@@ -290,10 +291,29 @@ function agendamentoByDia(dia, callback){
       });
       query.on('end', function(result) {
            done();
-           console.log(dia);
-           console.log(result);
            callback(null, result.rows);
       });
   });
 }
 
+function criarAgendamento(renavam, data, hora, callback){
+  pg.connect(connectionString, function(err, client, done){
+    checkConnectionError(err, callback);
+      var query = client.query({
+          text: 'INSERT INTO agendamento(data, hora, renavam_veiculo) ' +
+            'VALUES ($1, $2, $3) RETURNING id',
+          values: [data, hora, renavam],
+          name: 'criar_agendamento'
+      });
+      query.on('row', function(row, result) {
+          result.addRow(row);
+      });
+      query.on('error', function(error) {
+          checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+           done();
+           callback(null, result.rows);
+      });
+  });
+}
