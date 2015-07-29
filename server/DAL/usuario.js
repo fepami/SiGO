@@ -25,8 +25,8 @@ function findUserByName(name, callback){
       		 if(result.rowCount != 1){
       		 	callback(new Error('user not found'));
       		 }else{
-				var user = result.rows[0];
-				callback(null, user);
+				    var user = result.rows[0];
+				    callback(null, user);
       		 }
     	});
 	});
