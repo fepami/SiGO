@@ -9,7 +9,7 @@ html
         form(name="cadastro", action="/cadastro", method="post")
           h2.text-center Dados para autenticação
           input.form-control(type="email", placeholder="Digite seu e-mail*", name="email", required)
-          input.form-control(type="text", placeholder="Escolha um usuário*", name="username", required)
+          input.form-control(type="text", placeholder="Escolha um usuário*", name="username", id="user", required)
           input.form-control(type="password", placeholder="Escolha uma senha*", name="password", id="pass", required)
           input.form-control(type="password", placeholder="Confirme a senha*", name="password_confirm", id="pass_confirm", required)
           span.right-block(id="message")
@@ -21,5 +21,5 @@ html
           input.form-control(type="text", placeholder="Cidade", name="city")
           input.form-control(type="text", placeholder="UF (Exemplo: SP)", name="state")
           input.form-control(type="number", placeholder="Telefone Celular (Ex: 11 960608888)", name="cellphone")
-          input.btn.btn-primary.right-block(type="submit", value="Finalizar cadastro")
+          input.btn.btn-primary.right-block(type="submit", value="Finalizar cadastro", id="confirmar_cadastro")
 script(src='js/cadastro.js')
