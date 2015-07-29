@@ -18,9 +18,9 @@ html
           div.col-sm-6
             div.card
               div.card-header
-                a(href="#" id="#{Agendamento.id}" class="pencil-btn")
+                a(href="#", id="#{Agendamento.id}", class="pencil-btn", data-toggle="tooltip", title="Modificar Agendamento")
                   span(class="glyphicon glyphicon-pencil", aria-hidden='true')
-                a(href="#" id="#{Agendamento.id}" class="trash-btn")
+                a(href="#", id="#{Agendamento.id}", class="trash-btn", data-toggle="tooltip", title="Cancelar Agendamento")
                   span(class="glyphicon glyphicon-trash", aria-hidden='true')
               br/
               p Renavam: #{Agendamento.renavam_veiculo}

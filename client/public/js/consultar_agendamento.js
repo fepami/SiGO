@@ -19,3 +19,7 @@ $(".trash-btn").click(function(){
 $(".pencil-btn").click(function(){
 	window.location.href = "editar?id=" + $(this).attr("id");
 });
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
