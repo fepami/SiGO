@@ -6,30 +6,30 @@ module.exports = {
 };
 
 function findUserByName(name, callback){
-	db.connect(function(err, client, done){
-		db.checkConnectionError(err, callback);
-	    var query = client.query({
-      		text: 'SELECT nome_usuario, salt, hash, nivel_acesso FROM usuario ' +
-				'WHERE nome_usuario=$1',
-      		values: [name],
-      		name: 'findUserByName'
-    	});
-    	query.on('row', function(row, result) {
-      		result.addRow(row);
-    	});
-    	query.on('error', function(error) {
-      		db.checkQueryError(error, client, done, callback);
-    	});
-    	query.on('end', function(result) {
-      		 done();
-      		 if(result.rowCount != 1){
-      		 	callback(new Error('user not found'));
-      		 }else{
-				    var user = result.rows[0];
-				    callback(null, user);
-      		 }
-    	});
-	});
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+    var query = client.query({
+        text: 'SELECT nome_usuario, salt, hash, nivel_acesso FROM usuario ' +
+      'WHERE nome_usuario=$1',
+        values: [name],
+        name: 'findUserByName'
+    });
+    query.on('row', function(row, result) {
+        result.addRow(row);
+    });
+    query.on('error', function(error) {
+        db.checkQueryError(error, client, done, callback);
+    });
+    query.on('end', function(result) {  
+      done();
+      if(result.rowCount != 1) {
+        callback(new Error('user not found'));
+      } else {
+        var user = result.rows[0];
+        callback(null, user);
+      }
+    });
+  });
 }
 
 function createUsuario(user, callback){

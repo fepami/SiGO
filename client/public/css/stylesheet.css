@@ -282,24 +282,28 @@ body.sigo_agendamento div.submit_area .btn{
   border: 0px;
 }
 
-/* START: Registro */
+/* START: Cadastro */
 
-body.sigo_registro img {
+body.sigo_cadastro img {
   width: 280px;
 }
 
-body.sigo_registro h2 {
+body.sigo_cadastro h2 {
   color: #999;
   text-shadow: 2px 2px #fff;
 }
 
-body.sigo_registro .btn {
+body.sigo_cadastro .btn {
   width: 250px;
 }
 
-body.sigo_registro .right-block {
+body.sigo_cadastro .right-block {
   display: block;
   margin-left: auto;
 }
 
-/* END: Registro */
+body.sigo_cadastro .alert {
+  margin-top: 10px;
+}
+
+/* END: Cadastro */

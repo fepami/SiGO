@@ -8,8 +8,14 @@ $('#pass, #pass_confirm').on('keyup', function () {
 
 $('input#confirmar_cadastro').click(function(){
   var nome_usuario = document.getElementById("user").value;
-  $.getJSON("?nr=" + nome_usuario, function(res, status){
-    console.log(res);
-    console.log(status);
+  $("#alert").hide();
+  $.getJSON("/cadastro/verifica?n=" + nome_usuario, function(data, status){
+    if (data != undefined) {
+      $("#alert").show();
+      $("#alert").attr({ class   : "alert alert-danger",
+        role  : "alert"
+      });
+      $("#alert").html("Este usuário já existe, por favor escolha outro");
+    }
   });
 });

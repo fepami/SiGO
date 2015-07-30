@@ -26,6 +26,7 @@ router.get('/cadastro', function(req, res){
   res.render('pages/cadastro')
 });
 router.post('/cadastro', cadastro.do_cadastro);
+router.get('/cadastro/verifica', cadastro.do_cadastro);
 
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   S E R V I Ç O S / P E Ç A S
