@@ -8,8 +8,9 @@ function do_cadastro(req, res){
     dbUser.findUserByName(req.query.n, function(err, user){
       if (user != undefined) {
         res.json( {user: user} );
-        res.end();
-      } 
+      } else {
+        res.json( {} );
+      }
     });
   } else {
     var user = {};
