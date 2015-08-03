@@ -64,7 +64,7 @@ function createUsuario(user, callback){
     db.checkConnectionError(err, callback);
     var query = client.query({
       text: 'INSERT INTO usuario(nome_usuario, email, salt, hash, nivel_acesso) ' +
-        'VALUES ($1, $2, $3, $4)',
+        'VALUES ($1, $2, $3, $4, $5)',
       values: [user.nome_usuario, user.email, user.salt, user.hash, user.nivel_acesso],
       name: 'create_usuario'
     });
