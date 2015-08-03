@@ -148,10 +148,6 @@ body.sigo_login img{
   margin-bottom: 40px;
 }
 
-body.sigo_login input:first-child{
-  margin-bottom: 10px;
-}
-
 body.sigo_login a p{
   text-align: right;
   font-size: 14px;
