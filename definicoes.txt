@@ -1,0 +1,4 @@
+Agendamento
+	Status:
+		0: Cancelado
+		1: Ativo

@@ -3,12 +3,15 @@ var db_vei = require('../DAL/veiculo.js');
 var db_cli = require('../DAL/cliente.js')
 
 module.exports = {
-	doAgendamento 		: doAgendamento,
-	doCreateAgendamento : doCreateAgendamento,
-	doCriarAgendamento  : doCriarAgendamento,
+	getCriarAgendamento 	: getCriarAgendamento,
+	doCriarAgendamento  	: doCriarAgendamento,
+	doConsultarAgendamento  : doConsultarAgendamento,
+	doCancelarAgendamento	: doCancelarAgendamento,
+	doEditarAgendamento		: doEditarAgendamento,
+	getEditarAgendamento	: getEditarAgendamento,
 };
 
-function doAgendamento(req, res){
+function getCriarAgendamento(req, res){
 
 	// Usado pelo AJAX para retornar veiculos do cliente
 	if ( req.query.nr != undefined){
@@ -40,7 +43,9 @@ function doAgendamento(req, res){
 			} else {
 
 				res.json( { horas :  horas });
-			}			res.end();
+
+			}
+			res.end();
 		});
 
 	}
@@ -54,7 +59,8 @@ function doAgendamento(req, res){
 	        	console.error(err);
 			} else {
 
-				res.render('pages/agendamento', { clientes: clientes });
+			res.render('pages/criar_agendamento', { clientes: clientes });
+
 			}
 
 			res.end();
@@ -62,30 +68,20 @@ function doAgendamento(req, res){
 	}
 }
 
-function doCriarAgendamento(req, res){
+function doConsultarAgendamento(req, res){
+	db_age.todosAgendamentosAtivos(function(err, agendamentos){
+		if(err){
+			req.session.error = 'Falha ao pesquisar agendamentos';
+	       	console.error(err);
+		} else {
+			res.render('pages/consultar_agendamento', { agendamentos: agendamentos });
+		}
+		res.end();
+	});
 
-	// Usado pelo AJAX para retornar veiculos do cliente
-	if ( req.query.nr != undefined &&
-		 req.query.d  != undefined &&
-		 req.query.h  != undefined ){
-
-		db_age.criarAgendamento(req.query.nr, req.query.d, req.query.h, function(err, agendamento){
-
-			if(err){
-
-				req.session.error = 'Falha ao Criar Agendamento';
-        		console.error(err);
-			} else {
-				console.log(agendamento);
-				res.json( { agendamento :  agendamento });
-			}
-
-			res.end();
-		});
-	}
 }
 
-function doCreateAgendamento(req, res) {
+function doCriarAgendamento(req, res) {
 	if(req.query.nr == undefined || req.query.d == undefined || req.query.h == undefined){
 		req.session.error = 'Bad Request';
     	console.error(req.session.error);
@@ -98,14 +94,83 @@ function doCreateAgendamento(req, res) {
 	agendamento.hora = req.query.h;
 	agendamento.renavam_veiculo = req.query.nr;
 
-	db_age.createAgendamento(agendamento, function(err, agendamento){
+	db_age.criarAgendamento(agendamento, function(err, agendamentos){
 		if(err){
 			req.session.error = 'Falha ao inserir agendamento';
         	console.error(err);
+        	res.send(false);
 		}else{
 			console.log('Agendamento ' + agendamento.id + " criado com sucesso!");
-			res.json( { agendamento :  agendamento });
+			res.json( { agendamentos :  agendamentos });
 		}
 		res.end();
 	});
+}
+
+function doCancelarAgendamento(req, res){
+	db_age.cancelarAgendamento(req.query.id, function(err, agendamentos){
+		if(err){
+			req.session.error = 'Falha ao remover agendamento';
+	       	console.error(err);
+	       	res.send(false);
+		} else {
+			console.log('Agendamento ' + req.query.id + " cancelado com sucesso!");
+			res.send(true);
+		}
+		res.end();
+	});
+
+}
+
+function doEditarAgendamento(req, res) {
+	if(req.query.id == undefined || req.query.d == undefined || req.query.h == undefined){
+		req.session.error = 'Bad Request';
+    	console.error(req.session.error);
+    	res.end();
+    	return;
+	}
+	var agendamento = {};
+
+	agendamento.data 	= req.query.d;
+	agendamento.hora 	= req.query.h;
+	agendamento.id 		= req.query.id;
+
+	db_age.editarAgendamento(agendamento, function(err, agendamentos){
+		if(err){
+			req.session.error = 'Falha ao editar agendamento';
+        	console.error(err);
+        	res.send(false);
+		}else{
+			console.log('Agendamento ' + agendamentos.id + " editado com sucesso!");
+			res.send({ agendamentos : agendamentos });
+		}
+		res.end();
+	});
+}
+
+function getEditarAgendamento(req, res) {
+
+	if ( req.query.d != undefined){
+
+		db_age.agendamentoByDia(req.query.d, function(err, horas){
+
+			if(err){
+
+				req.session.error = 'Falha ao pesquisar Agendamento';
+	      		console.error(err);
+			} else {
+				res.json( { horas :  horas });
+			}
+			res.end();
+		});
+
+	}
+
+	else if ( req.query.id == undefined){
+
+		res.send("Erro");
+	} else {
+		res.render('pages/editar_agendamento', { idAgendamento: req.query.id });
+	}
+
 }

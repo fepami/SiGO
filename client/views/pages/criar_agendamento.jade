@@ -2,11 +2,11 @@ html
   head
     title SiGO | Agendamento
     include ../partials/head.jade
-    link(href='css/supercal.css', rel='stylesheet')
+    link(href='../css/supercal.css', rel='stylesheet')
   body.sigo_agendamento
     include ../partials/menu_lateral.jade
 
-    script(src='js/jquery_supercal.js')
+    script(src='../js/jquery_supercal.js')
 
     div.container
 
@@ -15,7 +15,7 @@ html
         form
 
           h2 Selecione ou cadastre um cliente 
-
+          div#status-message
           div(class="btn-group", role="group", aria-label="...")  
 
             select.form-control(id="cliente_nome")
@@ -69,5 +69,5 @@ html
 
 
 
-          script(src='js/agendamento.js')
+          script(src='../js/criar_agendamento.js')
 

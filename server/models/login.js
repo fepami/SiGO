@@ -32,7 +32,7 @@ function do_login(req, res){
 	authenticate(req.body.username, req.body.password, function(err, user){
     	if (user) {
     		req.session.user = user;
-    		res.redirect('/agendamento');
+    		res.redirect('/agendamento/consultar');
     	} else {
       		req.session.error = 'Authentication failed, please check your username and password.';
         	console.error(err);
