@@ -43,9 +43,7 @@ function getCriarAgendamento(req, res){
 			} else {
 
 				res.json( { horas :  horas });
-			}			res.end();		
-
-			}
+			}			
 			res.end();
 		});
 
@@ -103,8 +101,7 @@ function doCriarAgendamento(req, res) {
 		}else{
 			console.log('Agendamento ' + agendamento.id + " criado com sucesso!");
 			res.json( { agendamentos :  agendamentos });
-		}
-			res.end();		
+		}	
 		res.end();
 	});
 }
