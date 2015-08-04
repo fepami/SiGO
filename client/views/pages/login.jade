@@ -6,6 +6,8 @@ html
     div.container
       div.jumbotron
         img(src='assets/image/logo_sigo.png')
+        if cadastro
+          .alert.alert-success Usuário criado com sucesso!
         form(name="login", action="/login", method="post")
           input.form-control(type="text", placeholder="Usuário ou e-mail", name="username")
           input.form-control(type="password", placeholder="Senha", name="password")
