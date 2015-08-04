@@ -2,10 +2,11 @@ html
   head
     title SiGO | Login
     include ../partials/head.jade
-  body.sigo_registro
+  body.sigo_cadastro
     div.container
       div.jumbotron
         img.center-block(src='assets/image/logo_sigo.png')
+        div.margin-top#alert
         form(name="cadastro", action="/cadastro", method="post")
           h2.text-center Dados para autenticação
           input.form-control(type="email", placeholder="Digite seu e-mail*", name="email", required)

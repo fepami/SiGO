@@ -43,7 +43,9 @@ function getCriarAgendamento(req, res){
 			} else {
 
 				res.json( { horas :  horas });
-			}			
+
+			}
+
 			res.end();
 		});
 
@@ -127,7 +129,6 @@ function doEditarAgendamento(req, res) {
     	res.end();
     	return;
 	}
-
 	var agendamento = {};
 
 	agendamento.data 	= req.query.d;

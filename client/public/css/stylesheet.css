@@ -354,3 +354,29 @@ body.sigo_agendamento .card-header span{
 body.sigo_agendamento .card-header span:hover{
   color: #FF9800;;
 }
+
+/* START: Cadastro */
+
+body.sigo_cadastro img {
+  width: 280px;
+}
+
+body.sigo_cadastro h2 {
+  color: #999;
+  text-shadow: 2px 2px #fff;
+}
+
+body.sigo_cadastro .btn {
+  width: 250px;
+}
+
+body.sigo_cadastro .right-block {
+  display: block;
+  margin-left: auto;
+}
+
+body.sigo_cadastro .alert {
+  margin-top: 10px;
+}
+
+/* END: Cadastro */

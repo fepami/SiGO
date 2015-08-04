@@ -6,10 +6,23 @@ $('#pass, #pass_confirm').on('keyup', function () {
     }
 });
 
-$('input#confirmar_cadastro').click(function(){
+$('input#user').blur(function(){
   var nome_usuario = document.getElementById("user").value;
-  $.getJSON("?nr=" + nome_usuario, function(res, status){
-    console.log(res);
-    console.log(status);
-  });
+  $("#alert").hide();
+  if (nome_usuario != "") {
+    $.getJSON("/cadastro/verifica?n=" + nome_usuario, function(data, status){
+      $("#alert").show();
+      if (data.user != undefined) {
+        $("#alert").attr({ class   : "alert alert-danger",
+          role  : "alert"
+        });
+        $("#alert").html("Este usuário já existe! Por favor, escolha outro.");
+      } else {
+        $("#alert").attr({ class   : "alert alert-success",
+          role  : "alert"
+        });
+        $("#alert").html("Usuário disponível!");
+      }
+    });
+  }
 });

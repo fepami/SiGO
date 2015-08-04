@@ -10,13 +10,11 @@ var cadastro      = require('../models/cadastro.js');
 /**
 *  R O T A S   P A R A   A S   T E L A S   D E   L O G I N  /  L O G O U T
 */
+
 router.get('/', 		function(req, res)	{ res.render('pages/login') });
 router.get('/login', 	function(req, res)	{ res.redirect('/'); });
 router.post('/login', 	login.do_login);
 router.get('/logout', 	login.do_logout);
-
-router.post('/login', login.do_login);
-router.get('/logout', login.do_logout);
 
 /**
 *  R O T A S   P A R A   A S   T E L A S   D E   R E G I S T R O
@@ -25,6 +23,8 @@ router.get('/cadastro', function(req, res){
   res.render('pages/cadastro')
 });
 router.post('/cadastro', cadastro.do_cadastro);
+router.get('/cadastro/verifica', cadastro.do_cadastro);
+
 
 /**
 *  R O T A S   P A R A   A S   T E L A S   D E   A G E N D A M E N T O
