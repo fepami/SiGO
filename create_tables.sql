@@ -1,5 +1,5 @@
 \i drop_tables.sql
-\i bd_tables_create_script.sqls
+\i bd_tables_create_script.sql
 
 --Todas as senhas são 'senha'
 insert into usuario values ('gerente', 'aj20zxsGYUfQmnyMYLnaRUyKC1X/Qg1IE7/+ML4bM8y1s1kVx1hO/Tz4yL0+Rc1E/uanrXp9B6v0Jk/F4d0gWbHY7ZSgrQ3kel8ZynRqC4F6mvG09zfe4t60KPdJ8eqlHe/v91p5ENevHe22ByS8d7EnBn/PV0Cq/ib3zKFo8J0=', 'PAqD2o3m8uR+ZveTh5PRY+A/eIQQYLlPFId/2bXtOHjsdlHtvcWHU7I9rJEvnmSdsBPhgzB8SQiIZqZOSlWFA0jptoswa6t3BeUvCExhtOAr6KvJ+IrcYZnbVLypZ/Pr/U42XsQDvCloVrM2iCmxV+ZekwNqu7P9ceudxZn84s8=',0);
