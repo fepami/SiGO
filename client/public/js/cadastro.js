@@ -8,20 +8,39 @@ $('#pass, #pass_confirm').on('keyup', function () {
 
 $('input#user').blur(function(){
   var nome_usuario = document.getElementById("user").value;
-  $("#alert").hide();
   if (nome_usuario != "") {
-    $.getJSON("/cadastro/verifica?n=" + nome_usuario, function(data, status){
-      $("#alert").show();
+    $.getJSON("/cadastro/verifica?u=" + nome_usuario, function(data, status){
+      $("#alertUser").show();
       if (data.user != undefined) {
-        $("#alert").attr({ class   : "alert alert-danger",
+        $("#alertUser").attr({ class   : "alert alert-danger",
           role  : "alert"
         });
-        $("#alert").html("Este usuário já existe! Por favor, escolha outro.");
+        $("#alertUser").html("Este usuário já existe! Por favor, escolha outro.");
       } else {
-        $("#alert").attr({ class   : "alert alert-success",
+        $("#alertUser").attr({ class   : "alert alert-success",
           role  : "alert"
         });
-        $("#alert").html("Usuário disponível!");
+        $("#alertUser").html("Usuário disponível!");
+      }
+    });
+  }
+});
+
+$('input#mail').blur(function(){
+  var email = document.getElementById("mail").value;
+  if (email != "") {
+    $.getJSON("/cadastro/verifica?e=" + email, function(data, status){
+      $("#alertEmail").show();
+      if (data.email != undefined) {
+        $("#alertEmail").attr({ class   : "alert alert-danger",
+          role  : "alert"
+        });
+        $("#alertEmail").html("Este e-mail já está cadastrado! Por favor, escolha outro.");
+      } else {
+        $("#alertEmail").attr({ class   : "alert alert-success",
+          role  : "alert"
+        });
+        $("#alertEmail").html("E-mail disponível!");
       }
     });
   }

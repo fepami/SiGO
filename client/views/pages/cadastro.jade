@@ -6,10 +6,11 @@ html
     div.container
       div.jumbotron
         img.center-block(src='assets/image/logo_sigo.png')
-        div.margin-top#alert
+        .margin-top#alertEmail
+        .margin-top#alertUser
         form(name="cadastro", action="/cadastro", method="post")
           h2.text-center Dados para autenticação
-          input.form-control(type="email", placeholder="Digite seu e-mail*", name="email", required)
+          input.form-control(type="email", placeholder="Digite seu e-mail*", name="email", id="mail", required)
           input.form-control(type="text", placeholder="Escolha um usuário*", name="username", id="user", required)
           input.form-control(type="password", placeholder="Escolha uma senha*", name="password", id="pass", required)
           input.form-control(type="password", placeholder="Confirme a senha*", name="password_confirm", id="pass_confirm", required)

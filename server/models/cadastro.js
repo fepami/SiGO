@@ -3,11 +3,19 @@ var util        = require('./util.js');
 var dbCliente   = require('../DAL/cliente.js');
 
 function do_cadastro(req, res){
-  /* Tratamento para verificação de usuário */
-  if (req.query.n != undefined) {
-    dbUser.findUserByName(req.query.n, function(err, user){
+  /* Tratamento para verificação de usuário e email */
+  if (req.query.u != undefined) {
+    dbUser.findUserByName(req.query.u, function(err, user){
       if (user != undefined) {
         res.json( {user: user} );
+      } else {
+        res.json( {} );
+      }
+    });
+  } else if (req.query.e != undefined) {
+    dbUser.findUserByEmail(req.query.e, function(err, email){
+      if (email != undefined) {
+        res.json( {email: email} );
       } else {
         res.json( {} );
       }
@@ -26,7 +34,7 @@ function do_cadastro(req, res){
           res.redirect('/cadastro');
         } else {
           cadastro_cliente(req.body, function(){
-            res.redirect('/cadastro');
+            res.render('pages/login', { cadastro: true } );
         });
         }
       });
