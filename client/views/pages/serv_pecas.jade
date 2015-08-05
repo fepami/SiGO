@@ -21,7 +21,7 @@ html
             .list-group-item(href='#')
               a(href='#', data-toggle="modal", data-target="#modalPeca", id="linkPeca")
                 h4.list-group-item-heading.up-first-letter(data-nome="#{peca.nome}", data-desc="#{peca.descricao}", data-valor="#{peca.preco}", data-quant="#{peca.quantidade}") #{peca.nome}
-        a.btn.btn-primary(href="serv_pecas") Adicionar Peça
+        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalNovaPeca") Adicionar Peça
     script(src='../js/serv_pecas.js')
 
     //- Modal que abre detalhes de serviços
@@ -53,3 +53,4 @@ html
             a.btn.btn-primary(data-dismiss="modal") Fechar
 
     include ../partials/_modal_adicionar_serv.jade
+    include ../partials/_modal_adicionar_peca.jade
