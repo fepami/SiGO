@@ -7,5 +7,14 @@ html
     
     .container
       .jumbotron
-        img(src='assets/image/logo_sigo.png')
-        a.btn.btn-primary(href="#") Formar equipe 
+        h2.margin-bot Mecânicos
+        .btn-group
+          a.btn.btn-primary(href="#") Lista de mecânicos 
+          a.btn.btn-primary.pull-right(href="#") Adicionar mecânico
+        h2 Equipes
+        .list-group
+          each equipe in equipes
+            .list-group-item
+              a(href="#")
+                h4.list-group-item-heading-up.up-first-letter #{equipe.nome}
+        a.btn.btn-primary(href="#") Formar equipe
