@@ -11,16 +11,43 @@ html
         div.list-group
           each servico in params.servicos
             .list-group-item(href='#')
-              a(href='#')
-                h4.list-group-item-heading.up-first-letter #{servico.nome}
-              p.list-group-item-text.up-first-letter  #{servico.descricao}
-        a.btn.btn-primary(href="serv_pecas") Adicionar Serviço
+              a(href='#', data-toggle="modal", data-target="#modalServico", id="linkServico")
+                h4.list-group-item-heading.up-first-letter(data-nome="#{servico.nome}", data-desc="#{servico.descricao}", data-valor="#{servico.valor_mao_obra}") #{servico.nome}
+        a.btn.btn-primary(href="serv_pecas", id="btn1") Adicionar Serviço
         hr.fancy-line
         h2 Peças disponíveis
         div.list-group
           each peca in params.pecas
             .list-group-item(href='#')
-              h4.list-group-item-heading.up-first-letter #{peca.nome}
-              p.list-group-item-text.up-first-letter Quantidade: #{peca.quantidade}
+              a(href='#', data-toggle="modal", data-target="#modalPeca", id="linkPeca")
+                h4.list-group-item-heading.up-first-letter(data-nome="#{peca.nome}", data-desc="#{peca.descricao}", data-valor="#{peca.preco}", data-quant="#{peca.quantidade}") #{peca.nome}
         a.btn.btn-primary(href="serv_pecas") Adicionar Peça
     script(src='../js/serv_pecas.js')
+
+    //- Modal que abre detalhes de serviços
+    .modal.fade(role="dialog", id="modalServico")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h1.modal-title(id="modalSNome")
+          .modal-body
+            p(id="modalSDesc")
+            br
+            p(id="modalSValor")
+          .modal-footer
+            a.btn.btn-primary(data-dismiss="modal") Close
+
+    //- Modal que abre detalhes de Peças
+    .modal.fade(role="dialog", id="modalPeca")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h1.modal-title(id="modalPNome")
+          .modal-body
+            p(id="modalPDesc")
+            br
+            p(id="modalPValor")
+            br
+            p(id="modalPQuant")
+          .modal-footer
+            a.btn.btn-primary(data-dismiss="modal") Close

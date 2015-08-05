@@ -20,7 +20,6 @@ function getServicosPecas(req, res){
         req.session.error = 'Falha ao buscar pecas';
       } else {
         params.pecas = pecas;
-        console.log(params);
         res.render('pages/serv_pecas', { params: params } )
       }
       res.end();
