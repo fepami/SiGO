@@ -42,4 +42,11 @@ router.get('/agendamento/serv_pecas', serv_pecas.getServicosPecas);
 router.post('/servico', serv_pecas.servico);
 router.post('/peca', serv_pecas.peca);
 
+/**
+* R O T A S   P A R A   A S   T E L A S   D E   E Q U I P E S
+*/
+router.get('/agendamento/mecanicos', function(req, res){
+  res.render('pages/mecanicos')
+});
+
 module.exports = router;

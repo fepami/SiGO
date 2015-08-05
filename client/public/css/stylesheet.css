@@ -399,3 +399,19 @@ body.sigo_serv_pecas .btn-group > .btn {
 }
 
 /* END: Serviços e peças */
+
+/* START: Equipes de Mecânicos */
+
+body.sigo_mecanicos {
+  display: flex;
+}
+
+body.sigo_mecanicos .container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+/* END: Equipes de Mecânicos */
