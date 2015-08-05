@@ -13,7 +13,7 @@ html
             .list-group-item(href='#')
               a(href='#', data-toggle="modal", data-target="#modalServico", id="linkServico")
                 h4.list-group-item-heading.up-first-letter(data-nome="#{servico.nome}", data-desc="#{servico.descricao}", data-valor="#{servico.valor_mao_obra}") #{servico.nome}
-        a.btn.btn-primary(href="serv_pecas", id="btn1") Adicionar Serviço
+        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalNovoServico") Adicionar Serviço
         hr.fancy-line
         h2 Peças disponíveis
         div.list-group
@@ -35,7 +35,7 @@ html
             br
             p(id="modalSValor")
           .modal-footer
-            a.btn.btn-primary(data-dismiss="modal") Close
+            a.btn.btn-primary(data-dismiss="modal") Fechar
 
     //- Modal que abre detalhes de Peças
     .modal.fade(role="dialog", id="modalPeca")
@@ -50,4 +50,6 @@ html
             br
             p(id="modalPQuant")
           .modal-footer
-            a.btn.btn-primary(data-dismiss="modal") Close
+            a.btn.btn-primary(data-dismiss="modal") Fechar
+
+    include ../partials/_modal_adicionar_serv.jade
