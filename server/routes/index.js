@@ -4,8 +4,9 @@ var router        = express.Router();
 var login         = require('../models/login.js');
 var agendamento   = require('../models/agendamento.js');
 var cliente       = require('../models/cliente.js');
-var cadastro      = require('../models/cadastro.js'); 
 var os      	  = require('../models/ordemservico.js'); 
+var cadastro      = require('../models/cadastro.js');
+var serv_pecas    = require('../models/serv_pecas.js'); 
 
 
 /**
@@ -18,7 +19,7 @@ router.post('/login', 	login.do_login);
 router.get('/logout', 	login.do_logout);
 
 /**
-*  R O T A S   P A R A   A S   T E L A S   D E   R E G I S T R O
+*  R O T A S   P A R A   A S   T E L A S   D E   C A D A S T R O
 */
 router.get('/cadastro', function(req, res){
   res.render('pages/cadastro')
@@ -49,6 +50,8 @@ router.get ('/os/consultar'		/*, login.restrict*/, os.doConsultarOs);
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   S E R V I Ç O S / P E Ç A S
 */
-router.get('/serv_pecas', function(req, res){ res.render('pages/serv_pecas') });
+router.get('/agendamento/serv_pecas', serv_pecas.getServicosPecas);
+router.post('/servico', serv_pecas.servico);
+router.post('/peca', serv_pecas.peca);
 
 module.exports = router;

@@ -1,0 +1,14 @@
+.modal.fade(role="dialog", id="modalNovoServico")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h1 Adicionar Serviço
+          .modal-body
+            form(nome="servico", action="/servico", method="post")
+              input.form-control(type="text", placeholder="Nome do Serviço*", name="name", required)
+              input.form-control(type="text", placeholder="Descrição do Serviço*", name="description", required)
+              input.form-control(type="number", placeholder="Valor do Serviço*", name="value", required)
+              input.form-control(type="number", placeholder="Especialidade*", name="role", required)
+              .btn-group
+                a.btn.btn-primary(data-dismiss="modal") Cancelar
+                input.btn.btn-primary(type="submit", value="Adicionar Serviço")
