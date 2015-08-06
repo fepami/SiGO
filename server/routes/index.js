@@ -5,6 +5,7 @@ var login         = require('../models/login.js');
 var agendamento   = require('../models/agendamento.js');
 var cliente       = require('../models/cliente.js');
 var cadastro      = require('../models/cadastro.js'); 
+var os      	  = require('../models/ordemservico.js'); 
 
 
 /**
@@ -36,6 +37,14 @@ router.get ('/agendamento/remover'		/*, login.restrict*/, agendamento.doCancelar
 router.get ('/agendamento/consultar'	/*, login.restrict*/, agendamento.doConsultarAgendamento);
 router.get ('/agendamento/editar'		/*, login.restrict*/, agendamento.getEditarAgendamento);
 router.get ('/agendamento/editar/editar'/*, login.restrict*/, agendamento.doEditarAgendamento);
+
+
+/**
+*  R O T A S   P A R A   A S   T E L A S   D E   O R D E M   D E   S E R V I C O
+*/
+
+router.get ('/os/consultar'		/*, login.restrict*/, os.doConsultarOs);
+
 
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   S E R V I Ç O S / P E Ç A S

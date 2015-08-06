@@ -1,0 +1,30 @@
+html
+  head
+    title SiGO | OS
+    include ../partials/head.jade
+  body.sigo_agendamento
+    include ../partials/menu_lateral.jade
+
+    div.container
+
+      div.jumbotron
+        h2 OS cadastradas
+        div#status-message
+        div.col-sm-6
+          a(href="criar")
+            div.card.criar-agendamento
+                span(class="glyphicon glyphicon-plus", aria-hidden='true')
+        each OS in ordemservico
+          div.col-sm-6
+            div.card
+              div.card-header
+                a(href="#", id="#{OS.id}", class="pencil-btn", data-toggle="tooltip", title="Modificar OS")
+                  span(class="glyphicon glyphicon-pencil", aria-hidden='true')
+                a(href="#", id="#{OS.id}", class="trash-btn", data-toggle="tooltip", title="Cancelar OS")
+                  span(class="glyphicon glyphicon-trash", aria-hidden='true')
+              br/
+              p Numero OS: #{OS.renavam_veiculo}
+              p Data de emissao: #{OS.data}
+              p Hora: #{OS.hora}
+    script(src='../js/consultar_agendamento.js')
+
