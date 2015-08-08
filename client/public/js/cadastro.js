@@ -16,11 +16,13 @@ $('input#user').blur(function(){
           role  : "alert"
         });
         $("#alertUser").html("Este usuário já existe! Por favor, escolha outro.");
+        $("#confirmar_cadastro").hide();
       } else {
         $("#alertUser").attr({ class   : "alert alert-success",
           role  : "alert"
         });
         $("#alertUser").html("Usuário disponível!");
+        $("#confirmar_cadastro").show();
       }
     });
   }
@@ -36,11 +38,13 @@ $('input#mail').blur(function(){
           role  : "alert"
         });
         $("#alertEmail").html("Este e-mail já está cadastrado! Por favor, escolha outro.");
+        $("#confirmar_cadastro").hide();
       } else {
         $("#alertEmail").attr({ class   : "alert alert-success",
           role  : "alert"
         });
         $("#alertEmail").html("E-mail disponível!");
+        $("#confirmar_cadastro").show();
       }
     });
   }
