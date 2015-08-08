@@ -1,0 +1,20 @@
+html
+  head
+    title SiGO | Mecanicos
+    include ../partials/head.jade
+  body.sigo_mecanicos
+    include ../partials/menu_lateral.jade
+    
+    .container
+      .jumbotron
+        h2.margin-bot Mecânicos
+        .btn-group
+          a.btn.btn-primary(href="#") Lista de mecânicos 
+          a.btn.btn-primary.pull-right(href="#") Adicionar mecânico
+        h2 Equipes
+        .list-group
+          each equipe in equipes
+            .list-group-item
+              a(href="#")
+                h4.list-group-item-heading-up.up-first-letter #{equipe.nome}
+        a.btn.btn-primary(href="#") Formar equipe

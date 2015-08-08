@@ -16,9 +16,31 @@ create table tipo_servico
 	valor_mao_obra	real
 );
 
-create table equipe
+-- create table equipe
+-- (
+-- 	id				serial			primary key
+-- );
+
+create table mecanico
 (
-	id				serial			primary key
+	codigo_mecanico	serial			primary key,
+	nome			varchar(150),
+	end_rua			varchar(150),
+	end_complemento	varchar(50),
+	end_cep			varchar(10),
+	end_cidade		varchar(50),
+	end_estado		varchar(50),
+	telefone_1		varchar(20),
+	telefone_2		varchar(20),
+	especialidade	int
+);
+
+create table equipe_mecanico
+(
+	codigo_mecanico_1	int	 		references mecanico(codigo_mecanico),
+	codigo_mecanico_2	int			references mecanico(codigo_mecanico),
+	id		serial UNIQUE,
+	primary key (codigo_mecanico_1, codigo_mecanico_2, id)
 );
 
 create table os
@@ -30,7 +52,7 @@ create table os
 	status			int,
 	motivo_suspensao int,
 	total_pecas		int,
-	id_equipe		int				references equipe(id)
+	id_equipe		int				references equipe_mecanico(id)
 );
 
 create table servico
@@ -48,20 +70,6 @@ create table peca
 	status			int,
 	id_tipo_peca	int				references tipo_peca(id),
 	servico_id		int 			references servico(id)
-);
-
-create table mecanico
-(
-	codigo_mecanico	serial			primary key,
-	nome			varchar(150),
-	end_rua			varchar(150),
-	end_complemento	varchar(50),
-	end_cep			varchar(10),
-	end_cidade		varchar(50),
-	end_estado		varchar(50),
-	telefone_1		varchar(20),
-	telefone_2		varchar(20),
-	especialidade	int
 );
 
 create table usuario
@@ -116,14 +124,6 @@ create table agendamento
 	id				serial			primary key,
 	data			varchar(12),
 	hora			int,
-status			int,
+	status			int,
 	renavam_veiculo	int				references veiculo(renavam)
-);
-
-create table equipe_mecanico
-(
-	codigo_mecanico_1	int	 		references mecanico(codigo_mecanico),
-	codigo_mecanico_2	int			references mecanico(codigo_mecanico),
-	id_equipe			int			references equipe(id),
-	primary key (codigo_mecanico_1, codigo_mecanico_2, id_equipe)
 );

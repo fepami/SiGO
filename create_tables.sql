@@ -88,3 +88,8 @@ insert into agendamento (data, hora, status, renavam_veiculo)
 	values ('24/07/15','3', 1, 491534278);
 insert into agendamento (data, hora, status, renavam_veiculo)
 	values ('24/07/15','5', 1, 293359498);
+
+insert into equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2) values (1, 2);
+insert into equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2) values (1, 3);
+insert into equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2) values (4, 6);
+insert into equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2) values (2, 5);
