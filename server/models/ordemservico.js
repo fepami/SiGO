@@ -1,7 +1,7 @@
 var dbOS      = require('../DAL/ordemservico.js');
 
 function doConsultarOs(req, res){
-  dbOS.todosAgendamentosAtivos(function(err, ordemservico){
+  dbOS.todasOS(function(err, ordemservico){
     if(err){
       req.session.error = 'Falha ao pesquisar OS';
           console.error(err);

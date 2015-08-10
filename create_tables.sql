@@ -88,3 +88,18 @@ insert into agendamento (data, hora, status, renavam_veiculo)
 	values ('24/07/15','3', 1, 491534278);
 insert into agendamento (data, hora, status, renavam_veiculo)
 	values ('24/07/15','5', 1, 293359498);
+
+insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
+	values ("Leonardo Dias Fernandes", "Rua Mário Luciano da Silva, 1492", , "36200-678", "Barbacena", "MG", "(32) 9764-9595", , 1);
+insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
+	values ("LAline Lima Carvalho", "Rua dos Operadores, 329", , "58083-120", "João Pessoa", "MG", "(32) 9764-9595", , 1);
+insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
+	values ("Leonardo Dias Fernandes", "Rua Mário Luciano da Silva, 1492", , "36200-678", "Barbacena", "MG", "(32) 9764-9595", , 1);
+insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
+	values ("Leonardo Dias Fernandes", "Rua Mário Luciano da Silva, 1492", , "36200-678", "Barbacena", "MG", "(32) 9764-9595", , 1);
+insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
+	values ("Leonardo Dias Fernandes", "Rua Mário Luciano da Silva, 1492", , "36200-678", "Barbacena", "MG", "(32) 9764-9595", , 1);
+
+
+insert into os (data_emissao, valor, data_conclusao, status, motivo_suspensao, total_pecas, id_equipe)
+	values ("07/08/2015", 515.76, "17/08/2015", 1, , 10, 1);

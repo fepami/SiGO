@@ -4,10 +4,9 @@ function todasOS(callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var query = client.query({
-          text: 'SELECT numero_os, data_emissao, valor, data_conclusao, status, motivo_suspensao, total_pecas,'+
-                'FROM os WHERE status = 1',
+          text: 'SELECT * FROM os WHERE status = 1',
           values: [],
-          name: 'todos_so_ativos'
+          name: 'todas_os_ativas'
       });
       query.on('row', function(row, result) {
           result.addRow(row);
