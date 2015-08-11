@@ -8,6 +8,7 @@ module.exports = {
 };
 
 function findUserByName(name, callback){
+
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
     var query = client.query({

@@ -383,6 +383,9 @@ body.sigo_cadastro .alert {
   margin-top: 10px;
 }
 
+<<<<<<< HEAD
+/* END: Cadastro */
+=======
 /* END: Cadastro */
 
 /* START: Serviços e peças */
@@ -424,39 +427,4 @@ body.sigo_serv_pecas .btn-group > .btn {
 }
 
 /* END: Serviços e peças */
-
-/* START: Equipes de Mecânicos */
-
-body.sigo_mecanicos {
-  display: flex;
-}
-
-body.sigo_mecanicos .container {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  justify-content: space-between;
-  text-align: center;
-}
-
-body.sigo_mecanicos h2 {
-  color: #999;
-  text-shadow: 2px 2px #fff;
-}
-
-body.sigo_mecanicos .btn-primary{
-  display: block;
-  margin-right: auto;
-  margin-left: 15px;
-  width: 250px;
-}
-
-body.sigo_mecanicos .margin-bot {
-  margin-bottom: 30px;
-}
-
-body.sigo_mecanicos .btn-group {
-  display: inline;
-}
-
-/* END: Equipes de Mecânicos */
+>>>>>>> master
