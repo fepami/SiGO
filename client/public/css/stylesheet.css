@@ -424,3 +424,77 @@ body.sigo_serv_pecas .btn-group > .btn {
 }
 
 /* END: Serviços e peças */
+
+
+/* START: OS */
+
+body.sigo_os {
+  display: flex;
+}
+
+body.sigo_os .container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+body.sigo_os .btn-primary{
+  display: block;
+  margin-right: auto;
+  margin-left: 15px;
+  width: 250px;
+}
+
+body.sigo_os h2 {
+  color: #999;
+  text-shadow: 2px 2px #fff;
+}
+
+body.sigo_os h4 {
+  color: #2196F3;
+  font-size: 16px;
+}
+
+body.sigo_os h4:hover {
+  color: #4ba9f2;
+}
+
+body.sigo_os .btn-group > .btn {
+  margin-right: 20px;
+}
+
+body.sigo_os .modal-content{
+  text-align: left;
+}
+
+body.sigo_os .modal-content label{
+  font-size: 16px;
+  color: #666666;
+}
+
+body.sigo_os .modal-content select{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+body.sigo_os .modal-content select.data-conclusao{
+  width: 50%;
+}
+
+body.sigo_os .modal-content a.botao-adicionar-peca{
+  font-size: 12px;
+}
+
+body.sigo_os .modal-content p{
+  font-size: 16px;
+  text-align: center;
+  font-weight: normal;
+}
+
+body.sigo_os div.modal-footer button{
+  float: right;
+}
+
+/* END: Serviços e peças */
