@@ -1,6 +1,7 @@
 var dbOS            = require('../DAL/ordemservico.js');
 var db_serv_pecas   = require('../DAL/serv_pecas.js');
 var db_func         = require('../DAL/funcionario.js');
+var db_agendamento  = require('../DAL/agendamento.js');
 
 function doConsultarOs(req, res){
   var params = {};
@@ -19,6 +20,15 @@ function doConsultarOs(req, res){
         console.error(err);
       } else {
         params.mecanicos = mecanicos;
+      }
+    });
+
+    db_agendamento.todosAgendamentosCliente(function(err, agendamentos){
+      if (err) {
+        req.session.error = 'Falha ao buscar agendamentos';
+        console.error(err);
+      } else {
+        params.agendamentos = agendamentos;
       }
     });
 
@@ -54,8 +64,60 @@ function doCriarOs(req, res){
     if(err){
       req.session.error = 'Falha ao criar OS';
           console.error(err);
+          res.send(false);
     } else {
-      //res.render('pages/criar_os', { ordemservico: ordemservico });
+      res.send({ordemservico : ordemservico});
+    }
+    res.end();
+  });
+
+}
+
+function doCriarServico(req, res){
+  if(req.query.ts == undefined || req.query.v == undefined || req.query.nos == undefined){
+    req.session.error = 'Bad Request';
+      console.error(req.session.error);
+      res.end();
+      return;
+  }
+
+  var servico = {};
+  servico.tipoServico   = req.query.ts;
+  servico.valor         = req.query.v;
+  servico.numeroOS      = req.query.nos;
+  
+  dbOS.criarServico(servico, function(err, servico){
+    if(err){
+      req.session.error = 'Falha ao criar Servico';
+          console.error(err);
+          res.send(false);
+    } else {
+      res.send({servico : servico});
+    }
+    res.end();
+  });
+
+}
+
+function doAtualizarPeca(req, res){
+  if(req.query.tp == undefined || req.query.is == undefined){
+    req.session.error = 'Bad Request';
+      console.error(req.session.error);
+      res.end();
+      return;
+  }
+
+  var peca = {};
+  peca.tipoPeca      = req.query.tp;
+  peca.idServico     = req.query.is;
+  
+  dbOS.atualizarPeca(peca, function(err, peca){
+    if(err){
+      req.session.error = 'Falha ao atualizar peca';
+          console.error(err);
+          res.send(false);
+    } else {
+      res.send({peca : peca});
     }
     res.end();
   });
@@ -65,4 +127,6 @@ function doCriarOs(req, res){
 module.exports = {
   doConsultarOs : doConsultarOs,
   doCriarOs : doCriarOs,
+  doCriarServico : doCriarServico,
+  doAtualizarPeca : doAtualizarPeca,
 };

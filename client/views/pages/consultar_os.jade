@@ -18,6 +18,15 @@ html
                   h4(class="modal-title", id="exampleModalLabel") Abrir OS
                 div(class="modal-body")
                   form
+                    div(class="selecionar-agendamento")
+                      label(for="recipient-name", class="control-label") Selecione um agendamento:
+                      br/
+                      select(class="agendamento")
+                          option
+                          each agendamento in params.agendamentos
+                            option(data-id="#{agendamento.id}") #{agendamento.nome} (#{agendamento.marca} #{agendamento.modelo})
+                      hr
+                      br/
                     div(class="form-group")
                       label(for="recipient-name", class="control-label") Data de Conclusao:
                       br/
@@ -67,15 +76,19 @@ html
                         option 2022
                     hr
                     div(class="form-group selecionar_servico")
+                      div#status-message
                       div(class="selecionar_servico_modelo")
                         h3 Serviço 
                           a(href="#", class="botao-remover-servico") (Remover Serviço)
+                        div(class="subtotal")
+                          p Subtotal: R$ 
+                            span 0,0
                         label(for="message-text", class="control-label") Serviço:
                         br/
                         select(class="servico")
                           option
                           each servico in params.servicos
-                            option #{servico.nome} 
+                            option(data-preco="#{servico.valor_mao_obra}") #{servico.nome}
                         br/
                         label(for="message-text", class="control-label") Peças:
                         br/
@@ -84,7 +97,7 @@ html
                             select(class="peca")
                               option
                               each peca in params.pecas
-                                option #{peca.nome}
+                                option(data-preco="#{peca.preco}") #{peca.nome}
                           a(href="#", class="botao-adicionar-peca") (Adicionar Peça) 
                         hr
                     p
@@ -95,14 +108,14 @@ html
                         h3 Mecanicos
                         label(for="message-text", class="control-label") Mecanico 1:
                         br/
-                        select(class="mecanico 1")
+                        select(class="mecanico 1", required)
                           option
                           each mecanico in params.mecanicos
                             option(id="#{mecanico.codigo_mecanico}") #{mecanico.nome} 
                         br/
                         label(for="message-text", class="control-label") Mecanico 2:
                         br/
-                        select(class="mecanico 2")
+                        select(class="mecanico 2", required)
                           option
                           each mecanico in params.mecanicos
                             option(id="#{mecanico.codigo_mecanico}") #{mecanico.nome} 

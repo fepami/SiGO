@@ -59,9 +59,85 @@ function criarOS(os, callback){
   });
 }
 
+function criarServico(servico, callback){
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      var queryTipoServico = client.query({
+          text: 'SELECT id FROM tipo_servico ' +
+                'WHERE nome = $1',
+          values: [servico.tipoServico],
+          name: 'tipo_servico_id'
+      });
+      queryTipoServico.on('row', function(row, resultTipoServico) {
+          resultTipoServico.addRow(row);
+      });
+      queryTipoServico.on('error', function(error) {
+          db.checkQueryError(error, client, done, callback);
+      });
+      queryTipoServico.on('end', function(resultTipoServico) {
+          var queryServico = client.query({
+            text: 'INSERT INTO servico (valor, id_tipo_servico, numero_os)' +
+                  'VALUES ($1,$2,$3) RETURNING id',
+            values: [servico.valor , resultTipoServico.rows[0].id, servico.numeroOS],
+            name: 'criar_servico'
+          });
+          queryServico.on('row', function(row, resultServico) {
+              resultServico.addRow(row);
+          });
+          queryServico.on('error', function(error) {
+              db.checkQueryError(error, client, done, callback);
+          });
+          queryServico.on('end', function(resultServico) {
+           done();
+           
+           callback(null, resultServico.rows);
+      });
+      });
+  });
+}
+
+function atualizarPeca(peca, callback){
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      var queryTipoServico = client.query({
+          text: 'UPDATE peca SET status=0, servico_id=$1 WHERE numero_serie=(SELECT MIN(numero_serie) FROM peca ' +
+                'WHERE status = 1)',
+          values: [peca.idServico],
+          name: 'tipo_servico_id'
+      });
+      queryTipoServico.on('row', function(row, resultTipoServico) {
+          resultTipoServico.addRow(row);
+      });
+      queryTipoServico.on('error', function(error) {
+          db.checkQueryError(error, client, done, callback);
+      });
+      queryTipoServico.on('end', function(resultTipoServico) {
+          var queryServico = client.query({
+            text: 'INSERT INTO servico (valor, id_tipo_servico, numero_os)' +
+                  'VALUES ($1,$2,$3) RETURNING id',
+            values: [peca.valor , resultTipoServico.rows[0].id, peca.numeroOS],
+            name: 'criar_servico'
+          });
+          queryServico.on('row', function(row, resultServico) {
+              resultServico.addRow(row);
+          });
+          queryServico.on('error', function(error) {
+              db.checkQueryError(error, client, done, callback);
+          });
+          queryServico.on('end', function(resultServico) {
+           done();
+           
+           callback(null, resultServico.rows);
+      });
+      });
+  });
+}
+
 
 
 module.exports = {
   todasOS : todasOS,
   criarOS : criarOS,
+  criarServico : criarServico,
+  atualizarPeca : atualizarPeca,
 };
