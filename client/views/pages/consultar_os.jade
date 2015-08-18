@@ -106,20 +106,20 @@ html
                     div(class="form-group")
                       div(class="selecionar_mecanicos")
                         h3 Mecanicos
-                        label(for="message-text", class="control-label") Mecanico 1:
+                        label(for="message-text", class="control-label") Equipe:
                         br/
                         select(class="mecanico 1", required)
                           option
-                          each mecanico in params.mecanicos
-                            option(id="#{mecanico.codigo_mecanico}") #{mecanico.nome} 
-                        br/
-                        label(for="message-text", class="control-label") Mecanico 2:
-                        br/
-                        select(class="mecanico 2", required)
-                          option
-                          each mecanico in params.mecanicos
-                            option(id="#{mecanico.codigo_mecanico}") #{mecanico.nome} 
-                        br/
+                          each equipe in params.equipes
+                            option(id="#{equipe.id_equipe}") #{equipe.id_equipe} - #{equipe.nome1} e #{equipe.nome2}
+                        //- br/
+                        //- label(for="message-text", class="control-label") Mecanico 2:
+                        //- br/
+                        //- select(class="mecanico 2", required)
+                        //-   option
+                        //-   each mecanico in params.mecanicos
+                        //-     option(id="#{mecanico.codigo_mecanico}") #{mecanico.nome} 
+                        //- br/
 
                 div(class="modal-footer")
                   button(type="button", class="btn btn-primary" id="botao-abrir-os") Abrir OS

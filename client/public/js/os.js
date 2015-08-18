@@ -116,8 +116,7 @@ $('#botao-abrir-os').click(function(){
 		  		"mecanico 1: " + mecanico1 + "\n"+
 		  		"mecanico 2: " + mecanico2);
 	
-	$.getJSON("../os/criar?m1=" + mecanico1 + 
-						 "&m2=" + mecanico2 +
+	$.getJSON("../os/criar?m1=" + mecanico1 +
 			  			 "&dc="+ dataConclusao.dia+"/"+dataConclusao.mes+"/"+dataConclusao.ano+
 			  			 "&de="+ dataEmissao.dia+"/"+dataEmissao.mes+"/"+dataEmissao.ano, function(res, status){	
 		

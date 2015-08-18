@@ -2,6 +2,7 @@ var dbOS            = require('../DAL/ordemservico.js');
 var db_serv_pecas   = require('../DAL/serv_pecas.js');
 var db_func         = require('../DAL/funcionario.js');
 var db_agendamento  = require('../DAL/agendamento.js');
+var db_mecanicos    = require('../DAL/mecanicos.js');
 
 function doConsultarOs(req, res){
   var params = {};
@@ -14,12 +15,12 @@ function doConsultarOs(req, res){
       params.servicos = servicos;
     }
 
-    db_func.todosMecanicos(function(err, mecanicos){
+    db_mecanicos.todasEquipes(function(err, equipes){
       if (err) {
-        req.session.error = 'Falha ao buscar mecanicos';
+        req.session.error = 'Falha ao buscar Equipes';
         console.error(err);
       } else {
-        params.mecanicos = mecanicos;
+        params.equipes = equipes;
       }
     });
 
@@ -47,7 +48,7 @@ function doConsultarOs(req, res){
 }
 
 function doCriarOs(req, res){
-  if(req.query.m1 == undefined || req.query.m2 == undefined || req.query.de == undefined || req.query.dc == undefined){
+  if(req.query.m1 == undefined || req.query.de == undefined || req.query.dc == undefined){
     req.session.error = 'Bad Request';
       console.error(req.session.error);
       res.end();
@@ -56,7 +57,6 @@ function doCriarOs(req, res){
 
   var os = {};
   os.mecanico1     = req.query.m1;
-  os.mecanico2     = req.query.m2;
   os.dataConclusao = req.query.dc;
   os.dataEmissao   = req.query.de;
   
