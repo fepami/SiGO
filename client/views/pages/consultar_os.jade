@@ -21,7 +21,7 @@ html
                     div(class="form-group")
                       label(for="recipient-name", class="control-label") Data de Conclusao:
                       br/
-                      select(class="data-conclusao" name="data-conclusao")
+                      select(class="data-conclusao dia" name="data-conclusao")
                         option 01
                         option 02
                         option 03
@@ -43,10 +43,10 @@ html
                         option 29
                         option 30
                         option 31
-                      select(class="data-conclusao" name="data-conclusao")
+                      select(class="data-conclusao mes" name="data-conclusao")
                         option Janeiro
                         option Fevereiro
-                        option Marco
+                        option Março
                         option Abril
                         option Maio
                         option Junho
@@ -56,12 +56,21 @@ html
                         option Outubro
                         option Novembro
                         option Dezembro
+                      select(class="data-conclusao ano" name="data-conclusao")
+                        option 2015
+                        option 2016
+                        option 2017
+                        option 2018
+                        option 2019
+                        option 2020
+                        option 2021
+                        option 2022
                     hr
                     div(class="form-group selecionar_servico")
                       div(class="selecionar_servico_modelo")
                         h3 Serviço 
                           a(href="#", class="botao-remover-servico") (Remover Serviço)
-                        label(for="message-text", class="control-label") Servico:
+                        label(for="message-text", class="control-label") Serviço:
                         br/
                         select(class="servico")
                           option
@@ -86,17 +95,17 @@ html
                         h3 Mecanicos
                         label(for="message-text", class="control-label") Mecanico 1:
                         br/
-                        select(class="mecanico")
+                        select(class="mecanico 1")
                           option
                           each mecanico in params.mecanicos
-                            option #{mecanico.nome} 
+                            option(id="#{mecanico.codigo_mecanico}") #{mecanico.nome} 
                         br/
                         label(for="message-text", class="control-label") Mecanico 2:
                         br/
-                        select(class="mecanico")
+                        select(class="mecanico 2")
                           option
                           each mecanico in params.mecanicos
-                            option #{mecanico.nome} 
+                            option(id="#{mecanico.codigo_mecanico}") #{mecanico.nome} 
                         br/
 
                 div(class="modal-footer")

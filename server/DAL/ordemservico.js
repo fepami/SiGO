@@ -21,7 +21,47 @@ function todasOS(callback){
   });
 }
 
+function criarOS(os, callback){
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      var queryEquipe = client.query({
+          text: 'INSERT INTO equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2)' +
+                'VALUES ($1,$2) RETURNING id_equipe',
+          values: [os.mecanico1, os.mecanico2],
+          name: 'criar_equipe'
+      });
+      queryEquipe.on('row', function(row, resultEquipe) {
+          resultEquipe.addRow(row);
+      });
+      queryEquipe.on('error', function(error) {
+          db.checkQueryError(error, client, done, callback);
+      });
+      queryEquipe.on('end', function(resultEquipe) {
+          
+          var queryOS = client.query({
+            text: 'INSERT INTO os (data_emissao,data_conclusao,status,id_equipe)' +
+                  'VALUES ($1,$2,1,$3) RETURNING numero_os',
+            values: [os.dataEmissao, os.dataConclusao, resultEquipe.rows[0].id_equipe],
+            name: 'criar_os'
+          });
+          queryOS.on('row', function(row, resultOS) {
+              resultOS.addRow(row);
+          });
+          queryOS.on('error', function(error) {
+              db.checkQueryError(error, client, done, callback);
+          });
+          queryOS.on('end', function(resultOS) {
+           done();
+           
+           callback(null, resultOS.rows);
+      });
+      });
+  });
+}
+
+
+
 module.exports = {
   todasOS : todasOS,
-
+  criarOS : criarOS,
 };

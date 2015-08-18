@@ -27,7 +27,6 @@ function doConsultarOs(req, res){
         req.session.error = 'Falha ao buscar pecas';
       } else {
         params.pecas = pecas;
-        console.log(params);
         res.render('pages/consultar_os', { params: params } )
       }
       res.end();
@@ -38,12 +37,25 @@ function doConsultarOs(req, res){
 }
 
 function doCriarOs(req, res){
-  dbOS.todasOS(function(err, ordemservico){
+  if(req.query.m1 == undefined || req.query.m2 == undefined || req.query.de == undefined || req.query.dc == undefined){
+    req.session.error = 'Bad Request';
+      console.error(req.session.error);
+      res.end();
+      return;
+  }
+
+  var os = {};
+  os.mecanico1     = req.query.m1;
+  os.mecanico2     = req.query.m2;
+  os.dataConclusao = req.query.dc;
+  os.dataEmissao   = req.query.de;
+  
+  dbOS.criarOS(os, function(err, ordemservico){
     if(err){
-      req.session.error = 'Falha ao pesquisar OS';
+      req.session.error = 'Falha ao criar OS';
           console.error(err);
     } else {
-      res.render('pages/criar_os', { ordemservico: ordemservico });
+      //res.render('pages/criar_os', { ordemservico: ordemservico });
     }
     res.end();
   });
