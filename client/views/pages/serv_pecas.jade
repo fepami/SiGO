@@ -7,6 +7,10 @@ html
 
     div.container
       div.jumbotron
+        if params.serv
+          .alert.alert-success Serviço criado com sucesso!
+        if params.peca
+          .alert.alert-success Peça adicionada com sucesso!
         h2 Serviços oferecidos
         div.list-group
           each servico in params.servicos

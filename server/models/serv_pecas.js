@@ -7,8 +7,8 @@ module.exports = {
 };
 
 function getServicosPecas(req, res){
-  var params = {}
-  
+  var params = {};
+  params = req.query;
   db_serv_pecas.todosServicos(function(err, servicos){
     if (err) {
       req.session.error = 'Falha ao buscar serviços';
@@ -40,7 +40,7 @@ function servico(req, res){
   };
   
   db_serv_pecas.criarServico(servico,function(){
-    res.redirect('/agendamento/serv_pecas');
+    res.redirect('/serv_pecas/?serv=t');
   });
 }
 
@@ -52,8 +52,7 @@ function peca(req, res){
     preco: obj.value,
     quantidade: obj.quantity
   };
-  console.log(obj);
   db_serv_pecas.criarPeca(peca,function(){
-    res.redirect('/agendamento/serv_pecas');
+    res.redirect('/serv_pecas/?peca=t');
   });
 }
