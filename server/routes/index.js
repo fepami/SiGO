@@ -58,6 +58,7 @@ router.post('/peca', serv_pecas.peca);
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   E Q U I P E S
 */
-router.get('/agendamento/mecanicos', mecanicos.getEquipes);
+router.get('/agendamento/mecanicos', mecanicos.getData);
+router.post('/agendamento/equipe', mecanicos.formarEquipe);
 
 module.exports = router;
