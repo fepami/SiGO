@@ -11,7 +11,7 @@ function todasEquipes(callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
     var query = client.query({
-      text: 'SELECT em.id, m1.nome as Nome1, m2.nome as Nome2 FROM equipe_mecanico em join mecanico m1 on em.codigo_mecanico_1 = m1.codigo_mecanico join mecanico m2 on em.codigo_mecanico_2 = m2.codigo_mecanico',
+      text: 'SELECT em.id_equipe, m1.nome as Nome1, m2.nome as Nome2 FROM equipe_mecanico em join mecanico m1 on em.codigo_mecanico_1 = m1.codigo_mecanico join mecanico m2 on em.codigo_mecanico_2 = m2.codigo_mecanico',
       values: [],
       name: 'todas_equipes'
     });
