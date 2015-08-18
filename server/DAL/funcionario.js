@@ -5,6 +5,7 @@ module.exports = {
   allFuncionario            : allFuncionario,
   alterFuncionario          : alterFuncionario,
   funcionarioByNomeUsuario  : funcionarioByNomeUsuario,
+  todosMecanicos            : todosMecanicos,
 };
 
 function createFuncionario(funcionario, callback){
@@ -114,5 +115,26 @@ function funcionarioByNomeUsuario(nome_usuario, callback){
       else
         callback(null, result.rows[0]);
     });
+  });
+}
+
+function todosMecanicos(callback){
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      var query = client.query({
+          text: 'SELECT * FROM mecanico',
+          values: [],
+          name: 'todos_mecanicos'
+      });
+      query.on('row', function(row, result) {
+          result.addRow(row);
+      });
+      query.on('error', function(error) {
+          db.checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+           done();
+           callback(null, result.rows);
+      });
   });
 }

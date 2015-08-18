@@ -77,22 +77,15 @@ insert into tipo_peca (nome, descricao, preco, quantidade)
 insert into tipo_peca (nome, descricao, preco, quantidade)
 	values ('radiador','', 1000, 50);
 
-insert into peca values ('215415455455-4785','11/08/17', 0, 1);
-insert into peca values ('22454554-44555-55','27/10/20', 0, 1);
-insert into peca values ('214545454545-4785','15/02/17', 0, 2);
-insert into peca values ('123323255455-4785','17/01/18', 0, 2);
-insert into peca values ('211221222255-4785','10/05/16', 0, 3);
-insert into peca values ('215413335455-4785','11/08/18', 0, 3);
+insert into peca values ('215415455455-4785','11/08/17', 1, 1);
+insert into peca values ('22454554-44555-55','27/10/20', 1, 1);
+insert into peca values ('214545454545-4785','15/02/17', 1, 2);
+insert into peca values ('123323255455-4785','17/01/18', 1, 2);
+insert into peca values ('211221222255-4785','10/05/16', 1, 3);
+insert into peca values ('215413335455-4785','11/08/18', 1, 3);
 
 insert into agendamento (data, hora, status, renavam_veiculo)
 	values ('24/07/15','3', 1, 491534278);
 insert into agendamento (data, hora, status, renavam_veiculo)
 	values ('24/07/15','5', 1, 293359498);
 
-insert into equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2) values (1, 2);
-insert into equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2) values (1, 3);
-insert into equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2) values (4, 6);
-insert into equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2) values (2, 5);
-
-insert into os (data_emissao, valor, data_conclusao, status, motivo_suspensao, total_pecas, id_equipe)
-	values ("07/08/2015", 515.76, "17/08/2015", 1, 0, 10, 1);

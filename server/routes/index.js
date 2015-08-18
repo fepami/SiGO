@@ -46,19 +46,22 @@ router.get ('/agendamento/editar/editar'/*, login.restrict*/, agendamento.doEdit
 */
 
 router.get ('/os/consultar'		/*, login.restrict*/, os.doConsultarOs);
+router.get ('/os/criar'			/*, login.restrict*/, os.doCriarOs);
+router.get ('/os/criar/servico' /*, login.restrict*/, os.doCriarServico);
+//router.get ('/os/criar/peca'    /*, login.restrict*/, os.doAtulizarPeca);
 
 
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   S E R V I Ç O S / P E Ç A S
 */
-router.get('/agendamento/serv_pecas', serv_pecas.getServicosPecas);
+router.get('/serv_pecas', serv_pecas.getServicosPecas);
 router.post('/servico', serv_pecas.servico);
 router.post('/peca', serv_pecas.peca);
 
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   E Q U I P E S
 */
-router.get('/agendamento/mecanicos', mecanicos.getData);
-router.post('/agendamento/equipe', mecanicos.formarEquipe);
+router.get('/mecanicos', mecanicos.getData);
+router.post('/equipe', mecanicos.formarEquipe);
 
 module.exports = router;
