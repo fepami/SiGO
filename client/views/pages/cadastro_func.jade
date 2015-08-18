@@ -1,0 +1,30 @@
+html
+  head
+    title SiGO | Cadastro de funcionário
+    include ../partials/head.jade
+  body.sigo_cadastro
+    div.container
+      div.jumbotron
+        img.center-block(src='../assets/image/logo_sigo.png')
+        .margin-top#alertEmail
+        .margin-top#alertUser
+        form(name="cadastro_func", action="/cadastro/funcionario", method="post")
+          h2.text-center Dados para autenticação
+          input.form-control(type="email", placeholder="Digite seu e-mail*", name="email", id="mail", required)
+          input.form-control(type="text", placeholder="Escolha um usuário*", name="username", id="user", required)
+          input.form-control(type="password", placeholder="Escolha uma senha*", name="password", id="pass", required)
+          input.form-control(type="password", placeholder="Confirme a senha*", name="password_confirm", id="pass_confirm", required)
+          span.right-block(id="message")
+          h2.text-center Cadastro de Funcionário
+          input.form-control(type="text", placeholder="Nome Completo*", name="name", required)
+          input.form-control(type="text", placeholder="Endereço*", name="address", required)
+          input.form-control(type="text", placeholder="Complemento", name="comp")
+          input.form-control(type="text", placeholder="CEP - Ex: 04040-010*", name="cep", required)
+          input.form-control(type="text", placeholder="Telefone - Ex: (11) 50509999*", name="phone", required)
+          input.form-control(type="text", placeholder="Cidade*", name="city", required)
+          input.form-control(type="text", placeholder="UF - Exemplo: SP*", name="state", required)
+          input.form-control(type="text", placeholder="Telefone Celular - Ex: (11) 960608888*", name="cellphone", required)
+          input.form-control(type="number", placeholder="Salário*", name="sal", required)
+          input.form-control(type="text", placeholder="Cargo*", name="staff", required)
+          input.btn.btn-primary.right-block(type="submit", value="Finalizar cadastro", id="confirmar_cadastro")
+    script(src='../js/cadastro.js')

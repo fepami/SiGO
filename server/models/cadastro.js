@@ -2,7 +2,12 @@ var dbUser      = require('../DAL/usuario.js');
 var util        = require('./util.js');
 var dbCliente   = require('../DAL/cliente.js');
 
-function do_cadastro(req, res){
+module.exports = {
+  do_cadastro : do_cadastro,
+  do_funcionario_cadastro: do_funcionario_cadastro,
+};
+
+function do_cadastro(req, res) {
   /* Tratamento para verificação de usuário e email */
   if (req.query.u != undefined) {
     dbUser.findUserByName(req.query.u, function(err, user){
@@ -34,7 +39,7 @@ function do_cadastro(req, res){
           res.redirect('/cadastro');
         } else {
           cadastro_cliente(req.body, function(){
-            res.render('pages/login', { cadastro: true } );
+            res.redirect('/?cadastro=t');
         });
         }
       });
@@ -42,7 +47,7 @@ function do_cadastro(req, res){
   }
 }
 
-function cadastro_cliente(user, callback){
+function cadastro_cliente(user, callback) {
   var cliente = {};
   cliente.nome_usuario = user.username;
   cliente.nome = user.name;
@@ -57,6 +62,46 @@ function cadastro_cliente(user, callback){
   });
 }
 
-module.exports = {
-  do_cadastro : do_cadastro,
-};
+function do_funcionario_cadastro(req, res) {
+  var func = req.body;
+  console.log(func);
+  var func_dados = {
+    senha: func.password
+  };
+  util.generateSaltHash(func_dados, function(){
+    func_dados.nome_usuario = func.username;
+    if (func.staff.toLowerCase() == "atendente") func_dados.nivel_acesso = 1;
+    else if (func.staff.toLowerCase() == "tecnico") func_dados.nivel_acesso = 2;
+    func_dados.email = func.email;
+    dbUser.createUsuario(func_dados, function(err, user){
+      if (err != undefined) {
+        console.log('Erro ao criar funcionário');
+        console.log(err);
+        res.redirect('/cadastro/funcionario');
+      } else {
+        cadastro_funcionario(func, function(){
+          res.redirect('/?cadastro=t');
+        });
+      }
+    });
+  });
+}
+
+function cadastro_funcionario(func, callback) {
+  var funcionario = {
+    nome_usuario: func.username,
+    nome: func.name,
+    end_rua: func.address,
+    end_complemento: func.comp,
+    end_cep: func.cep,
+    end_cidade: func.city,
+    end_estado: func.state,
+    telefone_1: func.phone,
+    telefone_2: func.cellphone,
+    salario: func.sal,
+    cargo: func.staff
+  };
+  dbUser.createFuncionario(funcionario, function(){
+    callback();
+  });
+}

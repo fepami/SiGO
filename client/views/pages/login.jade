@@ -6,12 +6,14 @@ html
     div.container
       div.jumbotron
         img(src='assets/image/logo_sigo.png')
-        if cadastro
+        if params.cadastro
           .alert.alert-success Usuário criado com sucesso!
+        if params.invalid_user
+          .alert.alert-danger Usuário não foi encontrado!
+        if params.invalid_pass  
+          .alert.alert-danger Senha incorreta!
         form(name="login", action="/login", method="post")
           input.form-control(type="text", placeholder="Usuário ou e-mail", name="username")
           input.form-control(type="password", placeholder="Senha", name="password")
-          a(href='#')
-            p (Esqueci minha senha)
           input.btn.btn-primary(type="submit", value="Entrar")
           a.btn.btn-primary(href="cadastro") Registrar-se

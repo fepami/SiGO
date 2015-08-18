@@ -5,6 +5,7 @@ module.exports = {
   findUserByName     : findUserByName,
   findUserByEmail    : findUserByEmail,
   alterUsuario       : alterUsuario,
+  createFuncionario  : createFuncionario,
 };
 
 function findUserByName(name, callback){
@@ -107,6 +108,29 @@ function alterUsuario(user, nome_usuario, callback){
       done();
       console.log('Usuario ' + user.nome_usuario + ' criado com sucesso');
       user.nome_usuario = nome_usuario;
+      callback(null, user);
+    });
+  });
+}
+
+function createFuncionario(funcionario, callback){
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+    var query = client.query({
+      text: 'INSERT INTO funcionario VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+      values: [funcionario.nome_usuario, funcionario.nome, funcionario.end_rua, funcionario.end_complemento, funcionario.end_cep,
+        funcionario.end_cidade, funcionario.end_estado, funcionario.telefone_1, funcionario.telefone_2, funcionario.salario, funcionario.cargo],
+      name: 'create_usuario'
+    });
+    query.on('row', function(row, result) {
+      result.addRow(row);
+    });
+    query.on('error', function(error) {
+      db.checkQueryError(error, client, done, callback);
+    });
+    query.on('end', function(result) {
+      done();
+      console.log('Usuario criado com sucesso');
       callback(null, user);
     });
   });

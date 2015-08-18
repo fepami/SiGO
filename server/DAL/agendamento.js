@@ -3,6 +3,7 @@ var db = require('./database.js');
 module.exports = {
   todosAgendamentos       : todosAgendamentos,
   todosAgendamentosAtivos : todosAgendamentosAtivos,
+  todosAgendamentosCliente : todosAgendamentosCliente,
   agendamentoByDia        : agendamentoByDia,
   agendamentoPorId        : agendamentoPorId,
   criarAgendamento        : criarAgendamento,
@@ -84,6 +85,33 @@ function todosAgendamentos(callback){
           text: 'SELECT id, data, hora, status, renavam_veiculo FROM agendamento',
           values: [],
           name: 'todos_agendamentos_ativos'
+      });
+      query.on('row', function(row, result) {
+          result.addRow(row);
+      });
+      query.on('error', function(error) {
+          db.checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+           done();
+           callback(null, result.rows);
+      });
+  });
+}
+
+function todosAgendamentosCliente(callback){
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      var query = client.query({
+          text: 'SELECT cliente.nome, agendamento.id, veiculo.marca, veiculo.modelo '+
+                'FROM agendamento '+
+                'INNER JOIN veiculo '+
+                'ON agendamento.renavam_veiculo = veiculo.renavam '+
+                'INNER JOIN cliente '+
+                'ON veiculo.nome_usuario = cliente.nome_usuario' 
+                ,
+          values: [],
+          name: 'todos_agendamentos_cliente'
       });
       query.on('row', function(row, result) {
           result.addRow(row);

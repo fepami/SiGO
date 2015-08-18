@@ -30,7 +30,7 @@ $('input#user').blur(function(){
 
 $('input#mail').blur(function(){
   var email = document.getElementById("mail").value;
-  if (email != "") {
+  if (isValidEmailAddress(email)) {
     $.getJSON("/cadastro/verifica?e=" + email, function(data, status){
       $("#alertEmail").show();
       if (data.email != undefined) {
@@ -47,5 +47,22 @@ $('input#mail').blur(function(){
         $("#confirmar_cadastro").show();
       }
     });
+  } else {
+    $("#alertEmail").show();
+    $("#alertEmail").attr({ class   : "alert alert-danger",
+      role  : "alert"
+    });
+    $("#alertEmail").html("E-mail inválido!");
+    $("#confirmar_cadastro").hide();
   }
 });
+
+function isValidEmailAddress(email) {
+    var validEmail = false;
+    if (email) {
+        email = email.trim().toLowerCase();
+        var pattern = /^[\w-']+(\.[\w-']+)*@([a-zA-Z0-9]+[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*?\.[a-zA-Z]{2,6}|(\d{1,3}\.){3}\d{1,3})(:\d{4})?$/;
+        validEmail = pattern.exec(email);
+    }
+    return validEmail;
+}
