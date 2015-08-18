@@ -456,7 +456,11 @@ body.sigo_mecanicos .margin-bot {
 }
 
 body.sigo_mecanicos .btn-group {
-  display: inline;
+
+}
+
+body.sigo_mecanicos .btn-group > .btn {
+  margin-right: 20px;
 }
 
 /* END: Equipes de Mecânicos */
