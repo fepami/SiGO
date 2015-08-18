@@ -57,27 +57,48 @@ html
                         option Novembro
                         option Dezembro
                     hr
-                    div(class="form-group servico servico-model")
-                      h3 Serviço
-                      label(for="message-text", class="control-label") Servico:
-                      br/
-                      select()
-                        option
-                        each servico in params.servicos
-                          option #{servico.nome} 
-                      br/
-                      label(for="message-text", class="control-label") Peças:
-                      br/
-                      div(class="peca-model")
-                        select()
+                    div(class="form-group selecionar_servico")
+                      div(class="selecionar_servico_modelo")
+                        h3 Serviço 
+                          a(href="#", class="botao-remover-servico") (Remover Serviço)
+                        label(for="message-text", class="control-label") Servico:
+                        br/
+                        select(class="servico")
                           option
-                          each peca in params.pecas
-                            option #{peca.nome}
-                      a(href="#", class="botao-adicionar-peca") (Adicionar Peça) 
-                      hr
+                          each servico in params.servicos
+                            option #{servico.nome} 
+                        br/
+                        label(for="message-text", class="control-label") Peças:
+                        br/
+                        div(class="selecionar_peca")
+                          div(class="selecionar_peca_modelo")
+                            select(class="peca")
+                              option
+                              each peca in params.pecas
+                                option #{peca.nome}
+                          a(href="#", class="botao-adicionar-peca") (Adicionar Peça) 
+                        hr
                     p
                       a(href="#", class="botao-adicionar-servico") (Novo Serviço) 
 
+                    div(class="form-group")
+                      div(class="selecionar_mecanicos")
+                        h3 Mecanicos
+                        label(for="message-text", class="control-label") Mecanico 1:
+                        br/
+                        select(class="mecanico")
+                          option
+                          each mecanico in params.mecanicos
+                            option #{mecanico.nome} 
+                        br/
+                        label(for="message-text", class="control-label") Mecanico 2:
+                        br/
+                        select(class="mecanico")
+                          option
+                          each mecanico in params.mecanicos
+                            option #{mecanico.nome} 
+                        br/
+
                 div(class="modal-footer")
-                  button(type="button", class="btn btn-primary") Abrir OS
+                  button(type="button", class="btn btn-primary" id="botao-abrir-os") Abrir OS
     script(src='../js/os.js')

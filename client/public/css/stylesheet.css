@@ -487,6 +487,10 @@ body.sigo_os .modal-content a.botao-adicionar-peca{
   font-size: 12px;
 }
 
+body.sigo_os .modal-content a.botao-remover-servico{
+  font-size: 12px;
+}
+
 body.sigo_os .modal-content p{
   font-size: 16px;
   text-align: center;

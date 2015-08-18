@@ -92,7 +92,7 @@ insert into agendamento (data, hora, status, renavam_veiculo)
 insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
 	values ("Leonardo Dias Fernandes", "Rua Mário Luciano da Silva, 1492", , "36200-678", "Barbacena", "MG", "(32) 9764-9595", , 1);
 insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
-	values ("LAline Lima Carvalho", "Rua dos Operadores, 329", , "58083-120", "João Pessoa", "MG", "(32) 9764-9595", , 1);
+	values ("Aline Lima Carvalho", "Rua dos Operadores, 329", , "58083-120", "João Pessoa", "MG", "(32) 9764-9595", , 1);
 insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
 	values ("Leonardo Dias Fernandes", "Rua Mário Luciano da Silva, 1492", , "36200-678", "Barbacena", "MG", "(32) 9764-9595", , 1);
 insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)

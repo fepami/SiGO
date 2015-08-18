@@ -1,8 +1,9 @@
-var dbOS      = require('../DAL/ordemservico.js');
+var dbOS            = require('../DAL/ordemservico.js');
 var db_serv_pecas   = require('../DAL/serv_pecas.js');
+var db_func         = require('../DAL/funcionario.js');
 
 function doConsultarOs(req, res){
-  var params = {}
+  var params = {};
   
   db_serv_pecas.todosServicos(function(err, servicos){
     if (err) {
@@ -12,11 +13,21 @@ function doConsultarOs(req, res){
       params.servicos = servicos;
     }
 
+    db_func.todosMecanicos(function(err, mecanicos){
+      if (err) {
+        req.session.error = 'Falha ao buscar mecanicos';
+        console.error(err);
+      } else {
+        params.mecanicos = mecanicos;
+      }
+    });
+
     db_serv_pecas.todasPecas(function(err, pecas){
       if (err) {
         req.session.error = 'Falha ao buscar pecas';
       } else {
         params.pecas = pecas;
+        console.log(params);
         res.render('pages/consultar_os', { params: params } )
       }
       res.end();

@@ -125,5 +125,5 @@ create table equipe_mecanico
 	codigo_mecanico_1	int	 		references mecanico(codigo_mecanico),
 	codigo_mecanico_2	int			references mecanico(codigo_mecanico),
 	id_equipe			int			references equipe(id),
-	primary key (codigo_mecanico_1, codigo_mecanico_2, id_equipe)
+	primary key (codigo_mecanico_1, codigo_mecanico_2)
 );
