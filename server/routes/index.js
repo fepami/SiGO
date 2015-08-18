@@ -8,6 +8,7 @@ var os      	  = require('../models/ordemservico.js');
 var cadastro      = require('../models/cadastro.js');
 var serv_pecas    = require('../models/serv_pecas.js');
 var mecanicos     = require('../models/mecanicos.js');
+var relatorios 	  = require('../models/relatorio.js')
 
 
 /**
@@ -45,19 +46,28 @@ router.get ('/agendamento/editar/editar'/*, login.restrict*/, agendamento.doEdit
 *  R O T A S   P A R A   A S   T E L A S   D E   O R D E M   D E   S E R V I C O
 */
 
-router.get ('/os/consultar'		/*, login.restrict*/, os.doConsultarOs);
+router.get ('/os/consultar'				/*, login.restrict*/, os.doConsultarOs);
 
 
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   S E R V I Ç O S / P E Ç A S
 */
-router.get('/agendamento/serv_pecas', serv_pecas.getServicosPecas);
-router.post('/servico', serv_pecas.servico);
-router.post('/peca', serv_pecas.peca);
+router.get('/agendamento/serv_pecas' 	/*, login.restrict*/, serv_pecas.getServicosPecas);
+router.post('/servico' 					/*, login.restrict*/, serv_pecas.servico);
+router.post('/peca'						/*, login.restrict*/, serv_pecas.peca);
 
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   E Q U I P E S
 */
-router.get('/agendamento/mecanicos', mecanicos.getEquipes);
+router.get('/agendamento/mecanicos' 	/*, login.restrict*/, mecanicos.getEquipes);
 
+
+/**
+* R O T A S   P A R A   A S   T E L A S   D E   R E L A T O R I O S
+*/
+router.get('/relatorio'					/*, login.restrict*/, function(req, res){
+	res.render('pages/relatorio');
+});
+
+router.get('/relatorio/gerar' 			/*, login.restrict*/, relatorios.doGetRelatorio);
 module.exports = router;

@@ -46,9 +46,9 @@ create table equipe_mecanico
 create table os
 (
 	numero_os		serial			primary key,
-	data_emissao	varchar(12),
+	data_emissao	date,
 	valor			real,
-	data_conclusao	varchar(12),
+	data_conclusao	date,
 	status			int,
 	motivo_suspensao int,
 	total_pecas		int,
@@ -122,7 +122,7 @@ create table veiculo
 create table agendamento
 (
 	id				serial			primary key,
-	data			varchar(12),
+	data			date,
 	hora			int,
 	status			int,
 	renavam_veiculo	int				references veiculo(renavam)
