@@ -88,3 +88,4 @@ insert into agendamento (data, hora, status, renavam_veiculo)
 	values ('24/07/15','3', 1, 491534278);
 insert into agendamento (data, hora, status, renavam_veiculo)
 	values ('24/07/15','5', 1, 293359498);
+

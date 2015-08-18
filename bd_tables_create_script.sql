@@ -126,6 +126,3 @@ create table peca
 	id_tipo_peca	int				references tipo_peca(id),
 	servico_id		int 			references servico(id)
 );
-
-
-

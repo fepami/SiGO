@@ -6,7 +6,8 @@ var agendamento   = require('../models/agendamento.js');
 var cliente       = require('../models/cliente.js');
 var os      	  = require('../models/ordemservico.js'); 
 var cadastro      = require('../models/cadastro.js');
-var serv_pecas    = require('../models/serv_pecas.js'); 
+var serv_pecas    = require('../models/serv_pecas.js');
+var mecanicos     = require('../models/mecanicos.js');
 
 
 /**
@@ -56,5 +57,11 @@ router.get ('/os/criar/servico' /*, login.restrict*/, os.doCriarServico);
 router.get('/serv_pecas', serv_pecas.getServicosPecas);
 router.post('/servico', serv_pecas.servico);
 router.post('/peca', serv_pecas.peca);
+
+/**
+* R O T A S   P A R A   A S   T E L A S   D E   E Q U I P E S
+*/
+router.get('/agendamento/mecanicos', mecanicos.getData);
+router.post('/agendamento/equipe', mecanicos.formarEquipe);
 
 module.exports = router;
