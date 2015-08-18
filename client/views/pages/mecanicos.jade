@@ -7,14 +7,50 @@ html
     
     .container
       .jumbotron
-        h2.margin-bot Mecânicos
-        .btn-group
-          a.btn.btn-primary(href="#") Lista de mecânicos 
-          a.btn.btn-primary.pull-right(href="#") Adicionar mecânico
+        div#alert
+        h2 #{teste}
         h2 Equipes
         .list-group
-          each equipe in equipes
+          each equipe in data.equipes
             .list-group-item
               a(href="#")
-                h4.list-group-item-heading-up.up-first-letter #{equipe.nome}
-        a.btn.btn-primary(href="#") Formar equipe
+                h4.list-group-item-heading-up Equipe #{equipe.id}
+              p.list-group-item-text #{equipe.nome1} e #{equipe.nome2}
+        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalEquipe") Formar equipe
+        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalMecanicos") Lista de Mecânicos
+
+    //- Modal que abre lista de mecânicos
+    .modal.fade(role="dialog", id="modalMecanicos")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h1.modal-title Mecânicos
+          .modal-body
+            each mecanico in data.mecanicos
+              p #{mecanico.nome}
+              br
+          .modal-footer
+            a.btn.btn-primary(data-dismiss="modal") Fechar
+
+    //- Modal para formar equipe
+    .modal.fade(role="dialog", id="modalEquipe")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h1.modal-title Formar equipe
+          .modal-body
+            div#modalAlert
+            form(name="equipe", action="/equipe", method="post")
+              select.form-control(id="mecanico1")
+                option Selecione um mecânico
+                each mecanico in data.mecanicos
+                  option(data-mecanico1 = "#{mecanico.nome}") #{mecanico.nome}
+              select.form-control(id="mecanico2")
+                option Selecione outro mecânico
+                each mecanico in data.mecanicos
+                  option(data-mecanico2 = "#{mecanico.nome}") #{mecanico.nome}
+              .btn-group
+                a.btn.btn-primary(id="button_confirmacao") Formar Equipe
+                a.btn.btn-primary(data-dismiss="modal") Cancelar
+
+    script(src='../js/equipes.js')

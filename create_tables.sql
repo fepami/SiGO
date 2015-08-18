@@ -93,16 +93,6 @@ insert into equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2) values (1, 2)
 insert into equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2) values (1, 3);
 insert into equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2) values (4, 6);
 insert into equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2) values (2, 5);
-insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
-	values ("Leonardo Dias Fernandes", "Rua Mário Luciano da Silva, 1492", , "36200-678", "Barbacena", "MG", "(32) 9764-9595", , 1);
-insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
-	values ("LAline Lima Carvalho", "Rua dos Operadores, 329", , "58083-120", "João Pessoa", "MG", "(32) 9764-9595", , 1);
-insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
-	values ("Leonardo Dias Fernandes", "Rua Mário Luciano da Silva, 1492", , "36200-678", "Barbacena", "MG", "(32) 9764-9595", , 1);
-insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
-	values ("Leonardo Dias Fernandes", "Rua Mário Luciano da Silva, 1492", , "36200-678", "Barbacena", "MG", "(32) 9764-9595", , 1);
-insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
-	values ("Leonardo Dias Fernandes", "Rua Mário Luciano da Silva, 1492", , "36200-678", "Barbacena", "MG", "(32) 9764-9595", , 1);
 
 insert into os (data_emissao, valor, data_conclusao, status, motivo_suspensao, total_pecas, id_equipe)
-	values ("07/08/2015", 515.76, "17/08/2015", 1, , 10, 1);
+	values ("07/08/2015", 515.76, "17/08/2015", 1, 0, 10, 1);
