@@ -19,7 +19,7 @@ function todasEquipes(callback){
       result.addRow(row);
     });
     query.on('error', function(error) {
-      db.checkQueryError(error, funcionario, done, callback);
+      db.checkQueryError(error, client, done, callback);
     });
     query.on('end', function(result) {
       done();
@@ -40,7 +40,7 @@ function todosMecanicos(callback){
       result.addRow(row);
     });
     query.on('error', function(error) {
-      db.checkQueryError(error, funcionario, done, callback);
+      db.checkQueryError(error, client, done, callback);
     });
     query.on('end', function(result) {
       done();
@@ -61,7 +61,7 @@ function getIdByNomes(nomes, callback){
       result.addRow(row);
     });
     query.on('error', function(error) {
-      db.checkQueryError(error, funcionario, done, callback);
+      db.checkQueryError(error, client, done, callback);
     });
     query.on('end', function(result) {
       done();
