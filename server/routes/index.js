@@ -48,6 +48,8 @@ router.get ('/agendamento/editar/editar'/*, login.restrict*/, agendamento.doEdit
 router.get ('/os/consultar'		/*, login.restrict*/, os.doConsultarOs);
 router.get ('/os/criar'			/*, login.restrict*/, os.doCriarOs);
 router.get ('/os/criar/servico' /*, login.restrict*/, os.doCriarServico);
+router.get ('/os/autorizar'     /*, login.restrict*/, os.doAutorizaOs);
+router.get ('/os/finalizar'     /*, login.restrict*/, os.doFinalizaOs);
 //router.get ('/os/criar/peca'    /*, login.restrict*/, os.doAtulizarPeca);
 
 

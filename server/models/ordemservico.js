@@ -5,50 +5,104 @@ var db_agendamento  = require('../DAL/agendamento.js');
 var db_mecanicos    = require('../DAL/mecanicos.js');
 
 function doConsultarOs(req, res){
-  var params = {};
+  
+  var params = {}; // Todas os dados necessarios para montar a view 'Abrir OS'
   
   db_serv_pecas.todosServicos(function(err, servicos){
     if (err) {
       req.session.error = 'Falha ao buscar serviços';
         console.error(err);
     } else {
-      params.servicos = servicos;
+      params.servicos = servicos;                             // S E R V I C O S
+
+      db_mecanicos.todasEquipes(function(err, equipes){
+        if (err) {
+          req.session.error = 'Falha ao buscar equipes';
+          console.error(err);
+        } else {
+          params.equipes = equipes;                           // E Q U I P E S
+
+          db_agendamento.todosAgendamentosCliente(function(err, agendamentos){
+            if (err) {
+              req.session.error = 'Falha ao buscar agendamentos';
+              console.error(err);
+            } else {
+              params.agendamentos = agendamentos;             // A G E N D A M E N T O S
+
+              db_serv_pecas.todasPecas(function(err, pecas){
+                if (err) {
+                  req.session.error = 'Falha ao buscar pecas';
+                } else {
+                  params.pecas = pecas;                       // P E C A S 
+
+                  dbOS.todasOS(function(err, os){
+                    if (err) {
+                      req.session.error = 'Falha ao buscar os';
+                    } else {
+                      params.os = os;                         // O S 
+
+                      res.render('pages/consultar_os', { params: params } )
+                    }
+                    res.end();
+                  });
+                }
+              });
+            }
+          });
+        }
+      });
     }
-
-    db_mecanicos.todasEquipes(function(err, equipes){
-      if (err) {
-        req.session.error = 'Falha ao buscar Equipes';
-        console.error(err);
-      } else {
-        params.equipes = equipes;
-      }
-    });
-
-    db_agendamento.todosAgendamentosCliente(function(err, agendamentos){
-      if (err) {
-        req.session.error = 'Falha ao buscar agendamentos';
-        console.error(err);
-      } else {
-        params.agendamentos = agendamentos;
-      }
-    });
-
-    db_serv_pecas.todasPecas(function(err, pecas){
-      if (err) {
-        req.session.error = 'Falha ao buscar pecas';
-      } else {
-        params.pecas = pecas;
-        res.render('pages/consultar_os', { params: params } )
-      }
-      res.end();
-    });
-  
   });
+}
 
+function doAutorizaOs(req, res){
+  if(req.query.nos == undefined){
+    req.session.error = 'Bad Request';
+      console.error(req.session.error);
+      res.end();
+      return;
+  }
+
+  var os = {};
+  os.numeroOs = req.query.nos;
+  
+  dbOS.autorizarOS(os, function(err, ordemservico){
+    if(err){
+      req.session.error = 'Falha ao autorizar OS';
+          console.error(err);
+          res.send(false);
+    } else {
+      res.send(true);
+    }
+    res.end();
+  });
+}
+
+function doFinalizaOs(req, res){
+  if(req.query.nos == undefined){
+    req.session.error = 'Bad Request';
+      console.error(req.session.error);
+      res.end();
+      return;
+  }
+
+  var os = {};
+  os.numeroOs = req.query.nos;
+  
+  dbOS.finalizarOS(os, function(err, ordemservico){
+    if(err){
+      req.session.error = 'Falha ao autorizar OS';
+          console.error(err);
+          res.send(false);
+    } else {
+      res.send(true);
+    }
+    res.end();
+  });
 }
 
 function doCriarOs(req, res){
-  if(req.query.m1 == undefined || req.query.de == undefined || req.query.dc == undefined){
+  if(req.query.m1 == undefined || req.query.de == undefined || req.query.dc == undefined || req.query.a == undefined){
     req.session.error = 'Bad Request';
       console.error(req.session.error);
       res.end();
@@ -59,6 +113,7 @@ function doCriarOs(req, res){
   os.mecanico1     = req.query.m1;
   os.dataConclusao = req.query.dc;
   os.dataEmissao   = req.query.de;
+  os.agendamento   = req.query.a;
   
   dbOS.criarOS(os, function(err, ordemservico){
     if(err){
@@ -125,8 +180,10 @@ function doAtualizarPeca(req, res){
 }
 
 module.exports = {
-  doConsultarOs : doConsultarOs,
-  doCriarOs : doCriarOs,
-  doCriarServico : doCriarServico,
+  doConsultarOs   : doConsultarOs,
+  doCriarOs       : doCriarOs,
+  doAutorizaOs    : doAutorizaOs,
+  doFinalizaOs    : doFinalizaOs,
+  doCriarServico  : doCriarServico,
   doAtualizarPeca : doAtualizarPeca,
 };
