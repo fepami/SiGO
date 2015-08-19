@@ -310,6 +310,7 @@ body.sigo_agendamento .card.criar-agendamento{
   align-items: center;
   font-size: 3em;
   color: #2196F3;
+
 /* START: Registro */
 
 body.sigo_registro img {
@@ -419,9 +420,10 @@ body.sigo_serv_pecas .btn-group > .btn {
   margin-right: 20px;
 }
 
-body.sigo_serv_pecas .glyphicon {
+body.sigo_serv_pecas a.glyphicon {
   margin-right: 10px;
   margin-left: 10px;
+  color: #2196F3;
 }
 
 /* END: Serviços e peças */
