@@ -1,0 +1,43 @@
+html
+  head
+    title SiGO | Ordem de Servico
+    include ../partials/head.jade
+  body.sigo_os
+    include ../partials/menu_lateral.jade
+
+    div.container
+      div(id="status-message")
+      div(class="panel panel-default")
+        div(class="panel-heading") OS Cadastradas
+        div(id="container-tabela")  
+          table(class="table")
+            th #
+            th Data de Emissao
+            th Data de Conclusao
+            th Status
+            th Motivo da Suspensao
+            th Placa Veiculo
+            th 
+            each os in params.os
+              tr(class="os", data-numero-os="#{os.numero_os}")
+                td(class="numero-os")       #{os.numero_os}
+                td(class="data-emissao")    #{os.data_emissao}
+                td(class="data-conclusao")  #{os.data_conclusao}
+                td(class="status")          #{os.status}
+                td(class="motivo-suspensao") #{os.motivo_suspensao}
+                td(class="placa") #{os.placa}
+                td(class="controle")
+                  div(class="btn-group", role="group", aria-label="...")  
+                    button(type="button", class="btn btn-default btn-circle aprovar-os", data-toggle="tooltip", title="Aprovar OS", data-placement="top") 
+                      span(class="glyphicon glyphicon-ok", aria-hidden="true")
+                    button(type="button", class="btn btn-default btn-circle finalizar-os", data-toggle="tooltip", title="Finalizar OS", data-placement="top") 
+                      span(class="glyphicon glyphicon-flag", aria-hidden="true")    
+                    button(type="button", class="btn btn-default btn-circle suspender-os" , data-toggle="tooltip", title="Suspender OS", data-placement="top") 
+                      span(class="glyphicon glyphicon-remove", aria-hidden="true")
+                    button(type="button", class="btn btn-default btn-circle visualizar-os" , data-toggle="tooltip", title="Visualizar OS", data-placement="top") 
+                      span(class="glyphicon glyphicon-eye-open", aria-hidden="true")
+
+      button(type="button", class="btn btn-primary", data-toggle="modal", data-target=".bs-example-modal-lg") Abrir OS
+      include ../partials/criar_os.jade
+    script(src='../js/gerenciar_os.js')
+    script(src='../js/os.js')
