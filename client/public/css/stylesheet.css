@@ -311,27 +311,6 @@ body.sigo_agendamento .card.criar-agendamento{
   font-size: 3em;
   color: #2196F3;
 
-/* START: Registro */
-
-body.sigo_registro img {
-  width: 280px;
-}
-
-body.sigo_registro h2 {
-  color: #999;
-  text-shadow: 2px 2px #fff;
-}
-
-body.sigo_registro .btn {
-  width: 250px;
-}
-
-body.sigo_registro .right-block {
-  display: block;
-  margin-left: auto;
-}
-
-/* END: Registro */
 }
 
 body.sigo_agendamento a:hover{
@@ -534,13 +513,16 @@ body.sigo_mecanicos .margin-bot {
   margin-bottom: 30px;
 }
 
-body.sigo_mecanicos .btn-group {
+body.sigo_mecanicos h4 {
+  color: #2196F3;
+}
 
+body.sigo_mecanicos a.glyphicon {
+  color: #2196F3;
 }
 
 body.sigo_mecanicos .btn-group > .btn {
   margin-right: 20px;
 }
-
 /* END: Equipes de Mecânicos */
 

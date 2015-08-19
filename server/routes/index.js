@@ -72,6 +72,8 @@ router.get('/peca', serv_pecas.peca);
 * R O T A S   P A R A   A S   T E L A S   D E   E Q U I P E S
 */
 router.get('/mecanicos', mecanicos.getData);
-router.post('/equipe', mecanicos.formarEquipe);
+router.get('/equipe', mecanicos.formarEquipe);
+router.get('/equipe/delete', mecanicos.deletarEquipe);
+router.get('/equipe/verifica', mecanicos.verificaEquipe);
 
 module.exports = router;
