@@ -4,14 +4,14 @@
       .modal-header
         h1 Adicionar Serviço
       .modal-body
-        form(nome="servico", action="/servico", method="post", id="form")
-          label Nome do serviço:
+        form(nome="servico", action="/servico", method="post", id="formS")
+          label Nome do serviço
           input.form-control(type="text", placeholder="Nome do Serviço*", id="modalSNome", name="name", required)
-          label Descrição do serviço:
+          label Descrição do serviço
           input.form-control(type="text", placeholder="Descrição do Serviço*", id="modalSDesc", name="description", required)
-          label Valor do serviço:
+          label Valor do serviço
           input.form-control(type="number", placeholder="Valor do Serviço*", id="modalSValor", name="value", required)
-          label Especialidade:
+          label Especialidade
           input.form-control(type="number", placeholder="Especialidade*", id="modalSEsp" name="role", required)
           .btn-group
             input.btn.btn-primary(type="submit", value="Adicionar Serviço")

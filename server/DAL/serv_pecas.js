@@ -6,6 +6,7 @@ module.exports = {
   criarServico:   criarServico,
   criarPeca:      criarPeca,
   editarServico:  editarServico,
+  editarPeca:     editarPeca,
 };
 
 function todosServicos(callback){
@@ -112,6 +113,28 @@ function editarServico(servico, callback) {
         done();
         console.log('Serviço ' + servico.nome + ' editado com sucesso');
         callback(null, servico);
+      });
+  });
+}
+
+function editarPeca(peca, callback){
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      var query = client.query({
+        text: 'UPDATE tipo_peca SET nome=$1, descricao=$2, preco=$3, quantidade=$4 WHERE id=$5',
+        values: [peca.nome, peca.descricao, peca.preco, peca.quantidade, peca.id],
+        name: 'edit_peca'
+      });
+      query.on('row', function(row, result) {
+        result.addRow(row);
+      });
+      query.on('error', function(error) {
+        db.checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+        done();
+        console.log('Peça ' + peca.nome + ' editada com sucesso');
+        callback(null, peca);
       });
   });
 }

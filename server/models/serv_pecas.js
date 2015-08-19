@@ -58,7 +58,14 @@ function peca(req, res){
     preco: obj.value,
     quantidade: obj.quantity
   };
-  db_serv_pecas.criarPeca(peca,function(){
-    res.redirect('/serv_pecas/?peca=t');
-  });
+  if (req.query.id != undefined) {
+    peca.id = req.query.id;
+    db_serv_pecas.editarPeca(peca, function(){
+      res.redirect('/serv_pecas/?peca_e=t');
+    });
+  } else {
+    db_serv_pecas.criarPeca(peca,function(){
+      res.redirect('/serv_pecas/?peca=t');
+    });
+  }
 }

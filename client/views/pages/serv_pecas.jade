@@ -10,12 +10,14 @@ html
         //- Alertas
         if params.serv
           .alert.alert-success Serviço criado com sucesso!
-        if params.peca
+        else if params.peca
           .alert.alert-success Peça adicionada com sucesso!
-        if params.err
+        else if params.err
           .alert.alert-danger Erro na comunicação com o servidor!
-        if params.serv_e
+        else if params.serv_e
           .alert.alert-success Serviço editado com sucesso!
+        else if params.peca_e
+          .alert.alert-success Peça editada com sucesso!
         h2 Serviços oferecidos
         div.list-group
           each servico in params.servicos
@@ -30,14 +32,13 @@ html
         div.list-group
           each peca in params.pecas
             .list-group-item(href='#')
-              a(href='#', data-toggle="modal", data-target="#modalPeca", id="linkPeca")
-                h4.list-group-item-heading.up-first-letter(data-nome="#{peca.nome}", data-desc="#{peca.descricao}", data-valor="#{peca.preco}", data-quant="#{peca.quantidade}") #{peca.nome}
+              h4.list-group-item-heading.up-first-letter #{peca.nome}
               a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDPeca", data-id="#{peca.id}")
-              a.glyphicon.glyphicon-pencil.pull-right
+              a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalPeca", id="linkPeca", data-nome="#{peca.nome}", data-desc="#{peca.descricao}", data-valor="#{peca.preco}", data-quant="#{peca.quantidade}", data-id="#{peca.id}")
               .list-group-item-text
                 p.up-first-letter #{peca.descricao} - R$ #{peca.preco}
                 p Quantidade disponível: #{peca.quantidade}
-        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalNovaPeca") Adicionar Peça
+        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalPeca") Adicionar Peça
 
     //- Modal para confirmação - remoção de serviço
     .modal.fade(role="dialog", id="modalDServico")
