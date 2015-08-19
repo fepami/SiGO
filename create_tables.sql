@@ -66,16 +66,13 @@ insert into tipo_servico (nome, descricao, especialidade, valor_mao_obra)
 	values ('troca de peças','substituição de peças do veículo', 5, 1000);
 
 insert into tipo_peca (nome, descricao, preco, quantidade)
-	values ('radiador','', 1000, 50);
+	values ('radiador','radiador da marca X com ótima durabilidade', 1000, 50);
 
 insert into tipo_peca (nome, descricao, preco, quantidade)
-	values ('lampada','', 30, 100);
+	values ('lampada','lâmpadas de cores diversas para os faróis', 30, 100);
 
 insert into tipo_peca (nome, descricao, preco, quantidade)
-	values ('maçaneta','', 300, 10);
-
-insert into tipo_peca (nome, descricao, preco, quantidade)
-	values ('radiador','', 1000, 50);
+	values ('maçaneta','maçaneta para portas diversas', 300, 10);
 
 insert into peca values ('215415455455-4785','11/08/17', 1, 1);
 insert into peca values ('22454554-44555-55','27/10/20', 1, 1);

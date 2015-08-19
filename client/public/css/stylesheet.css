@@ -415,16 +415,16 @@ body.sigo_serv_pecas h4 {
   color: #2196F3;
 }
 
-body.sigo_serv_pecas h4:hover {
-  color: #4ba9f2;
-}
-
 body.sigo_serv_pecas .btn-group > .btn {
   margin-right: 20px;
 }
 
-/* END: Serviços e peças */
+body.sigo_serv_pecas .glyphicon {
+  margin-right: 10px;
+  margin-left: 10px;
+}
 
+/* END: Serviços e peças */
 
 
 /* START: OS */
@@ -439,11 +439,6 @@ body.sigo_os .container {
   align-self: center;
   justify-content: space-between;
   text-align: center;
-}
-
-body.sigo_mecanicos h2 {
-  color: #999;
-  text-shadow: 2px 2px #fff;
 }
 
 body.sigo_os h2 {
@@ -506,12 +501,15 @@ body.sigo_os div.modal-footer button{
   float: right;
 }
 
-/* END: Serviços e peças */
-
 /* START: Equipes de Mecânicos */
 
 body.sigo_mecanicos {
   display: flex;
+}
+
+body.sigo_mecanicos h2 {
+  color: #999;
+  text-shadow: 2px 2px #fff;
 }
 
 body.sigo_mecanicos .btn-primary{
