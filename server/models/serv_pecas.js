@@ -38,10 +38,16 @@ function servico(req, res){
     especialidade: obj.role,
     valor_mao_obra: obj.value
   };
-  
-  db_serv_pecas.criarServico(servico,function(){
-    res.redirect('/serv_pecas/?serv=t');
-  });
+  if (req.query.id != undefined) {
+    servico.id = req.query.id;
+    db_serv_pecas.editarServico(servico, function(){
+      res.redirect('/serv_pecas/?serv_e=t');
+    });
+  } else {
+    db_serv_pecas.criarServico(servico,function(){
+      res.redirect('/serv_pecas/?serv=t');
+    });
+  }
 }
 
 function peca(req, res){

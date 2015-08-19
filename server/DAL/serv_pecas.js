@@ -5,6 +5,7 @@ module.exports = {
   todasPecas:     todasPecas,
   criarServico:   criarServico,
   criarPeca:      criarPeca,
+  editarServico:  editarServico,
 };
 
 function todosServicos(callback){
@@ -88,6 +89,28 @@ function criarServico(servico, callback) {
       query.on('end', function(result) {
         done();
         console.log('Serviço ' + servico.nome + ' criado com sucesso');
+        callback(null, servico);
+      });
+  });
+}
+
+function editarServico(servico, callback) {
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      var query = client.query({
+        text: 'UPDATE tipo_servico SET nome=$1, descricao=$2, especialidade=$3, valor_mao_obra=$4 WHERE id=$5',
+        values: [servico.nome, servico.descricao, servico.especialidade, servico.valor_mao_obra, servico.id],
+        name: 'update_servico'
+      });
+      query.on('row', function(row, result) {
+        result.addRow(row);
+      });
+      query.on('error', function(error) {
+        db.checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+        done();
+        console.log('Serviço ' + servico.nome + ' editado com sucesso');
         callback(null, servico);
       });
   });

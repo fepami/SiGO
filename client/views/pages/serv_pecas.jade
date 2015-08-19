@@ -7,21 +7,24 @@ html
 
     div.container
       div.jumbotron
+        //- Alertas
         if params.serv
           .alert.alert-success Serviço criado com sucesso!
         if params.peca
           .alert.alert-success Peça adicionada com sucesso!
         if params.err
           .alert.alert-danger Erro na comunicação com o servidor!
+        if params.serv_e
+          .alert.alert-success Serviço editado com sucesso!
         h2 Serviços oferecidos
         div.list-group
           each servico in params.servicos
             .list-group-item(href='#')
               h4.list-group-item-heading.up-first-letter #{servico.nome}
               a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDServico", data-id="#{servico.id}")
-              a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="modalServico", id="linkServico")
+              a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalServico", id="linkServico", data-nome="#{servico.nome}", data-desc="#{servico.descricao}", data-valor="#{servico.valor_mao_obra}", data-esp="#{servico.especialidade}", data-id="#{servico.id}")
               p.list-group-item-text.up-first-letter #{servico.descricao} - R$ #{servico.valor_mao_obra}
-        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalNovoServico") Adicionar Serviço
+        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalServico") Adicionar Serviço
         hr.fancy-line
         h2 Peças disponíveis
         div.list-group
