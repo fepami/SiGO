@@ -74,12 +74,12 @@ insert into tipo_peca (nome, descricao, preco, quantidade)
 insert into tipo_peca (nome, descricao, preco, quantidade)
 	values ('maçaneta','maçaneta para portas diversas', 300, 10);
 
-insert into peca values ('215415455455-4785','11/08/17', 1, 1);
-insert into peca values ('22454554-44555-55','27/10/20', 1, 1);
-insert into peca values ('214545454545-4785','15/02/17', 1, 2);
-insert into peca values ('123323255455-4785','17/01/18', 1, 2);
-insert into peca values ('211221222255-4785','10/05/16', 1, 3);
-insert into peca values ('215413335455-4785','11/08/18', 1, 3);
+-- insert into peca values ('215415455455-4785','11/08/17', 1, 1);
+-- insert into peca values ('22454554-44555-55','27/10/20', 1, 1);
+-- insert into peca values ('214545454545-4785','15/02/17', 1, 2);
+-- insert into peca values ('123323255455-4785','17/01/18', 1, 2);
+-- insert into peca values ('211221222255-4785','10/05/16', 1, 3);
+-- insert into peca values ('215413335455-4785','11/08/18', 1, 3);
 
 insert into agendamento (data, hora, status, renavam_veiculo)
 	values ('24/07/15','3', 1, 491534278);

@@ -18,13 +18,18 @@ html
           .alert.alert-success Serviço editado com sucesso!
         else if params.peca_e
           .alert.alert-success Peça editada com sucesso!
+        else if params.serv_d
+          .alert.alert-success Serviço deletado com sucesso!
+        else if params.peca_d
+          .alert.alert-success Peça deletada com sucesso!
+
         h2 Serviços oferecidos
         div.list-group
           each servico in params.servicos
             .list-group-item(href='#')
               h4.list-group-item-heading.up-first-letter #{servico.nome}
-              a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDServico", data-id="#{servico.id}")
-              a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalServico", id="linkServico", data-nome="#{servico.nome}", data-desc="#{servico.descricao}", data-valor="#{servico.valor_mao_obra}", data-esp="#{servico.especialidade}", data-id="#{servico.id}")
+              a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDServico", id="deleteServico", data-id="#{servico.id}")
+              a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalServico", id="editServico", data-nome="#{servico.nome}", data-desc="#{servico.descricao}", data-valor="#{servico.valor_mao_obra}", data-esp="#{servico.especialidade}", data-id="#{servico.id}")
               p.list-group-item-text.up-first-letter #{servico.descricao} - R$ #{servico.valor_mao_obra}
         a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalServico") Adicionar Serviço
         hr.fancy-line
@@ -33,8 +38,8 @@ html
           each peca in params.pecas
             .list-group-item(href='#')
               h4.list-group-item-heading.up-first-letter #{peca.nome}
-              a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDPeca", data-id="#{peca.id}")
-              a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalPeca", id="linkPeca", data-nome="#{peca.nome}", data-desc="#{peca.descricao}", data-valor="#{peca.preco}", data-quant="#{peca.quantidade}", data-id="#{peca.id}")
+              a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDPeca", id="deletePeca", data-id="#{peca.id}")
+              a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalPeca", id="editPeca", data-nome="#{peca.nome}", data-desc="#{peca.descricao}", data-valor="#{peca.preco}", data-quant="#{peca.quantidade}", data-id="#{peca.id}")
               .list-group-item-text
                 p.up-first-letter #{peca.descricao} - R$ #{peca.preco}
                 p Quantidade disponível: #{peca.quantidade}
@@ -50,7 +55,7 @@ html
             h3 Deseja deletar o serviço?
           .modal-footer
             .btn-group
-              a.btn.btn-primary Deletar
+              a.btn.btn-primary(id="deleteSConfirm") Deletar
               a.btn.btn-primary(data-dismiss="modal") Cancelar
 
     //- Modal para confirmação - remoção de peça
@@ -63,12 +68,10 @@ html
             h3 Deseja deletar a peça?
           .modal-footer
             .btn-group
-              a.btn.btn-primary Deletar
+              a.btn.btn-primary(id="deletePConfirm") Deletar
               a.btn.btn-primary(data-dismiss="modal") Cancelar
 
     include ../partials/_modal_adicionar_serv.jade
     include ../partials/_modal_adicionar_peca.jade
 
     script(src='../js/serv_pecas.js')
-
-    //- data-nome="#{servico.nome}", data-desc="#{servico.descricao}", data-valor="#{servico.valor_mao_obra}"

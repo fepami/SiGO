@@ -1,4 +1,4 @@
-$('a#linkServico').click(function(event) {
+$('a#editServico').click(function(event) {
 
     var currentImage = $(this);
 
@@ -25,7 +25,7 @@ $('a#linkServico').click(function(event) {
     }
 });
 
-$('a#linkPeca').click(function(event) {
+$('a#editPeca').click(function(event) {
 
   var currentImage = $(this);
 
@@ -50,4 +50,14 @@ $('a#linkPeca').click(function(event) {
     });
     $('input.btn').attr('value', 'Editar Peça');
   }
+});
+
+$('a#deleteServico').click(function(event) {
+  var id_serv = $(this).data('id');
+  $('a#deleteSConfirm').attr('href', '/servico/?del=' + id_serv);
+});
+
+$('a#deletePeca').click(function(event) {
+  var id_peca = $(this).data('id');
+  $('a#deletePConfirm').attr('href', '/peca/?del=' + id_peca);
 });
