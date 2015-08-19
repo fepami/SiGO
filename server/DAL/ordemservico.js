@@ -9,7 +9,8 @@ function todasOS(callback){
                 'INNER JOIN agendamento '+
                 'ON os.id_agendamento = agendamento.id '+
                 'INNER JOIN veiculo '+
-                'ON agendamento.renavam_veiculo = veiculo.renavam',
+                'ON agendamento.renavam_veiculo = veiculo.renavam '+
+                'ORDER BY os.numero_os ASC',
           values: [],
           name: 'todas_os'
       });
@@ -34,13 +35,18 @@ function todasOS(callback){
           }
           switch ( row.motivo_suspensao ){
             case 0 :{
-              row.motivo_suspensao = "VALOR";
+              row.motivo_suspensao = "-";
               break;
             }
             case 1 :{
-              row.motivo_suspensao = "PRAZO DE EXECUCAO";
+              row.motivo_suspensao = "VALOR";
               break;
             }
+            case 2 :{
+              row.motivo_suspensao = "PRAZO DE EXECUÇÃO";
+              break;
+            }
+            
           }
           result.addRow(row);
       });
@@ -57,23 +63,9 @@ function todasOS(callback){
 function criarOS(os, callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
-      // var queryEquipe = client.query({
-      //     text: 'INSERT INTO equipe_mecanico (codigo_mecanico_1, codigo_mecanico_2)' +
-      //           'VALUES ($1,$2) RETURNING id_equipe',
-      //     values: [os.mecanico1, os.mecanico2],
-      //     name: 'criar_equipe'
-      // });
-      // queryEquipe.on('row', function(row, resultEquipe) {
-      //     resultEquipe.addRow(row);
-      // });
-      // queryEquipe.on('error', function(error) {
-      //     db.checkQueryError(error, client, done, callback);
-      // });
-
-          
       var queryOS = client.query({
-        text: 'INSERT INTO os (data_emissao,data_conclusao,status,id_equipe,id_agendamento)' +
-              'VALUES ($1,$2,0,$3,$4) RETURNING numero_os',
+        text: 'INSERT INTO os (data_emissao,data_conclusao,status,motivo_suspensao,id_equipe,id_agendamento)' +
+              'VALUES ($1,$2,0,0,$3,$4) RETURNING numero_os',
         values: [os.dataEmissao, os.dataConclusao, os.mecanico1, os.agendamento],
         name: 'criar_os'
       });
@@ -97,10 +89,10 @@ function autorizarOS(os, callback){
     db.checkConnectionError(err, callback);          
       var query = client.query({
         text: 'UPDATE os ' +
-              'SET status=1 ' +
+              'SET status=1, motivo_suspensao=0' +
               'WHERE numero_os = $1',
         values: [os.numeroOs],
-        name: 'criar_os'
+        name: 'autorizar_os'
       });
       query.on('row', function(row, resultOS) {
           resultOS.addRow(row);
@@ -122,10 +114,35 @@ function finalizarOS(os, callback){
     db.checkConnectionError(err, callback);          
       var query = client.query({
         text: 'UPDATE os ' +
-              'SET status=2 ' +
+              'SET status=2, motivo_suspensao=0' +
               'WHERE numero_os = $1',
         values: [os.numeroOs],
-        name: 'criar_os'
+        name: 'finalizar_os'
+      });
+      query.on('row', function(row, resultOS) {
+          resultOS.addRow(row);
+      });
+      query.on('error', function(error) {
+          db.checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(resultOS) {
+       done();
+       
+       callback(null, resultOS.rows);
+      });
+
+  });
+}
+
+function suspenderOS(os, callback){
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);          
+      var query = client.query({
+        text: 'UPDATE os ' +
+              'SET status=3, motivo_suspensao=$1 ' +
+              'WHERE numero_os = $2',
+        values: [os.motivoSuspensao, os.numeroOs],
+        name: 'finalizar_os'
       });
       query.on('row', function(row, resultOS) {
           resultOS.addRow(row);
@@ -223,6 +240,7 @@ module.exports = {
   criarOS       : criarOS,
   autorizarOS   : autorizarOS,
   finalizarOS   : finalizarOS,
+  suspenderOS   : suspenderOS,
   criarServico  : criarServico,
   atualizarPeca : atualizarPeca,
 };

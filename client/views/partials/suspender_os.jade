@@ -1,0 +1,18 @@
+div(class="modal fade", id="modal-suspender-os", tabindex="-1", role="dialog", aria-labelledby="myLargeModalLabel")
+  div(class="modal-dialog modal-sm")
+    div(class="modal-content")
+      div(class="modal-header")
+        button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+          span(aria-hidden="true") &times;
+        h4(class="modal-title", id="exampleModalLabel") Suspender OS
+      div(class="modal-body")
+        form
+          div(class="selecionar-agendamento")
+            label(for="recipient-name", class="control-label") Selecione o motivo:
+            br/
+            select(class="motivo")
+              option(id="1") Valor
+              option(id="2") Prazo do Servico
+                
+      div(class="modal-footer")
+        button(type="button", class="btn btn-primary" id="botao-suspender-os") Suspender OS

@@ -91,7 +91,31 @@ function doFinalizaOs(req, res){
   
   dbOS.finalizarOS(os, function(err, ordemservico){
     if(err){
-      req.session.error = 'Falha ao autorizar OS';
+      req.session.error = 'Falha ao finalizar OS';
+          console.error(err);
+          res.send(false);
+    } else {
+      res.send(true);
+    }
+    res.end();
+  });
+}
+
+function doSuspendeOs(req, res){
+  if(req.query.nos == undefined || req.query.m == undefined){
+    req.session.error = 'Bad Request';
+      console.error(req.session.error);
+      res.end();
+      return;
+  }
+
+  var os = {};
+  os.numeroOs        = req.query.nos;
+  os.motivoSuspensao = req.query.m;
+  
+  dbOS.suspenderOS(os, function(err, ordemservico){
+    if(err){
+      req.session.error = 'Falha ao suspender OS';
           console.error(err);
           res.send(false);
     } else {
@@ -184,6 +208,7 @@ module.exports = {
   doCriarOs       : doCriarOs,
   doAutorizaOs    : doAutorizaOs,
   doFinalizaOs    : doFinalizaOs,
+  doSuspendeOs    : doSuspendeOs,
   doCriarServico  : doCriarServico,
   doAtualizarPeca : doAtualizarPeca,
 };
