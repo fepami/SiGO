@@ -91,10 +91,8 @@ function allCliente(callback){
 function clienteByNomeUsuario(nome_usuario, callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
-    var query = cliente.query({
-      text: 'SELECT nome_usuario, nome, end_rua, end_complemento, ' +
-        'end_cidade, end_estado, telefone_1, telefone_2' +
-        'FROM cliente WHERE nome_usuario = $1',
+    var query = client.query({
+      text: 'SELECT * FROM cliente WHERE nome_usuario = $1',
       values: [nome_usuario],
       name: 'cliente_by_nome_usuario'
     });
@@ -102,7 +100,7 @@ function clienteByNomeUsuario(nome_usuario, callback){
       result.addRow(row);
     });
     query.on('error', function(error) {
-      db.checkQueryError(error, cliente, done, callback);
+      db.checkQueryError(error, client, done, callback);
     });
     query.on('end', function(result) {
       done();

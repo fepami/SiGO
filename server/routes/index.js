@@ -34,41 +34,41 @@ router.get('/cadastro/verifica', cadastro.do_cadastro);
 *  R O T A S   P A R A   A S   T E L A S   D E   A G E N D A M E N T O
 */
 
-router.get ('/agendamento/criar'		/*, login.restrict*/, agendamento.getCriarAgendamento);
-router.get ('/agendamento/criar/criar'	/*, login.restrict*/, agendamento.doCriarAgendamento);
-router.get ('/agendamento/remover'		/*, login.restrict*/, agendamento.doCancelarAgendamento);
-router.get ('/agendamento/consultar'	/*, login.restrict*/, agendamento.doConsultarAgendamento);
-router.get ('/agendamento/editar'		/*, login.restrict*/, agendamento.getEditarAgendamento);
-router.get ('/agendamento/editar/editar'/*, login.restrict*/, agendamento.doEditarAgendamento);
+router.get ('/agendamento/criar'		, login.restrict, agendamento.getCriarAgendamento);
+router.get ('/agendamento/criar/criar'	, login.restrict, agendamento.doCriarAgendamento);
+router.get ('/agendamento/remover'		, login.restrict, agendamento.doCancelarAgendamento);
+router.get ('/agendamento/consultar'	, login.restrict, agendamento.doConsultarAgendamento);
+router.get ('/agendamento/editar'		, login.restrict, agendamento.getEditarAgendamento);
+router.get ('/agendamento/editar/editar', login.restrict, agendamento.doEditarAgendamento);
 
 
 /**
 *  R O T A S   P A R A   A S   T E L A S   D E   O R D E M   D E   S E R V I C O
 */
 
-router.get ('/os/consultar'				/*, login.restrict*/, os.doConsultarOs);
+router.get ('/os/consultar'				, login.restrict, os.doConsultarOs);
 
 
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   S E R V I Ç O S / P E Ç A S
 */
-router.get('/agendamento/serv_pecas' 	/*, login.restrict*/, serv_pecas.getServicosPecas);
-router.post('/servico' 					/*, login.restrict*/, serv_pecas.servico);
-router.post('/peca'						/*, login.restrict*/, serv_pecas.peca);
+router.get('/agendamento/serv_pecas' 	, login.restrict, serv_pecas.getServicosPecas);
+router.post('/servico' 					, login.restrict, serv_pecas.servico);
+router.post('/peca'						, login.restrict, serv_pecas.peca);
 
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   E Q U I P E S
 */
-router.get('/agendamento/mecanicos' 	/*, login.restrict*/, mecanicos.getEquipes);
-router.post('/agendamento/equipe', mecanicos.formarEquipe);
+router.get('/agendamento/mecanicos' 	, login.restrict, mecanicos.getData);
+router.post('/agendamento/equipe' 		, login.restrict, mecanicos.formarEquipe);
 
 
 /**
 * R O T A S   P A R A   A S   T E L A S   D E   R E L A T O R I O S
 */
-router.get('/relatorio'					/*, login.restrict*/, function(req, res){
+router.get('/relatorio'					, login.restrict, function(req, res){
 	res.render('pages/relatorio');
 });
 
-router.get('/relatorio/gerar' 			/*, login.restrict*/, relatorios.doGetRelatorio);
+router.get('/relatorio/gerar' 			, login.restrict, relatorios.doGetRelatorio);
 module.exports = router;

@@ -52,34 +52,52 @@ function getCriarAgendamento(req, res){
 	}
 	// Tela de criar agendamento inicial
 	else{
-
-		db_cli.allCliente(function(err, clientes){
-
-			if(err){
-				req.session.error = 'Falha ao pesquisar clientes';
-	        	console.error(err);
-			} else {
-
-			res.render('pages/criar_agendamento', { clientes: clientes });
-
-			}
-
-			res.end();
-		});
+		if(req.session.user.nivel_acesso < 3){
+			db_cli.allCliente(function(err, clientes){
+				if(err){
+					req.session.error = 'Falha ao pesquisar clientes';
+		        	console.error(err);
+				} else {
+					res.render('pages/criar_agendamento', { clientes: clientes });
+				}
+				res.end();
+			});
+		}else{
+			db_cli.clienteByNomeUsuario(req.session.user.nome_usuario, function(err, cliente){
+				if(err){
+					req.session.error = 'Falha ao pesquisar cliente';
+		        	console.error(err);
+				} else {
+					res.render('pages/criar_agendamento', { clientes: [cliente] });
+				}
+				res.end();
+			});
+		}
 	}
 }
 
 function doConsultarAgendamento(req, res){
-	db_age.todosAgendamentosAtivos(function(err, agendamentos){
-		if(err){
-			req.session.error = 'Falha ao pesquisar agendamentos';
-	       	console.error(err);
-		} else {
-			res.render('pages/consultar_agendamento', { agendamentos: agendamentos });
-		}
-		res.end();
-	});
-
+	if(req.session.user.nivel_acesso < 3){
+		db_age.todosAgendamentosAtivos(function(err, agendamentos){
+			if(err){
+				req.session.error = 'Falha ao pesquisar agendamentos';
+		       	console.error(err);
+			} else {
+				res.render('pages/consultar_agendamento', { agendamentos: agendamentos });
+			}
+			res.end();
+		});
+	}else{
+		db_age.todosAgendamentosAtivosPorUsuario(req.session.user.nome_usuario, function(err, agendamentos){
+			if(err){
+				req.session.error = 'Falha ao pesquisar agendamentos';
+		       	console.error(err);
+			} else {
+				res.render('pages/consultar_agendamento', { agendamentos: agendamentos });
+			}
+			res.end();
+		});
+	}
 }
 
 function doCriarAgendamento(req, res) {
