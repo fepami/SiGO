@@ -7,30 +7,20 @@ html
     
     .container
       .jumbotron
-        div#alert
-        h2 #{teste}
+        if data.c
+          .alert.alert-success Equipe formada com sucesso!
+        if data.e
+          .alert.alert-danger Erro ao se comunicar com o servidor!
+        if data.d
+          .alert.alert-success Equipe Deletada com sucesso!
         h2 Equipes
         .list-group
           each equipe in data.equipes
             .list-group-item
-              a(href="#")
-                h4.list-group-item-heading-up Equipe #{equipe.id_equipe}
+              h4.list-group-item-heading-up Equipe #{equipe.id_equipe}
+              a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDEquipe", id="deleteEquipe", data-id="#{equipe.id_equipe}")
               p.list-group-item-text #{equipe.nome1} e #{equipe.nome2}
         a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalEquipe") Formar equipe
-        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalMecanicos") Lista de Mecânicos
-
-    //- Modal que abre lista de mecânicos
-    .modal.fade(role="dialog", id="modalMecanicos")
-      .modal-dialog
-        .modal-content
-          .modal-header
-            h1.modal-title Mecânicos
-          .modal-body
-            each mecanico in data.mecanicos
-              p #{mecanico.nome}
-              br
-          .modal-footer
-            a.btn.btn-primary(data-dismiss="modal") Fechar
 
     //- Modal para formar equipe
     .modal.fade(role="dialog", id="modalEquipe")
@@ -40,17 +30,29 @@ html
             h1.modal-title Formar equipe
           .modal-body
             div#modalAlert
-            form(name="equipe", action="/equipe", method="post")
-              select.form-control(id="mecanico1")
-                option Selecione um mecânico
-                each mecanico in data.mecanicos
-                  option(data-mecanico1 = "#{mecanico.nome}") #{mecanico.nome}
-              select.form-control(id="mecanico2")
-                option Selecione outro mecânico
-                each mecanico in data.mecanicos
-                  option(data-mecanico2 = "#{mecanico.nome}") #{mecanico.nome}
-              .btn-group
-                a.btn.btn-primary(id="button_confirmacao") Formar Equipe
-                a.btn.btn-primary(data-dismiss="modal") Cancelar
+            select.form-control(id="mecanico1")
+              option Selecione um mecânico
+              each mecanico in data.mecanicos
+                option(data-mecanico1 = "#{mecanico.codigo_mecanico}") #{mecanico.nome}
+            select.form-control(id="mecanico2")
+              option Selecione outro mecânico
+              each mecanico in data.mecanicos
+                option(data-mecanico2 = "#{mecanico.codigo_mecanico}") #{mecanico.nome}
+            .btn-group
+              a.btn.btn-primary(href="#", id="buttonConfirmacao") Formar Equipe
+              a.btn.btn-primary(data-dismiss="modal") Cancelar
+
+    //- Modal para confirmação - remoção de equipe
+    .modal.fade(role="dialog", id="modalDEquipe")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h1.modal-title Deletar equipe
+          .modal-body
+            h3 Deseja deletar a equipe?
+          .modal-footer
+            .btn-group
+              a.btn.btn-primary(id="deleteEConfirm") Deletar
+              a.btn.btn-primary(data-dismiss="modal") Cancelar
 
     script(src='../js/equipes.js')

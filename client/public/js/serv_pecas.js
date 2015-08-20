@@ -1,38 +1,63 @@
-$('a#linkServico').click(function(event) {
+$('a#editServico').click(function(event) {
 
-    var clickedLink = $(event.currentTarget); 
-    var currentImage = clickedLink.children('h4');
+    var currentImage = $(this);
 
     var nome = currentImage.data('nome');
     var desc = currentImage.data('desc');
     var valor = currentImage.data('valor');
+    var esp = currentImage.data('esp');
+    var id = currentImage.data('id');
 
-    $('#modalSNome').text(nome);
-    $('#modalSNome').attr({ class: "up-first-letter"});
+    $('#modalSNome').val(nome);
 
-    $('#modalSDesc').text(desc);
-    $('#modalSDesc').attr({ class: "up-first-letter"});
+    $('#modalSDesc').val(desc);
 
-    $('#modalSValor').text( "Valor do serviço: R$" + valor + ",00");
+    $('#modalSValor').val(valor);
+
+    $('#modalSEsp').val(esp);
+
+    if (id != undefined) {
+      $('#formS').attr('action', '../servico/?id=' + id);
+      $('h1').text(function(i, oldText) {
+        return oldText === 'Adicionar Serviço' ? 'Editar Serviço' : oldText;
+      });
+      $('input.btn').attr('value', 'Editar Serviço');
+    }
 });
 
-$('a#linkPeca').click(function(event) {
+$('a#editPeca').click(function(event) {
 
-    var clickedLink = $(event.currentTarget); 
-    var currentImage = clickedLink.children('h4');
+  var currentImage = $(this);
 
-    var nome = currentImage.data('nome');
-    var desc = currentImage.data('desc');
-    var valor = currentImage.data('valor');
-    var quant = currentImage.data('quant');
+  var nome = currentImage.data('nome');
+  var desc = currentImage.data('desc');
+  var valor = currentImage.data('valor');
+  var quant = currentImage.data('quant');
+  var id = currentImage.data('id');
 
-    $('#modalPNome').text(nome);
-    $('#modalPNome').attr({ class: "up-first-letter"});
+  $('#modalPNome').val(nome);
 
-    $('#modalPDesc').text(desc);
-    $('#modalPDesc').attr({ class: "up-first-letter"});
+  $('#modalPDesc').val(desc);
 
-    $('#modalPValor').text( "Valor de uma peça: R$" + valor + ",00");
-    
-    $('#modalPQuant').text( "Quantidade disponível: " + quant);
+  $('#modalPValor').val(valor);
+
+  $('#modalPQuant').val(quant);
+
+  if (id != undefined) {
+    $('#formP').attr('action', '../peca/?id=' + id);
+    $('h1').text(function(i, oldText) {
+      return oldText === 'Adicionar Peça' ? 'Editar Peça' : oldText;
+    });
+    $('input.btn').attr('value', 'Editar Peça');
+  }
+});
+
+$('a#deleteServico').click(function(event) {
+  var id_serv = $(this).data('id');
+  $('a#deleteSConfirm').attr('href', '/servico/?del=' + id_serv);
+});
+
+$('a#deletePeca').click(function(event) {
+  var id_peca = $(this).data('id');
+  $('a#deletePConfirm').attr('href', '/peca/?del=' + id_peca);
 });

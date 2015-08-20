@@ -5,13 +5,17 @@ module.exports = {
   todasPecas:     todasPecas,
   criarServico:   criarServico,
   criarPeca:      criarPeca,
+  editarServico:  editarServico,
+  editarPeca:     editarPeca,
+  deleteServico:  deleteServico,
+  deletePeca:     deletePeca,
 };
 
 function todosServicos(callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var query = client.query({
-        text: 'SELECT nome, descricao, especialidade, valor_mao_obra FROM tipo_servico',
+        text: 'SELECT * FROM tipo_servico',
         values: [],
         name: 'todos_servicos'
       });
@@ -32,7 +36,7 @@ function todasPecas(callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var query = client.query({
-        text: 'SELECT nome, descricao, preco, quantidade FROM tipo_peca',
+        text: 'SELECT * FROM tipo_peca',
         values: [],
         name: 'todas_pecas'
       });
@@ -71,7 +75,7 @@ function criarPeca(peca, callback){
   });
 }
 
-function criarServico(servico, callback){
+function criarServico(servico, callback) {
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var query = client.query({
@@ -80,15 +84,105 @@ function criarServico(servico, callback){
         name: 'create_servico'
       });
       query.on('row', function(row, result) {
-          result.addRow(row);
+        result.addRow(row);
       });
       query.on('error', function(error) {
-          db.checkQueryError(error, client, done, callback);
+        db.checkQueryError(error, client, done, callback);
       });
       query.on('end', function(result) {
-         done();
-         console.log('Serviço ' + servico.nome + ' criado com sucesso');
-         callback(null, servico);
+        done();
+        console.log('Serviço ' + servico.nome + ' criado com sucesso');
+        callback(null, servico);
+      });
+  });
+}
+
+function editarServico(servico, callback) {
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      var query = client.query({
+        text: 'UPDATE tipo_servico SET nome=$1, descricao=$2, especialidade=$3, valor_mao_obra=$4 WHERE id=$5',
+        values: [servico.nome, servico.descricao, servico.especialidade, servico.valor_mao_obra, servico.id],
+        name: 'update_servico'
+      });
+      query.on('row', function(row, result) {
+        result.addRow(row);
+      });
+      query.on('error', function(error) {
+        db.checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+        done();
+        console.log('Serviço ' + servico.nome + ' editado com sucesso');
+        callback(null, servico);
+      });
+  });
+}
+
+function editarPeca(peca, callback) {
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      var query = client.query({
+        text: 'UPDATE tipo_peca SET nome=$1, descricao=$2, preco=$3, quantidade=$4 WHERE id=$5',
+        values: [peca.nome, peca.descricao, peca.preco, peca.quantidade, peca.id],
+        name: 'edit_peca'
+      });
+      query.on('row', function(row, result) {
+        result.addRow(row);
+      });
+      query.on('error', function(error) {
+        db.checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+        done();
+        console.log('Peça ' + peca.nome + ' editada com sucesso');
+        callback(null, peca);
+      });
+  });
+}
+
+function deleteServico(id, callback) {
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      var query = client.query({
+        text: 'DELETE FROM tipo_servico WHERE id=$1',
+        values: [id],
+        name: 'delete_servico'
+      });
+      query.on('row', function(row, result) {
+        result.addRow(row);
+      });
+      query.on('error', function(error) {
+        db.checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+        done();
+        console.log('Servico deletado com sucesso');
+        callback(null, id);
+      });
+  });
+}
+
+function deletePeca(id, callback) {
+  console.log(id);
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      var query = client.query({
+        text: 'DELETE FROM tipo_peca WHERE id=$1',
+        values: [id],
+        name: 'delete_peca'
+      });
+      query.on('row', function(row, result) {
+        result.addRow(row);
+      });
+      query.on('error', function(error) {
+        console.log(error);
+        db.checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+        done();
+        console.log('Peça removida com sucesso');
+        callback(null, id);
       });
   });
 }

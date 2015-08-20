@@ -310,27 +310,7 @@ body.sigo_agendamento .card.criar-agendamento{
   align-items: center;
   font-size: 3em;
   color: #2196F3;
-/* START: Registro */
 
-body.sigo_registro img {
-  width: 280px;
-}
-
-body.sigo_registro h2 {
-  color: #999;
-  text-shadow: 2px 2px #fff;
-}
-
-body.sigo_registro .btn {
-  width: 250px;
-}
-
-body.sigo_registro .right-block {
-  display: block;
-  margin-left: auto;
-}
-
-/* END: Registro */
 }
 
 body.sigo_agendamento a:hover{
@@ -415,16 +395,17 @@ body.sigo_serv_pecas h4 {
   color: #2196F3;
 }
 
-body.sigo_serv_pecas h4:hover {
-  color: #4ba9f2;
-}
-
 body.sigo_serv_pecas .btn-group > .btn {
   margin-right: 20px;
 }
 
-/* END: Serviços e peças */
+body.sigo_serv_pecas a.glyphicon {
+  margin-right: 10px;
+  margin-left: 10px;
+  color: #2196F3;
+}
 
+/* END: Serviços e peças */
 
 
 /* START: OS */
@@ -439,11 +420,6 @@ body.sigo_os .container {
   align-self: center;
   justify-content: space-between;
   text-align: center;
-}
-
-body.sigo_mecanicos h2 {
-  color: #999;
-  text-shadow: 2px 2px #fff;
 }
 
 body.sigo_os h2 {
@@ -506,12 +482,15 @@ body.sigo_os div.modal-footer button{
   float: right;
 }
 
-/* END: Serviços e peças */
-
 /* START: Equipes de Mecânicos */
 
 body.sigo_mecanicos {
   display: flex;
+}
+
+body.sigo_mecanicos h2 {
+  color: #999;
+  text-shadow: 2px 2px #fff;
 }
 
 body.sigo_mecanicos .btn-primary{
@@ -534,13 +513,16 @@ body.sigo_mecanicos .margin-bot {
   margin-bottom: 30px;
 }
 
-body.sigo_mecanicos .btn-group {
+body.sigo_mecanicos h4 {
+  color: #2196F3;
+}
 
+body.sigo_mecanicos a.glyphicon {
+  color: #2196F3;
 }
 
 body.sigo_mecanicos .btn-group > .btn {
   margin-right: 20px;
 }
-
 /* END: Equipes de Mecânicos */
 

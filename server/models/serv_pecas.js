@@ -38,10 +38,20 @@ function servico(req, res){
     especialidade: obj.role,
     valor_mao_obra: obj.value
   };
-  
-  db_serv_pecas.criarServico(servico,function(){
-    res.redirect('/serv_pecas/?serv=t');
-  });
+  if (req.query.id != undefined) {
+    servico.id = req.query.id;
+    db_serv_pecas.editarServico(servico, function(){
+      res.redirect('/serv_pecas/?serv_e=t');
+    });
+  } else if (req.query.del != undefined) {
+    db_serv_pecas.deleteServico(req.query.del, function(){
+      res.redirect('/serv_pecas/?serv_d=t');
+    })
+  } else {
+    db_serv_pecas.criarServico(servico,function(){
+      res.redirect('/serv_pecas/?serv=t');
+    });
+  }
 }
 
 function peca(req, res){
@@ -52,7 +62,18 @@ function peca(req, res){
     preco: obj.value,
     quantidade: obj.quantity
   };
-  db_serv_pecas.criarPeca(peca,function(){
-    res.redirect('/serv_pecas/?peca=t');
-  });
+  if (req.query.id != undefined) {
+    peca.id = req.query.id;
+    db_serv_pecas.editarPeca(peca, function(){
+      res.redirect('/serv_pecas/?peca_e=t');
+    });
+  } else if (req.query.del != undefined) {
+    db_serv_pecas.deletePeca(req.query.del, function(){
+      res.redirect('/serv_pecas/?peca_d=t');
+    });
+  } else {
+    db_serv_pecas.criarPeca(peca,function(){
+      res.redirect('/serv_pecas/?peca=t');
+    });
+  }
 }

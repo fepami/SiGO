@@ -1,14 +1,18 @@
-.modal.fade(role="dialog", id="modalNovaPeca")
-      .modal-dialog
-        .modal-content
-          .modal-header
-            h1 Adicionar Peça
-          .modal-body
-            form(nome="peca", action="/peca", method="post")
-              input.form-control(type="text", placeholder="Nome da Peça*", name="name", required)
-              input.form-control(type="text", placeholder="Descrição da Peça*", name="description", required)
-              input.form-control(type="number", placeholder="Valor da Peça*", name="value", required)
-              input.form-control(type="number", placeholder="Quantidade disponível*", name="quantity", required)
-              .btn-group
-                a.btn.btn-primary(data-dismiss="modal") Cancelar
-                input.btn.btn-primary(type="submit", value="Adicionar Peça")
+.modal.fade(role="dialog", id="modalPeca")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h1 Adicionar Peça
+      .modal-body
+        form(nome="peca", action="/peca", id="formP", method="post")
+          label Nome da Peça
+          input.form-control(type="text", placeholder="Nome da Peça*", id="modalPNome", name="name", required)
+          label Descrição da peça
+          input.form-control(type="text", placeholder="Descrição da Peça*", id="modalPDesc", name="description", required)
+          label Valor da Peça
+          input.form-control(type="number", placeholder="Valor da Peça*", id="modalPValor", name="value", required)
+          label Quantidade disponível
+          input.form-control(type="number", placeholder="Quantidade disponível*", id="modalPQuant", name="quantity", required)
+          .btn-group
+            input.btn.btn-primary(type="submit", value="Adicionar Peça")
+            a.btn.btn-primary(data-dismiss="modal") Cancelar

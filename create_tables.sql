@@ -66,23 +66,20 @@ insert into tipo_servico (nome, descricao, especialidade, valor_mao_obra)
 	values ('troca de peças','substituição de peças do veículo', 5, 1000);
 
 insert into tipo_peca (nome, descricao, preco, quantidade)
-	values ('radiador','', 1000, 50);
+	values ('radiador','radiador da marca X com ótima durabilidade', 1000, 50);
 
 insert into tipo_peca (nome, descricao, preco, quantidade)
-	values ('lampada','', 30, 100);
+	values ('lampada','lâmpadas de cores diversas para os faróis', 30, 100);
 
 insert into tipo_peca (nome, descricao, preco, quantidade)
-	values ('maçaneta','', 300, 10);
+	values ('maçaneta','maçaneta para portas diversas', 300, 10);
 
-insert into tipo_peca (nome, descricao, preco, quantidade)
-	values ('radiador','', 1000, 50);
-
-insert into peca values ('215415455455-4785','11/08/17', 1, 1);
-insert into peca values ('22454554-44555-55','27/10/20', 1, 1);
-insert into peca values ('214545454545-4785','15/02/17', 1, 2);
-insert into peca values ('123323255455-4785','17/01/18', 1, 2);
-insert into peca values ('211221222255-4785','10/05/16', 1, 3);
-insert into peca values ('215413335455-4785','11/08/18', 1, 3);
+-- insert into peca values ('215415455455-4785','11/08/17', 1, 1);
+-- insert into peca values ('22454554-44555-55','27/10/20', 1, 1);
+-- insert into peca values ('214545454545-4785','15/02/17', 1, 2);
+-- insert into peca values ('123323255455-4785','17/01/18', 1, 2);
+-- insert into peca values ('211221222255-4785','10/05/16', 1, 3);
+-- insert into peca values ('215413335455-4785','11/08/18', 1, 3);
 
 insert into agendamento (data, hora, status, renavam_veiculo)
 	values ('24/07/15','3', 1, 491534278);

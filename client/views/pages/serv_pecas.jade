@@ -7,54 +7,71 @@ html
 
     div.container
       div.jumbotron
+        //- Alertas
         if params.serv
           .alert.alert-success Serviço criado com sucesso!
-        if params.peca
+        else if params.peca
           .alert.alert-success Peça adicionada com sucesso!
+        else if params.err
+          .alert.alert-danger Erro na comunicação com o servidor!
+        else if params.serv_e
+          .alert.alert-success Serviço editado com sucesso!
+        else if params.peca_e
+          .alert.alert-success Peça editada com sucesso!
+        else if params.serv_d
+          .alert.alert-success Serviço deletado com sucesso!
+        else if params.peca_d
+          .alert.alert-success Peça deletada com sucesso!
+
         h2 Serviços oferecidos
         div.list-group
           each servico in params.servicos
             .list-group-item(href='#')
-              a(href='#', data-toggle="modal", data-target="#modalServico", id="linkServico")
-                h4.list-group-item-heading.up-first-letter(data-nome="#{servico.nome}", data-desc="#{servico.descricao}", data-valor="#{servico.valor_mao_obra}") #{servico.nome}
-        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalNovoServico") Adicionar Serviço
+              h4.list-group-item-heading.up-first-letter #{servico.nome}
+              a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDServico", id="deleteServico", data-id="#{servico.id}")
+              a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalServico", id="editServico", data-nome="#{servico.nome}", data-desc="#{servico.descricao}", data-valor="#{servico.valor_mao_obra}", data-esp="#{servico.especialidade}", data-id="#{servico.id}")
+              p.list-group-item-text.up-first-letter #{servico.descricao} - R$ #{servico.valor_mao_obra}
+        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalServico") Adicionar Serviço
         hr.fancy-line
         h2 Peças disponíveis
         div.list-group
           each peca in params.pecas
             .list-group-item(href='#')
-              a(href='#', data-toggle="modal", data-target="#modalPeca", id="linkPeca")
-                h4.list-group-item-heading.up-first-letter(data-nome="#{peca.nome}", data-desc="#{peca.descricao}", data-valor="#{peca.preco}", data-quant="#{peca.quantidade}") #{peca.nome}
-        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalNovaPeca") Adicionar Peça
-    script(src='../js/serv_pecas.js')
+              h4.list-group-item-heading.up-first-letter #{peca.nome}
+              a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDPeca", id="deletePeca", data-id="#{peca.id}")
+              a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalPeca", id="editPeca", data-nome="#{peca.nome}", data-desc="#{peca.descricao}", data-valor="#{peca.preco}", data-quant="#{peca.quantidade}", data-id="#{peca.id}")
+              .list-group-item-text
+                p.up-first-letter #{peca.descricao} - R$ #{peca.preco}
+                p Quantidade disponível: #{peca.quantidade}
+        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalPeca") Adicionar Peça
 
-    //- Modal que abre detalhes de serviços
-    .modal.fade(role="dialog", id="modalServico")
+    //- Modal para confirmação - remoção de serviço
+    .modal.fade(role="dialog", id="modalDServico")
       .modal-dialog
         .modal-content
           .modal-header
-            h1.modal-title(id="modalSNome")
+            h1.modal-title Deletar serviço
           .modal-body
-            p(id="modalSDesc")
-            br
-            p(id="modalSValor")
+            h3 Deseja deletar o serviço?
           .modal-footer
-            a.btn.btn-primary(data-dismiss="modal") Fechar
+            .btn-group
+              a.btn.btn-primary(id="deleteSConfirm") Deletar
+              a.btn.btn-primary(data-dismiss="modal") Cancelar
 
-    //- Modal que abre detalhes de Peças
-    .modal.fade(role="dialog", id="modalPeca")
+    //- Modal para confirmação - remoção de peça
+    .modal.fade(role="dialog", id="modalDPeca")
       .modal-dialog
         .modal-content
           .modal-header
-            h1.modal-title(id="modalPNome")
+            h1.modal-title Deletar peça
           .modal-body
-            p(id="modalPDesc")
-            br
-            p(id="modalPValor")
-            br
-            p(id="modalPQuant")
+            h3 Deseja deletar a peça?
           .modal-footer
-            a.btn.btn-primary(data-dismiss="modal") Fechar
+            .btn-group
+              a.btn.btn-primary(id="deletePConfirm") Deletar
+              a.btn.btn-primary(data-dismiss="modal") Cancelar
 
     include ../partials/_modal_adicionar_serv.jade
     include ../partials/_modal_adicionar_peca.jade
+
+    script(src='../js/serv_pecas.js')
