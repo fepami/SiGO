@@ -110,6 +110,7 @@ function doCriarAgendamento(req, res) {
 
 	var agendamento = {};
 	agendamento.data = req.query.d;
+
 	agendamento.hora = req.query.h;
 	agendamento.renavam_veiculo = req.query.nr;
 

@@ -18,9 +18,11 @@ html
           each equipe in data.equipes
             .list-group-item
               h4.list-group-item-heading-up Equipe #{equipe.id_equipe}
-              a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDEquipe", id="deleteEquipe", data-id="#{equipe.id_equipe}")
+              if locals.user.nivel_acesso == 0
+                a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDEquipe", id="deleteEquipe", data-id="#{equipe.id_equipe}")
               p.list-group-item-text #{equipe.nome1} e #{equipe.nome2}
-        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalEquipe") Formar equipe
+        if locals.user.nivel_acesso == 0
+          a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalEquipe") Formar equipe
 
     //- Modal para formar equipe
     .modal.fade(role="dialog", id="modalEquipe")

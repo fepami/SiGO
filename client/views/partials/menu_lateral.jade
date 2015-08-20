@@ -6,16 +6,28 @@ div.sigo_menu_lateral
       a(href="../../agendamento/consultar")
         span(class="glyphicon glyphicon-calendar", aria-hidden='true') 
         p Agendamentos
-    li
-      a(href="../../os/consultar")
-        span(class="glyphicon glyphicon-list-alt", aria-hidden='true') 
-        p Ordens de Serviço
+    if locals.user.nivel_acesso == 0 || locals.user.nivel_acesso == 2
+      li
+        a(href="../../os/consultar")
+          span(class="glyphicon glyphicon-list-alt", aria-hidden='true') 
+          p Ordens de Serviço
+    if locals.user.nivel_acesso == 0 || locals.user.nivel_acesso == 2 
+      li 
+        a(href="../../serv_pecas")
+          span(class="glyphicon glyphicon-wrench", aria-hidden='true') 
+          p Seviços & Peças 
+    if locals.user.nivel_acesso == 0 || locals.user.nivel_acesso == 2
+      li
+        a(href="../../mecanicos")
+          span.glyphicon.glyphicon-cog(aria-hidden='true')
+          p Equipes de mecânicos
+    if locals.user.nivel_acesso == 0
+      li 
+        a(href="../../relatorio")
+          span(class="glyphicon glyphicon-briefcase", aria-hidden='true') 
+          p Relatórios 
     li 
-      a(href="../../serv_pecas")
-        span(class="glyphicon glyphicon-wrench", aria-hidden='true') 
-        p Seviços & Peças 
-    li
-      a(href="../../mecanicos")
-        span.glyphicon.glyphicon-cog(aria-hidden='true')
-        p Equipes de mecânicos
-  
+      a(href="../../logout")
+        span(class="glyphicon glyphicon-log-out", aria-hidden='true') 
+        p Log-out 
+    

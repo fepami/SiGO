@@ -17,8 +17,8 @@ function criarAgendamento(agendamento, callback){
 	db.connect(function(err, client, done){
 		db.checkConnectionError(err, callback);
     var query = client.query({
-      text: 'INSERT INTO agendamento(data, hora, status, renavam_veiculo) ' +
-      	'VALUES ($1, $2, 1, $3) RETURNING id, data, hora',
+      text: "INSERT INTO agendamento(data, hora, status, renavam_veiculo) " +
+      	"VALUES (to_date($1, 'dd/mm/YY'), $2, 1, $3) RETURNING id, to_char(data, 'dd/mm/YY') as data, hora",
       values: [agendamento.data, agendamento.hora,
       	agendamento.renavam_veiculo],
       name: 'create_agendamento'
@@ -83,7 +83,7 @@ function todosAgendamentos(callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var query = client.query({
-          text: 'SELECT id, data, hora, status, renavam_veiculo FROM agendamento',
+          text: "SELECT id, to_char(data, 'dd/mm/YY') as data, hora, status, renavam_veiculo FROM agendamento",
           values: [],
           name: 'todos_agendamentos_ativos'
       });
@@ -131,7 +131,7 @@ function todosAgendamentosAtivos(callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var query = client.query({
-          text: 'SELECT id, data, hora, status, renavam_veiculo FROM agendamento WHERE status = 1',
+          text: "SELECT id, to_char(data, 'dd/mm/YY') as data, hora, status, renavam_veiculo FROM agendamento WHERE status = 1",
           values: [],
           name: 'todos_agendamentos_ativos'
       });
@@ -194,11 +194,11 @@ function todosAgendamentosAtivosPorUsuario(nome_usuario, callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var query = client.query({
-          text: "SELECT id, data, hora, status, renavam_veiculo " +
+          text: "SELECT id, to_char(data, 'dd/mm/YY') as data, hora, status, renavam_veiculo " +
                   "FROM agendamento ag JOIN veiculo ve ON ag.renavam_veiculo=ve.renavam " +
                   "WHERE ve.nome_usuario = $1 AND ag.status = 1",
           values: [nome_usuario],
-          name: 'todos_agendamentos_ativos'
+          name: 'todos_agendamentos_ativos_por_usuario'
       });
       query.on('row', function(row, result) {
           switch ( row.hora ){
@@ -259,8 +259,8 @@ function agendamentoByDia(dia, callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var query = client.query({
-          text: 'SELECT id, data, hora, status, renavam_veiculo ' +
-            'FROM agendamento WHERE data = $1 AND status = 1',
+          text: "SELECT id, to_char(data, 'dd/mm/YY') as data, hora, status, renavam_veiculo " +
+            "FROM agendamento WHERE data = to_date($1, 'dd/mm/YY') AND status = 1",
           values: [dia],
           name: 'agendamento_by_dia'
       });
@@ -281,8 +281,8 @@ function agendamentoPorId(id, callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var query = client.query({
-          text: 'SELECT id, data, hora, status, renavam_veiculo ' +
-            'FROM agendamento WHERE id = $1',
+          text: "SELECT id, to_char(id, 'dd/mm/YY') as data, hora, status, renavam_veiculo " +
+            "FROM agendamento WHERE id = $1",
           values: [id],
           name: 'agendamento_por_dia'
       });
@@ -325,8 +325,8 @@ function editarAgendamento(agendamento, callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
     var query = client.query({
-      text: 'UPDATE agendamento SET data = $1, hora = $2' +
-            'WHERE id = $3 RETURNING data, hora',
+      text: "UPDATE agendamento SET data = to_date($1, 'dd/mm/YY'), hora = $2" +
+            "WHERE id = $3 RETURNING to_char(data, 'dd/mm/YY') as data, hora",
       values: [agendamento.data, agendamento.hora, agendamento.id],
       name: 'create_agendamento'
     });

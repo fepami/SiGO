@@ -28,22 +28,26 @@ html
           each servico in params.servicos
             .list-group-item(href='#')
               h4.list-group-item-heading.up-first-letter #{servico.nome}
-              a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDServico", id="deleteServico", data-id="#{servico.id}")
-              a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalServico", id="editServico", data-nome="#{servico.nome}", data-desc="#{servico.descricao}", data-valor="#{servico.valor_mao_obra}", data-esp="#{servico.especialidade}", data-id="#{servico.id}")
+              if locals.user.nivel_acesso == 0
+                a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDServico", id="deleteServico", data-id="#{servico.id}")
+                a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalServico", id="editServico", data-nome="#{servico.nome}", data-desc="#{servico.descricao}", data-valor="#{servico.valor_mao_obra}", data-esp="#{servico.especialidade}", data-id="#{servico.id}")
               p.list-group-item-text.up-first-letter #{servico.descricao} - R$ #{servico.valor_mao_obra}
-        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalServico") Adicionar Serviço
+        if locals.user.nivel_acesso == 0
+          a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalServico") Adicionar Serviço
         hr.fancy-line
         h2 Peças disponíveis
         div.list-group
           each peca in params.pecas
             .list-group-item(href='#')
               h4.list-group-item-heading.up-first-letter #{peca.nome}
-              a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDPeca", id="deletePeca", data-id="#{peca.id}")
-              a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalPeca", id="editPeca", data-nome="#{peca.nome}", data-desc="#{peca.descricao}", data-valor="#{peca.preco}", data-quant="#{peca.quantidade}", data-id="#{peca.id}")
+              if locals.user.nivel_acesso == 0
+                a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDPeca", id="deletePeca", data-id="#{peca.id}")
+                a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalPeca", id="editPeca", data-nome="#{peca.nome}", data-desc="#{peca.descricao}", data-valor="#{peca.preco}", data-quant="#{peca.quantidade}", data-id="#{peca.id}")
               .list-group-item-text
                 p.up-first-letter #{peca.descricao} - R$ #{peca.preco}
                 p Quantidade disponível: #{peca.quantidade}
-        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalPeca") Adicionar Peça
+        if locals.user.nivel_acesso == 0 
+          a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalPeca") Adicionar Peça
 
     //- Modal para confirmação - remoção de serviço
     .modal.fade(role="dialog", id="modalDServico")

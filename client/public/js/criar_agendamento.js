@@ -28,7 +28,7 @@ $("li.hour a").click(function(){
 });
 
 $("a#button_confirmacao").click(function(){
-
+	console.log(data);
 	$("li.hour a").each(function(){
 		if ( $(this).attr('data-selected') == "true" ){
 			hora = $(this).attr('data-hour-id');
