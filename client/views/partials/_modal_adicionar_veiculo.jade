@@ -1,0 +1,20 @@
+.modal.fade(role="dialog", id="modalVeiculo")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h1 Adicionar Veículo
+      .modal-body
+        form(nome="veiculo", action="/veiculo/?u=#{params.cliente.nome_usuario}", method="post")
+          label Marca
+          input.form-control(type="text", placeholder="Marca do veículo*", id="modalVMarca", name="marca", required)
+          label Modelo
+          input.form-control(type="text", placeholder="Modelo*", id="modalVModelo", name="model", required)
+          label Ano
+          input.form-control(type="number", placeholder="Ano do veiculo*", id="modalVAno", name="age", required)
+          label Placa
+          input.form-control(type="text", placeholder="Placa*", id="modalVPlaca" name="placa", required)
+          label Renavam
+          input.form-control(type="number", placeholder="Renavam*", id="modalVRenavam" name="renavam", required)
+          .btn-group
+            input.btn.btn-primary(type="submit", value="Adicionar Veículo")
+            a.btn.btn-primary(data-dismiss="modal") Cancelar

@@ -20,7 +20,7 @@ div.sigo_menu_lateral
       li
         a(href="../../equipes")
           span.glyphicon.glyphicon-cog(aria-hidden='true')
-          p Equipes de mecânicos
+          p Equipes
     if locals.user.nivel_acesso == 0 || locals.user.nivel_acesso == 2
       li
         a(href="../../mecanicos")
@@ -31,8 +31,13 @@ div.sigo_menu_lateral
         a(href="../../relatorio")
           span(class="glyphicon glyphicon-briefcase", aria-hidden='true') 
           p Relatórios 
+    if locals.user.nivel_acesso == 3
+      li
+        a(href="../../cliente/?u=#{locals.user.nome_usuario}")
+          span.glyphicon.glyphicon-user(aria-hidden='true')
+          p Meus dados
     li 
       a(href="../../logout")
         span(class="glyphicon glyphicon-log-out", aria-hidden='true') 
-        p Log-out 
+        p Log-out
     

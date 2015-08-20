@@ -57,6 +57,17 @@ $('input#mail').blur(function(){
   }
 });
 
+$('#cadastro_func').submit(function(event) {
+  var cargo = $("#cargo option:selected").attr("value");
+  if (cargo == 0) {
+    event.preventDefault();
+    $("#alertCargo").attr({ class   : "alert alert-danger",
+      role  : "alert"
+    });
+    $("#alertCargo").html("Escolha um cargo!");
+  } 
+});
+
 function isValidEmailAddress(email) {
     var validEmail = false;
     if (email) {

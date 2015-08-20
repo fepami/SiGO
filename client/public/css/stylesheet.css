@@ -13,6 +13,7 @@
 .list-group-item {
   background-color: inherit;
   border: none;
+  padding: 10px 0px;
 }
 
 .list-group-item 
@@ -382,7 +383,6 @@ body.sigo_serv_pecas .container {
 body.sigo_serv_pecas .btn-primary{
   display: block;
   margin-right: auto;
-  margin-left: 15px;
   width: 250px;
 }
 
@@ -473,15 +473,12 @@ body.sigo_mecanicos h2 {
 }
 
 body.sigo_mecanicos .btn-primary{
-
   display: block;
   margin-right: auto;
-  margin-left: 15px;
   width: 250px;
 }
 
 body.sigo_mecanicos .container {
-
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -506,8 +503,6 @@ body.sigo_mecanicos .btn-group > .btn {
   margin-right: 20px;
 }
 /* END: Equipes de Mecânicos */
-
-
 
 body.sigo_relatorio {
   display: flex;
@@ -542,3 +537,34 @@ body.sigo_relatorio .btn-primary{
   margin
   width: 250px;
 }
+
+/* START: Cliente */
+
+body.sigo_cliente {
+  display: flex;
+}
+
+body.sigo_cliente .container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+body.sigo_cliente h2 {
+  color: #999;
+  text-shadow: 2px 2px #fff;
+}
+
+body.sigo_cliente .btn-primary{
+  display: block;
+  margin-right: auto;
+  width: 250px;
+}
+
+body.sigo_cliente .btn-group > .btn {
+  margin-right: 20px;
+}
+
+/* END: Cliente */

@@ -68,14 +68,13 @@ function cadastro_cliente(user, callback) {
 
 function do_funcionario_cadastro(req, res) {
   var func = req.body;
-  console.log(func);
   var func_dados = {
     senha: func.password
   };
   util.generateSaltHash(func_dados, function(){
     func_dados.nome_usuario = func.username;
-    if (func.staff.toLowerCase() == "atendente") func_dados.nivel_acesso = 1;
-    else if (func.staff.toLowerCase() == "tecnico") func_dados.nivel_acesso = 2;
+    if (removerAcentos(func.staff.toLowerCase()) == "atendente") func_dados.nivel_acesso = 1;
+    else if (removerAcentos(func.staff.toLowerCase()) == "tecnico") func_dados.nivel_acesso = 2;
     func_dados.email = func.email;
     dbUser.createUsuario(func_dados, function(err, user){
       if (err != undefined) {
@@ -108,4 +107,23 @@ function cadastro_funcionario(func, callback) {
   dbUser.createFuncionario(funcionario, function(){
     callback();
   });
+}
+
+function removerAcentos( string ) {
+  var mapaAcentosHex  = {
+    a : /[\xE0-\xE6]/g,
+    e : /[\xE8-\xEB]/g,
+    i : /[\xEC-\xEF]/g,
+    o : /[\xF2-\xF6]/g,
+    u : /[\xF9-\xFC]/g,
+    c : /\xE7/g,
+    n : /\xF1/g
+  };
+
+  for ( var letra in mapaAcentosHex ) {
+    var expressaoRegular = mapaAcentosHex[letra];
+    string = string.replace( expressaoRegular, letra );
+  }
+
+  return string;
 }
