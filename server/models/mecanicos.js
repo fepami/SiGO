@@ -5,7 +5,32 @@ module.exports = {
   formarEquipe: formarEquipe,
   verificaEquipe: verificaEquipe,
   deletarEquipe: deletarEquipe,
+  getMecanicos : getMecanicos,
+  getMecanico : getMecanico,
+  deletarMecanico : deletarMecanico,
+  salvarMecanico : salvarMecanico,
 };
+
+function getMecanicos(req, res) {
+  db_mecanicos.todosMecanicos(function(err, mecanicos){
+    var data = {}
+    if (req.query != undefined) 
+      data = req.query;
+
+    data.mecanicos = mecanicos ? mecanicos : [];
+    res.render('pages/mecanicos', { data: data } );
+  });
+}
+
+function getMecanico(req, res) {
+  if (req.query.cod == undefined){ 
+    res.json( {mecanico : {}} );
+    return;
+  }
+  db_mecanicos.mecanicoById(req.query.cod, function(err, mecanico){
+    res.json( mecanico );
+  });
+}
 
 function getData(req, res) {
   db_mecanicos.todasEquipes(function(err, equipes){
@@ -17,12 +42,13 @@ function getData(req, res) {
       if(equipes)
         data.equipes = equipes;
       else
-        data.equipes = [];    
+        data.equipes = [];
+
       if(mecanicos)
         data.mecanicos = mecanicos;
       else
         data.mecanicos = [];
-      res.render('pages/mecanicos', { data: data } );
+      res.render('pages/equipes', { data: data } );
     });
   });
 }
@@ -30,10 +56,10 @@ function getData(req, res) {
 function formarEquipe(req, res) {
   if (req.query != undefined) {
     db_mecanicos.createEquipe(req.query, function(err, eq){
-      res.redirect('/mecanicos/?c=t');
+      res.redirect('/equipes/?c=t');
     });
   } else {
-    res.redirect('/mecanicos/?e=t');
+    res.redirect('/equipes/?e=t');
   }
 }
 
@@ -48,12 +74,56 @@ function verificaEquipe(req, res) {
   });
 }
 
-function deletarEquipe(req, res) {
+function deletarMecanico(req, res) {
   if (req.query.del != undefined) {
-    db_mecanicos.deleteEquipe(req.query.del, function(err, id){
+    db_mecanicos.deleteMecanico(req.query.del, function(err, id){
+      if(err)
+        console.log(err);
       res.redirect('/mecanicos/?d=t');
     });
   } else {
     res.redirect('/mecanicos/?e=t');
+  }
+}
+
+function deletarEquipe(req, res) {
+  if (req.query.del != undefined) {
+    db_mecanicos.deleteEquipe(req.query.del, function(err, id){
+      if(err)
+        console.log(err);
+      res.redirect('/equipes/?d=t');
+    });
+  } else {
+    res.redirect('/equipes/?e=t');
+  }
+}
+
+function salvarMecanico(req, res) {
+  mecanico = {}
+    
+  mecanico.nome = req.body.name;
+  mecanico.end_rua = req.body.address;
+  mecanico.end_complemento = req.body.comp;
+  mecanico.end_cep = req.body.cep;
+  mecanico.end_cidade = req.body.city;
+  mecanico.end_estado = req.body.state;
+  mecanico.telefone_1 = req.body.phone;
+  mecanico.telefone_2 = req.body.cellphone;
+  mecanico.especialidade = req.body.especialidade;
+  if(req.query.cod){
+    mecanico.codigo_mecanico = req.query.cod;
+    db_mecanicos.updateMecanico(mecanico, function(err, mecanico){
+      if(err)
+        res.redirect('/mecanicos/?e=t');
+      else
+        res.redirect('/mecanicos/?u=t');
+    });
+  }else{
+    db_mecanicos.createMecanico(mecanico, function(err, id){
+      if(err)
+        res.redirect('/mecanicos/?e=t');
+      else
+        res.redirect('/mecanicos/?c=t');
+    });
   }
 }

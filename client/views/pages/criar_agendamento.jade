@@ -18,10 +18,14 @@ html
           div#status-message
           div(class="btn-group", role="group", aria-label="...")  
 
-            select.form-control(id="cliente_nome")
-              option Selecione um cliente
-              each Cliente in clientes
-                option(data-nomeusuario="#{Cliente.nome_usuario}") #{Cliente.nome}
+            if locals.user.nivel_acesso <= 1
+              select.form-control(id="cliente_nome")
+                  option Selecione um cliente
+                  each Cliente in clientes
+                    option(data-nomeusuario="#{Cliente.nome_usuario}") #{Cliente.nome}
+            else if locals.user.nivel_acesso == 3
+              select.form-control(id="cliente_nome", disabled)
+                option(data-nomeusuario="#{clientes[0].nome_usuario}") #{clientes[0].nome}
 
             select.form-control(id="cliente_veiculo")
               option selecione um veículo

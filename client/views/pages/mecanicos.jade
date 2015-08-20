@@ -5,56 +5,79 @@ html
   body.sigo_mecanicos
     include ../partials/menu_lateral.jade
     
+
+    mixin print_mecanico(mecanico)
+      if mecanico.especialidade == 1
+        p.list-group-item-text #{mecanico.nome} - Eletríca
+      else if mecanico.especialidade == 2
+        p.list-group-item-text #{mecanico.nome} - Motor
+      else if mecanico.especialidade == 3
+        p.list-group-item-text #{mecanico.nome} - Pneus
+      else if mecanico.especialidade == 4
+        p.list-group-item-text #{mecanico.nome} - Outra
+      else
+        p.list-group-item-text #{mecanico.nome} - 
+
     .container
       .jumbotron
         if data.c
-          .alert.alert-success Equipe formada com sucesso!
+          .alert.alert-success Mecânico adicionado com sucesso!
+        if data.u
+          .alert.alert-success Mecânico atualizado com sucesso!
         if data.e
           .alert.alert-danger Erro ao se comunicar com o servidor!
         if data.d
-          .alert.alert-success Equipe Deletada com sucesso!
-        h2 Equipes
+          .alert.alert-success Mecânico Deletado com sucesso!
+        h2 Mecânicos
         .list-group
-          each equipe in data.equipes
+          each mecanico in data.mecanicos
             .list-group-item
-              h4.list-group-item-heading-up Equipe #{equipe.id_equipe}
+              h4.list-group-item-heading-up Mecânico #{mecanico.codigo_mecanico}
               if locals.user.nivel_acesso == 0
-                a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDEquipe", id="deleteEquipe", data-id="#{equipe.id_equipe}")
-              p.list-group-item-text #{equipe.nome1} e #{equipe.nome2}
+                a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDMecanico", id="deleteMecanico", data-id="#{mecanico.codigo_mecanico}")
+                a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalMecanico", id="alterMecanico", data-id="#{mecanico.codigo_mecanico}")
+              +print_mecanico(mecanico)
         if locals.user.nivel_acesso == 0
-          a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalEquipe") Formar equipe
+          a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalMecanico") Adicionar Mecânico
 
-    //- Modal para formar equipe
-    .modal.fade(role="dialog", id="modalEquipe")
+    //- Modal para Adicionar Mecânico
+    .modal.fade(role="dialog", id="modalMecanico")
       .modal-dialog
         .modal-content
           .modal-header
-            h1.modal-title Formar equipe
+            h1.modal-title Adicionar Mecânico
           .modal-body
             div#modalAlert
-            select.form-control(id="mecanico1")
-              option Selecione um mecânico
-              each mecanico in data.mecanicos
-                option(data-mecanico1 = "#{mecanico.codigo_mecanico}") #{mecanico.nome}
-            select.form-control(id="mecanico2")
-              option Selecione outro mecânico
-              each mecanico in data.mecanicos
-                option(data-mecanico2 = "#{mecanico.codigo_mecanico}") #{mecanico.nome}
-            .btn-group
-              a.btn.btn-primary(href="#", id="buttonConfirmacao") Formar Equipe
-              a.btn.btn-primary(data-dismiss="modal") Cancelar
+            form(id="cadastro", name="cadastro", action="/mecanico/salvar", method="post")
+              input.form-control(id="name", type="text", placeholder="Nome Completo*", name="name", required)
+              input.form-control(id="address", type="text", placeholder="Endereço", name="address")
+              input.form-control(id="comp", type="text", placeholder="Complemento", name="comp")
+              input.form-control(id="cep", type="text", placeholder="CEP (Exemplo: 12345-678)", name="cep")
+              input.form-control(id="city", type="text", placeholder="Cidade", name="city")
+              input.form-control(id="state", type="text", placeholder="UF (Exemplo: SP)", name="state")
+              input.form-control(id="phone", type="text", placeholder="Telefone - Ex: (11) 50509999", name="phone")
+              input.form-control(id="cellphone", type="text", placeholder="Telefone Celular - Ex: (11) 960608888", name="cellphone")
+              select.form-control(id="esp", name="especialidade")
+                option(value="0") Selecione uma especialidade
+                option(value="1") Eletríca
+                option(value="2") Motor
+                option(value="3") Pneus
+                option(value="4") Outra
+              .btn-group
+                input.btn.btn-primary.right-block(type="submit", value="Finalizar cadastro", id="confirmar_cadastro")
+                a.btn.btn-primary(data-dismiss="modal") Cancelar
 
-    //- Modal para confirmação - remoção de equipe
-    .modal.fade(role="dialog", id="modalDEquipe")
+    //- Modal para confirmação - remoção de Mecânico
+    .modal.fade(role="dialog", id="modalDMecanico")
       .modal-dialog
         .modal-content
           .modal-header
-            h1.modal-title Deletar equipe
+            h1.modal-title Deletar Mecânico
           .modal-body
-            h3 Deseja deletar a equipe?
+            h3 Deseja deletar a Mecânico?
           .modal-footer
             .btn-group
-              a.btn.btn-primary(id="deleteEConfirm") Deletar
+              a.btn.btn-primary(id="deleteMConfirm") Deletar
               a.btn.btn-primary(data-dismiss="modal") Cancelar
 
-    script(src='../js/equipes.js')
+    script(src='../js/mecanicos.js')

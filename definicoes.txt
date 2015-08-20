@@ -2,3 +2,9 @@ Agendamento
 	Status:
 		0: Cancelado
 		1: Ativo
+Mecanico
+	especialidade
+		1: Eletríca
+		2: Motor
+		3: Pneus
+		4: Outra

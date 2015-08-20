@@ -518,6 +518,8 @@ body.sigo_mecanicos h4 {
 }
 
 body.sigo_mecanicos a.glyphicon {
+  margin-right: 10px;
+  margin-left: 10px;
   color: #2196F3;
 }
 
@@ -532,9 +534,32 @@ body.sigo_relatorio {
   display: flex;
 }
 
+body.sigo_relatorio h2 {
+  color: #999;
+  text-shadow: 2px 2px #fff;
+  text-align: center;
+}
+
+body.sigo_relatorio .margin-bot {
+  margin-bottom: 30px;
+}
+
+body.sigo_relatorio .btn-group > .btn {
+  margin-right: 20px;
+}
+
 body.sigo_relatorio .container {
   display: flex;
   flex-direction: column;
   align-self: center;
   justify-content: space-between;
+}
+
+body.sigo_relatorio .btn-primary{
+
+  display: block;
+  margin-right: auto;
+  margin-left: 15px;
+  margin
+  width: 250px;
 }

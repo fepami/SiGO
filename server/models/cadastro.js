@@ -10,6 +10,10 @@ module.exports = {
 function do_cadastro(req, res) {
   /* Tratamento para verificação de usuário e email */
   if (req.query.u != undefined) {
+    if(req.query.u == ""){
+      res.json( {user: ""} );
+      return;
+    }
     dbUser.findUserByName(req.query.u, function(err, user){
       if (user != undefined) {
         res.json( {user: user} );

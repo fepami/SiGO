@@ -284,7 +284,7 @@
 		var methods = {
 			init: function(settings) {
 				var options = $.extend({}, defaults, settings);
-
+				data = pMethods.formatDate(now, {format:'d/m/y'});
 				// Events
 				if(!$(document).data('supercal-events')) {
 					$(document).on('click.supercal', '.supercal .change-month', function(e) {

@@ -58,3 +58,5 @@ $(".change-month span").click(function(){
 
 	$(".change-month").toggle();
 });
+
+refreshHour();

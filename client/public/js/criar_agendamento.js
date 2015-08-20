@@ -62,7 +62,9 @@ $(".change-month span").click(function(){
 
 
 $("#cliente_nome").change(function(){
-
+	
+	if(!$("#cliente_nome option:selected").attr("data-nomeusuario"))
+		return;
 	nomeUsuarioCliente = $("#cliente_nome option:selected").attr("data-nomeusuario").split(' ').join('+');
 
 	$.getJSON("?nr=" + nomeUsuarioCliente, function(data, status){
@@ -81,4 +83,5 @@ $("#cliente_nome").change(function(){
     });
 });
 
-
+$("#cliente_nome").change();
+refreshHour();

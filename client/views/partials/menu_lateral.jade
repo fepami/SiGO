@@ -18,9 +18,14 @@ div.sigo_menu_lateral
           p Seviços & Peças 
     if locals.user.nivel_acesso == 0 || locals.user.nivel_acesso == 2
       li
-        a(href="../../mecanicos")
+        a(href="../../equipes")
           span.glyphicon.glyphicon-cog(aria-hidden='true')
           p Equipes de mecânicos
+    if locals.user.nivel_acesso == 0 || locals.user.nivel_acesso == 2
+      li
+        a(href="../../mecanicos")
+          span.glyphicon.glyphicon-cog(aria-hidden='true')
+          p Mecânicos
     if locals.user.nivel_acesso == 0
       li 
         a(href="../../relatorio")
