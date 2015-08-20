@@ -14,8 +14,14 @@ function getData(req, res) {
       if (req.query != undefined) {
         data = req.query;
       }
-      data.equipes = equipes;
-      data.mecanicos = mecanicos;
+      if(equipes)
+        data.equipes = equipes;
+      else
+        data.equipes = [];    
+      if(mecanicos)
+        data.mecanicos = mecanicos;
+      else
+        data.mecanicos = [];
       res.render('pages/mecanicos', { data: data } );
     });
   });

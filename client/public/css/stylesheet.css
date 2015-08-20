@@ -526,3 +526,15 @@ body.sigo_mecanicos .btn-group > .btn {
 }
 /* END: Equipes de Mecânicos */
 
+
+
+body.sigo_relatorio {
+  display: flex;
+}
+
+body.sigo_relatorio .container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-between;
+}
