@@ -51,21 +51,21 @@ function alterCliente(cliente, nome_usuario, callback){
         'telefone_2 = $8 WHERE nome_usuario = $1',
       values: [cliente.nome_usuario, cliente.nome, cliente.end_rua,
         cliente.end_complemento, cliente.end_cidade, cliente.end_estado,
-        cliente.telefone_1, cliente.telefone_2, cliente.salario,
-        cliente.cargo, nome_usuario],
+        cliente.telefone_1, cliente.telefone_2, nome_usuario],
       name: 'alter_cliente'
     });
       query.on('row', function(row, result) {
-          result.addRow(row);
+        result.addRow(row);
       });
       query.on('error', function(error) {
-          db.checkQueryError(error, client, done, callback);
+        db.checkQueryError(error, client, done, callback);
+        console.log(error)
       });
       query.on('end', function(result) {
-           done();
-           console.log('cliente ' + cliente.nome_usuario + ' alterado com sucesso');
-           cliente.nome_usuario = nome_usuario;
-           callback(null, cliente);
+        done();
+        console.log('cliente ' + cliente.nome_usuario + ' alterado com sucesso');
+        cliente.nome_usuario = nome_usuario;
+        callback(null, cliente);
       });
   });
 }

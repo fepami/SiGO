@@ -29,6 +29,11 @@ function do_cadastro(req, res) {
         res.json( {} );
       }
     });
+  } else if (req.query.user != undefined) {
+    req.body.username = req.query.user;
+    edicao_cliente(req.body, function(){
+      res.redirect('/cliente/?u=' + req.query.user +'&e=t');
+    });
   } else {
     var user = {};
     user.senha = req.body.password;
@@ -49,21 +54,6 @@ function do_cadastro(req, res) {
       });
     });
   }
-}
-
-function cadastro_cliente(user, callback) {
-  var cliente = {};
-  cliente.nome_usuario = user.username;
-  cliente.nome = user.name;
-  cliente.end_rua = user.address;
-  cliente.end_complemento = user.comp;
-  cliente.end_cidade = user.city;
-  cliente.end_estado = user.state;
-  cliente.telefone_1 = user.phone;
-  cliente.telefone_2 = user.cellphone;
-  dbCliente.createCliente(cliente, function(){
-    callback();
-  });
 }
 
 function do_funcionario_cadastro(req, res) {
@@ -87,6 +77,36 @@ function do_funcionario_cadastro(req, res) {
         });
       }
     });
+  });
+}
+
+function cadastro_cliente(user, callback) {
+  var cliente = {};
+  cliente.nome_usuario = user.username;
+  cliente.nome = user.name;
+  cliente.end_rua = user.address;
+  cliente.end_complemento = user.comp;
+  cliente.end_cidade = user.city;
+  cliente.end_estado = user.state;
+  cliente.telefone_1 = user.phone;
+  cliente.telefone_2 = user.cellphone;
+  dbCliente.createCliente(cliente, function(){
+    callback();
+  });
+}
+
+function edicao_cliente(user, callback) {
+  var cliente = {};
+  cliente.nome_usuario = user.username;
+  cliente.nome = user.name;
+  cliente.end_rua = user.address;
+  cliente.end_complemento = user.comp;
+  cliente.end_cidade = user.city;
+  cliente.end_estado = user.state;
+  cliente.telefone_1 = user.phone;
+  cliente.telefone_2 = user.cellphone;
+  dbCliente.alterCliente(cliente, null, function(){
+    callback();
   });
 }
 

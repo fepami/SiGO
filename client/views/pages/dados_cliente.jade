@@ -13,9 +13,11 @@ html
           .alert.alert-success Veículo adicionado com sucesso!
         if params.d
           .alert.alert-success Veículo deletado com sucesso!
+        if params.e
+          .alert.alert-success Edição terminada com sucesso!
         .text-left
           label Nome:
-          a.btn.btn-primary.pull-right Editar dados
+          a.btn.btn-primary.pull-right(href="#", data-toggle="modal", data-target="#modalEditCliente") Editar dados
           p #{params.cliente.nome}
           if params.cliente.end_rua
             label Endereço
@@ -36,7 +38,7 @@ html
             p #{params.cliente.end_estado}
           
           if params.cliente.telefone_1
-            label Telefones:
+            label Telefone(s):
             p #{params.cliente.telefone_1} 
               if params.cliente.end_telefone_2
                 | / #{params.cliente.telefone_2}
@@ -64,5 +66,6 @@ html
               a.btn.btn-primary(data-dismiss="modal") Cancelar
 
     include ../partials/_modal_adicionar_veiculo.jade
-
+    include ../partials/_modal_editar_cliente.jade
+    
     script(src="../js/dados_cliente.js")
