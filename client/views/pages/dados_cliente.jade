@@ -1,0 +1,73 @@
+html
+  head
+    title SiGO | Dados de cliente
+    include ../partials/head.jade
+  body.sigo_cliente
+    include ../partials/menu_lateral.jade
+
+    div.container
+      div.jumbotron
+        h2 Meus Dados
+        //- Alertas
+        if params.v
+          .alert.alert-success Veículo adicionado com sucesso!
+        if params.d == 't'
+          .alert.alert-success Veículo deletado com sucesso!
+        if params.d == 'f'
+          .alert.alert-danger Existe um agendamento com esse veículo, não se pode removê-lo!
+        if params.e
+          .alert.alert-success Edição terminada com sucesso!
+        .text-left
+          label Nome:
+          a.btn.btn-primary.pull-right(href="#", data-toggle="modal", data-target="#modalEditCliente") Editar dados
+          p #{params.cliente.nome}
+          if params.cliente.end_rua
+            label Endereço
+            p #{params.cliente.end_rua} 
+              if params.cliente.end_complemento
+                | - #{params.cliente.end_complemento}
+          
+          if params.cliente.end_cep
+            label CEP:
+            p #{params.cliente.end_cep}
+          
+          if params.cliente.end_cidade
+            label Cidade:
+            p #{params.cliente.end_cidade}
+          
+          if params.cliente.end_estado
+            label Estado:
+            p #{params.cliente.end_estado}
+          
+          if params.cliente.telefone_1
+            label Telefone(s):
+            p #{params.cliente.telefone_1} 
+              if params.cliente.end_telefone_2
+                | / #{params.cliente.telefone_2}
+        h2 Veículos cadastrados
+        .list-group
+          each veiculo in params.veiculos
+            .list-group-item
+              h4.list-group-item-heading.up-first-letter #{veiculo.marca} #{veiculo.modelo} - #{veiculo.ano}
+              a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDVeiculo", id="deleteVeiculo", data-renavam="#{veiculo.renavam}", data-cliente="#{params.cliente.nome_usuario}")
+              p.list-group-item-text.up-first-letter Renavam: #{veiculo.renavam}
+              p.list-group-item-text.up-first-letter Placa: #{veiculo.placa}
+        a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalVeiculo") Adicionar Veículo
+
+    //- Modal para confirmação - remoção de veículo
+    .modal.fade(role="dialog", id="modalDVeiculo")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h1.modal-title Deletar Veículo
+          .modal-body
+            h3 Deseja deletar o Veículo?
+          .modal-footer
+            .btn-group
+              a.btn.btn-primary(id="deleteVConfirm") Deletar
+              a.btn.btn-primary(data-dismiss="modal") Cancelar
+
+    include ../partials/_modal_adicionar_veiculo.jade
+    include ../partials/_modal_editar_cliente.jade
+    
+    script(src="../js/dados_cliente.js")

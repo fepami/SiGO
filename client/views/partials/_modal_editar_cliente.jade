@@ -1,0 +1,24 @@
+.modal.fade(role="dialog", id="modalEditCliente")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h1.modal-title Editar cliente
+      .modal-body
+        form(nome="cliente", action="/cadastro/?user=#{params.cliente.nome_usuario}", method="post")
+          label Nome completo
+          input.form-control(type="text", placeholder="Nome Completo*", name="name", value="#{params.cliente.nome}" required)
+          label Endereço
+          input.form-control(type="text", placeholder="Endereço", name="address", value="#{params.cliente.end_rua}")
+          label Complemento
+          input.form-control(type="text", placeholder="Complemento", name="comp", value="#{params.cliente.end_complemento}")
+          label Telefone
+          input.form-control(type="text", placeholder="Telefone - Ex: (11) 50509999", name="phone", value="#{params.cliente.telefone_1}")
+          label Cidade
+          input.form-control(type="text", placeholder="Cidade", name="city", value="#{params.cliente.end_cidade}")
+          label Estado
+          input.form-control(type="text", placeholder="UF (Exemplo: SP)", name="state", value="#{params.cliente.end_estado}")
+          label Celular
+          input.form-control(type="text", placeholder="Telefone Celular - Ex: (11) 960608888", name="cellphone", value="#{params.cliente.telefone_2}")
+          .btn-group
+            input.btn.btn-primary.right-block(type="submit", value="Finalizar edição")
+            a.btn.btn-primary(data-dismiss="modal") Cancelar

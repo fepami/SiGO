@@ -8,15 +8,13 @@ html
 
     mixin print_mecanico(mecanico)
       if mecanico.especialidade == 1
-        p.list-group-item-text #{mecanico.nome} - Eletríca
+        p.list-group-item-text Especialidade - Elétrica
       else if mecanico.especialidade == 2
-        p.list-group-item-text #{mecanico.nome} - Motor
+        p.list-group-item-text Especialdiade - Motor
       else if mecanico.especialidade == 3
-        p.list-group-item-text #{mecanico.nome} - Pneus
-      else if mecanico.especialidade == 4
-        p.list-group-item-text #{mecanico.nome} - Outra
+        p.list-group-item-text Especialidade - Pneus
       else
-        p.list-group-item-text #{mecanico.nome} - 
+        p.list-group-item-text Especialidade - Geral
 
     .container
       .jumbotron
@@ -32,11 +30,12 @@ html
         .list-group
           each mecanico in data.mecanicos
             .list-group-item
-              h4.list-group-item-heading-up Mecânico #{mecanico.codigo_mecanico}
+              h4.list-group-item-heading-up #{mecanico.nome}
               if locals.user.nivel_acesso == 0
                 a.glyphicon.glyphicon-trash.pull-right(href="#", data-toggle="modal", data-target="#modalDMecanico", id="deleteMecanico", data-id="#{mecanico.codigo_mecanico}")
                 a.glyphicon.glyphicon-pencil.pull-right(href="#", data-toggle="modal", data-target="#modalMecanico", id="alterMecanico", data-id="#{mecanico.codigo_mecanico}")
               +print_mecanico(mecanico)
+              p.list-group-item-text Telefone: #{mecanico.telefone_1}
         if locals.user.nivel_acesso == 0
           a.btn.btn-primary(href="#", data-toggle="modal", data-target="#modalMecanico") Adicionar Mecânico
 

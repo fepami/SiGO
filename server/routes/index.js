@@ -17,7 +17,6 @@ var relatorios 	  = require('../models/relatorio.js')
 
 router.get('/', function(req, res) { 
   var params = req.query;
-  console.log(params);
   res.render('pages/login', { params: params } );
 });
 router.get('/login', 	function(req, res)	{ res.redirect('/'); });
@@ -91,6 +90,14 @@ router.get('/mecanico/delete'			, login.restrict, mecanicos.deletarMecanico);
 router.get('/relatorio'					, login.restrict, function(req, res){
 	res.render('pages/relatorio');
 });
-
 router.get('/relatorio/gerar' 			, login.restrict, relatorios.doGetRelatorio);
+
+/**
+* R O T A S   P A R A   A S   T E L A S   D E   D A D O S  D E  C L I E N T E
+*/
+router.get('/cliente', login.restrict, cliente.getData);
+router.post('/veiculo', login.restrict, cliente.addVeiculo);
+router.get('/veiculo', login.restrict, cliente.deleteVeiculo);
+router.get('/clientes', login.restrict, cliente.getAllClientesData)
+
 module.exports = router;

@@ -8,7 +8,8 @@ html
         img.center-block(src='../assets/image/logo_sigo.png')
         .margin-top#alertEmail
         .margin-top#alertUser
-        form(name="cadastro_func", action="/cadastro/funcionario", method="post")
+        .margin-top#alertCargo
+        form(name="cadastro_func", action="/cadastro/funcionario", method="post", id="cadastro_func")
           h2.text-center Dados para autenticação
           input.form-control(type="email", placeholder="Digite seu e-mail*", name="email", id="mail", required)
           input.form-control(type="text", placeholder="Escolha um usuário*", name="username", id="user", required)
@@ -25,6 +26,9 @@ html
           input.form-control(type="text", placeholder="UF - Exemplo: SP*", name="state", required)
           input.form-control(type="text", placeholder="Telefone Celular - Ex: (11) 960608888*", name="cellphone", required)
           input.form-control(type="number", placeholder="Salário*", name="sal", required)
-          input.form-control(type="text", placeholder="Cargo*", name="staff", required)
+          select.form-control(id="cargo", name="staff")
+            option(value="0") Selecione um cargo
+            option(value="1") Técnico
+            option(value="2") Atendente
           input.btn.btn-primary.right-block(type="submit", value="Finalizar cadastro", id="confirmar_cadastro")
     script(src='../js/cadastro.js')
