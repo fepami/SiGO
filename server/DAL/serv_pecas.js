@@ -52,7 +52,6 @@ function todasPecas(callback){
       });
   });
 }
-
 function criarPeca(peca, callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);

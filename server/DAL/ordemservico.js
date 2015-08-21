@@ -60,6 +60,30 @@ function todasOS(callback){
   });
 }
 
+function OSById(id_os, callback){
+  db.connect(function(err, client, done){
+    db.checkConnectionError(err, callback);
+      console.log(id_os);
+      var query = client.query({
+          text: "SELECT numero_os, to_char(data_emissao, 'dd/mm/YY') as data_emissao, to_char(data_conclusao, 'dd/mm/YY') as data_conclusao, id_equipe, id_agendamento "+
+                'FROM os '+
+                'WHERE numero_os = $1',
+          values: [id_os],
+          name: 'os_by_id'
+      });
+      query.on('row', function(row, result) {
+          result.addRow(row);
+      });
+      query.on('error', function(error) {
+        db.checkQueryError(error, client, done, callback);
+      });
+      query.on('end', function(result) {
+           done();
+           callback(null, result.rows[0]);
+      });
+  });
+}
+
 function criarOS(os, callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
@@ -243,4 +267,5 @@ module.exports = {
   suspenderOS   : suspenderOS,
   criarServico  : criarServico,
   atualizarPeca : atualizarPeca,
+  OSById : OSById,
 };

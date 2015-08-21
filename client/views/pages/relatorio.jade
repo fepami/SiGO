@@ -29,11 +29,30 @@ html
             .btn-group
               button.btn.btn-primary(type="submit", class="btn btn-default") Gerar
               
-        div.table-responsive#table-container
+        div.table-responsive#table-container-agendamento
+          h4 Agendamentos
           table.table.table-hover.table-condensed
             thead
               tr 
                 th Ativos
                 th Cancelados
+            tbody
+        div.table-responsive#table-container-os
+          h4 OS
+          table.table.table-hover.table-condensed
+            thead
+              tr 
+                th Aguardando
+                th Aprovadas
+                th Finalizadas
+                th Suspensas
+            tbody
+        div.table-responsive#table-container-os-suspensa
+          h4 OS Suspensas
+          table.table.table-hover.table-condensed
+            thead
+              tr 
+                th Valor
+                th Prazo de execução
             tbody
 script(src='js/relatorio.js')

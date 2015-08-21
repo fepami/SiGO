@@ -76,8 +76,20 @@ function toggle_enable(bool){
 }
 
 $('.visualizar-os').click(function(event){
-	// debugger;
 	toggle_enable(false);
+	numeroOs = $(this).parents("tr.os").attr("data-numero-os");
+	console.log(numeroOs);
+	$.getJSON("../os?id=" + numeroOs, function(res, status){
+		var dataConclusao = {};
+		dataConclusao.dia =parseInt(res.os.data_conclusao.substr(0,2));
+		$('.dia :nth-child(' + dataConclusao.dia + ')').prop('selected', true);
+		dataConclusao.mes =parseInt(res.os.data_conclusao.substr(3,2));
+		$('.mes :nth-child(' + dataConclusao.mes + ')').prop('selected', true);
+		dataConclusao.ano ="20" + res.os.data_conclusao.substr(6,2);
+		$(".ano").val(dataConclusao.ano);
+		$(".agendamento").find("#" + res.os.id_agendamento).prop('selected', true);
+		$(".mecanico").find("#" + res.os.id_equipe).prop('selected', true);
+	});
 });
 
 $('#criar-os').click(function(event){

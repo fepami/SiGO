@@ -55,6 +55,29 @@ function doConsultarOs(req, res){
   });
 }
 
+function doConsultarOsById(req, res){
+  if(req.query.id == undefined){
+    req.session.error = 'Bad Request';
+    console.error(req.session.error);
+    res.end();
+    return;
+  }
+  var id_os = req.query.id
+  var result = {}; // Todas os dados necessarios para montar a view 'Abrir OS'
+
+  dbOS.OSById(id_os, function(err, os){
+    if (err) {
+      req.session.error = 'Falha ao buscar os';
+      console.error(err);
+    } else {
+      result.os = os;                     
+      res.json(result);
+    }
+    res.end();
+  });
+}
+
+
 function doAutorizaOs(req, res){
   if(req.query.nos == undefined){
     req.session.error = 'Bad Request';
@@ -211,4 +234,5 @@ module.exports = {
   doSuspendeOs    : doSuspendeOs,
   doCriarServico  : doCriarServico,
   doAtualizarPeca : doAtualizarPeca,
+  doConsultarOsById : doConsultarOsById,
 };
