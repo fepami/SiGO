@@ -98,5 +98,6 @@ router.get('/relatorio/gerar' 			, login.restrict, relatorios.doGetRelatorio);
 router.get('/cliente', login.restrict, cliente.getData);
 router.post('/veiculo', login.restrict, cliente.addVeiculo);
 router.get('/veiculo', login.restrict, cliente.deleteVeiculo);
+router.get('/clientes', login.restrict, cliente.getAllClientesData)
 
 module.exports = router;

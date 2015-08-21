@@ -24,7 +24,7 @@ insert into funcionario values ('tecnico2','Kauê Melo Rocha','Rua da Coleirinha
 insert into funcionario values ('tecnico3','Clara Azevedo Fernandes','Rua Leonardo Marcondes Gonzaga, 891','','50940-122','São Bernardo do Campo','SP','(11) 3980-7347','',40000,'tecnico');
 insert into funcionario values ('tecnico4','Leila Dias Oliveira','Rua Santa Rita, 1121','','50910-122','Itabuna','BA','(73) 6216-6312','',40000,'tecnico');
 
-insert into cliente values ('cliente1','Clara Barbosa Gomes','Rua Renato Leite e Silva, 1282','apto. 51 bloco A','50230-122','Rio de Janeiro','RJ','(21) 8184-6433','');
+insert into cliente values ('cliente1','Clara Barbosa Gomes','Rua Renato Leite e Silva, 1282','apto. 51 bloco A','50230-122','Rio de Janeiro','RJ','(21) 8184-6433','(21) 98326-2425');
 insert into cliente values ('cliente2','Anna Ribeiro Gomes','Rua Dez, 1659','','50456-122','Duque de Caxias','RJ','(21) 5173-4940','');
 insert into cliente values ('cliente3','Leila Ferreira Araujo','2ª Travessa Manuel Salvador, 1845','apto. 51 bloco A','50909-122','Recife','PE','(81) 4519-5274','');
 insert into cliente values ('cliente4','Kauan Oliveira Carvalho','Rua Diadema, 1596','','06396-140','Carapicuíba','SP','(11) 8742-9388','');

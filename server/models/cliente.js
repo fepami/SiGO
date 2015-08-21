@@ -4,6 +4,7 @@ module.exports = {
   getData: getData,
   addVeiculo: addVeiculo,
   deleteVeiculo: deleteVeiculo,
+  getAllClientesData: getAllClientesData,
 };
 
 function getData(req, res) {
@@ -37,7 +38,18 @@ function addVeiculo(req, res) {
 function deleteVeiculo(req, res) {
   if (req.query.u != undefined && req.query.del != undefined) {
     db_cliente.delVeiculo(req.query.del, function(err, renavam){
-      res.redirect('/cliente/?u=' + req.query.u + '&d=t');
+      if (err != null) {
+        console.log(err);
+        res.redirect('/cliente/?u=' + req.query.u + '&d=f');
+      } else {
+        res.redirect('/cliente/?u=' + req.query.u + '&d=t');
+      }
     });
   } 
+}
+
+function getAllClientesData(req, res) {
+  db_cliente.allCliente(function(err, clientes){
+    res.render('pages/clientes', { clientes: clientes } );
+  });
 }

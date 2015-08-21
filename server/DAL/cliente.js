@@ -170,7 +170,9 @@ function delVeiculo(renavam, callback) {
         result.addRow(row);
       });
       query.on('error', function(error) {
-        db.checkQueryError(error, client, done, callback);
+        // db.checkQueryError(error, client, done, callback);
+        console.log(error);
+        callback(error, null);
       });
       query.on('end', function(result) {
         done();

@@ -567,4 +567,41 @@ body.sigo_cliente .btn-group > .btn {
   margin-right: 20px;
 }
 
+body.sigo_clientes {
+  display: flex;
+}
+
+body.sigo_clientes .container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+body.sigo_clientes h2 {
+  color: #999;
+  text-shadow: 2px 2px #fff;
+}
+
+body.sigo_clientes .btn-primary{
+  display: block;
+  margin-right: auto;
+  width: 250px;
+}
+
+body.sigo_clientes h4 {
+  color: #2196F3;
+}
+
+body.sigo_clientes div.glyphicon {
+  margin-right: 10px;
+  margin-left: 10px;
+  color: #2196F3;
+}
+
+body.sigo_clientes .list-group p {
+  color: #333;
+}
+
 /* END: Cliente */

@@ -1,0 +1,19 @@
+html
+  head
+    title SiGO | Dados de cliente
+    include ../partials/head.jade
+  body.sigo_clientes
+    include ../partials/menu_lateral.jade
+
+    div.container
+      div.jumbotron
+        h2 Clientes
+        .list-group
+          each cliente in clientes
+            li.list-group-item
+              a(href="/cliente/?u=#{cliente.nome_usuario}")
+                h4.list-group-item-heading-up #{cliente.nome}
+                .glyphicon.glyphicon-chevron-right.pull-right
+                p.list-group-item-text Telefone(s): #{cliente.telefone_1}
+                  if cliente.telefone_2
+                    | / #{cliente.telefone_2} 

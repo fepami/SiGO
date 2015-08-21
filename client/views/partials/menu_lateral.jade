@@ -36,6 +36,11 @@ div.sigo_menu_lateral
         a(href="../../cliente/?u=#{locals.user.nome_usuario}")
           span.glyphicon.glyphicon-user(aria-hidden='true')
           p Meus dados
+    if locals.user.nivel_acesso == 1
+      li
+        a(href="../../clientes")
+          span.glyphicon.glyphicon-user(aria-hidden='true')
+          p Clientes
     li 
       a(href="../../logout")
         span(class="glyphicon glyphicon-log-out", aria-hidden='true') 

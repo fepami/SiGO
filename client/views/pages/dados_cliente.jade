@@ -11,8 +11,10 @@ html
         //- Alertas
         if params.v
           .alert.alert-success Veículo adicionado com sucesso!
-        if params.d
+        if params.d == 't'
           .alert.alert-success Veículo deletado com sucesso!
+        if params.d == 'f'
+          .alert.alert-danger Existe um agendamento com esse veículo, não se pode removê-lo!
         if params.e
           .alert.alert-success Edição terminada com sucesso!
         .text-left
