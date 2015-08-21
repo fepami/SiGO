@@ -412,6 +412,7 @@ body.sigo_serv_pecas a.glyphicon {
 
 body.sigo_os {
   display: flex;
+  text-align: left;
 }
 
 body.sigo_os .container {
@@ -419,32 +420,10 @@ body.sigo_os .container {
   flex-direction: column;
   align-self: center;
   justify-content: space-between;
-  text-align: center;
+
 }
 
-body.sigo_os h2 {
-  color: #999;
-  text-shadow: 2px 2px #fff;
-  font-size: 16px;
-}
 
-body.sigo_os div#status-message h2{
-  text-shadow: 0px 0px #fff;
-  font-size: 16px; 
-}
-
-body.sigo_os h4 {
-  color: #2196F3;
-  font-size: 16px;
-}
-
-body.sigo_os h4:hover {
-  color: #4ba9f2;
-}
-
-body.sigo_os .btn-group > .btn {
-  margin-right: 20px;
-}
 
 body.sigo_os .modal-content{
   text-align: left;

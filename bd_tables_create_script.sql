@@ -106,7 +106,7 @@ create table os
 	data_conclusao	date,
 	status			 int,
 	motivo_suspensao int,
-	id_equipe		 int,
+	id_equipe		 int 			references equipe_mecanico(id_equipe),
 	id_agendamento	 int			references agendamento(id)			
 );
 

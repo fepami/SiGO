@@ -57,7 +57,9 @@ router.get ('/agendamento/editar/editar', login.restrict, agendamento.doEditarAg
 router.get ('/os/consultar'				, login.restrict, os.doConsultarOs);
 router.get ('/os/criar'					, login.restrict, os.doCriarOs);
 router.get ('/os/criar/servico' 		, login.restrict, os.doCriarServico);
-// router.get ('/os/criar/peca'    		, login.restrict, os.doAtulizarPeca);
+router.get ('/os/autorizar'     /*, login.restrict*/, os.doAutorizaOs);
+router.get ('/os/finalizar'     /*, login.restrict*/, os.doFinalizaOs);
+router.get ('/os/suspender'     /*, login.restrict*/, os.doSuspendeOs);
 
 
 /**

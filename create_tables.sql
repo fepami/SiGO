@@ -97,5 +97,5 @@ insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_e
 insert into mecanico (nome, end_rua, end_complemento, end_cep, end_cidade, end_estado, telefone_1, telefone_2, especialidade)
 	values ('Leonardo Dias Fernandes', 'Rua Mário Luciano da Silva, 1492', null, '36200-678', 'Barbacena', 'MG', '(32) 9764-9595', null, 1);
 
-insert into os (data_emissao, valor, data_conclusao, status, motivo_suspensao, total_pecas, id_equipe)
-	values (to_date('07/08/2015', 'dd/mm/YYYY'), 515.76, '17/08/2015', 1, null, 10, 1);
+insert into os (data_emissao, data_conclusao, status, motivo_suspensao, id_equipe, id_agendamento)
+	values (to_date('07/08/2015', 'dd/mm/YYYY'), to_date('17/08/2015', 'dd/mm/YYYY'), 1, 0, 1, 1);

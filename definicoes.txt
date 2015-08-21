@@ -8,3 +8,13 @@ Mecanico
 		2: Motor
 		3: Pneus
 		4: Outra
+OS
+	status
+		0: AGUARDANDO
+		1: APROVADA
+		2: FINALIZADA
+		3: SUSPENSA
+	motivo_suspensa
+		0: -
+		1: VALOR
+		2: PRAZO DE EXECUÇÃO

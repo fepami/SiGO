@@ -9,6 +9,10 @@ $(window).load(function(){
     novaPecaAppend    = $(".selecionar_peca_modelo").html();
 });
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 $('body').on('change', '.selecionar_servico select', function(e){
 	
 	valorServico = $(this).parentsUntil(".selecionar_servico").find(".servico option:selected").attr("data-preco");
@@ -107,6 +111,7 @@ $('#botao-abrir-os').click(function(){
 	dataEmissao.mes = dataEmissao.mes < 10 ? "0" + dataEmissao.mes : dataEmissao ;
 	dataEmissao.ano = data.getFullYear();
 	var numeroOs;
+	var agendamento = $("select.agendamento option:selected").attr("id");
 
 	var mecanico1 = $("select.mecanico.1 option:selected").attr("id");
 	var mecanico2 = $("select.mecanico.2 option:selected").attr("id");
@@ -117,6 +122,7 @@ $('#botao-abrir-os').click(function(){
 		  		"mecanico 2: " + mecanico2);
 	
 	$.getJSON("../os/criar?m1=" + mecanico1 +
+			  			 "&a=" + agendamento+
 			  			 "&dc="+ dataConclusao.dia+"/"+dataConclusao.mes+"/"+dataConclusao.ano+
 			  			 "&de="+ dataEmissao.dia+"/"+dataEmissao.mes+"/"+dataEmissao.ano, function(res, status){	
 		

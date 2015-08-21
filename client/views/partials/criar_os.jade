@@ -1,14 +1,114 @@
-.modal.fade(role="dialog", id="modalNovaPeca")
-      .modal-dialog
-        .modal-content
-          .modal-header
-            h1 Adicionar Peça
-          .modal-body
-            form(nome="peca", action="/peca", method="post")
-              input.form-control(type="text", placeholder="Nome da Peça*", name="name", required)
-              input.form-control(type="text", placeholder="Descrição da Peça*", name="description", required)
-              input.form-control(type="number", placeholder="Valor da Peça*", name="value", required)
-              input.form-control(type="number", placeholder="Quantidade disponível*", name="quantity", required)
-              .btn-group
-                a.btn.btn-primary(data-dismiss="modal") Cancelar
-                input.btn.btn-primary(type="submit", value="Adicionar Peça")
+div(class="modal fade", id="modal-criar-os", tabindex="-1", role="dialog", aria-labelledby="myLargeModalLabel")
+  div(class="modal-dialog modal-lg")
+    div(class="modal-content")
+      div(class="modal-header")
+        button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+          span(aria-hidden="true") &times;
+        h4(class="modal-title", id="exampleModalLabel") Abrir OS
+      div(class="modal-body")
+        form
+          div(class="selecionar-agendamento")
+            label(for="recipient-name", class="control-label") Selecione um agendamento:
+            br/
+            select(class="agendamento")
+                option
+                each agendamento in params.agendamentos
+                  option(id="#{agendamento.id}") #{agendamento.nome} (#{agendamento.marca} #{agendamento.modelo})
+            hr
+            br/
+          div(class="form-group")
+            label(for="recipient-name", class="control-label") Data de Conclusao:
+            br/
+            select(class="data-conclusao dia" name="data-conclusao")
+              option 01
+              option 02
+              option 03
+              option 04
+              option 05
+              option 06
+              option 07
+              option 08
+              option 09
+              option 10
+              option 21
+              option 22
+              option 23
+              option 24
+              option 25
+              option 26
+              option 27
+              option 28
+              option 29
+              option 30
+              option 31
+            select(class="data-conclusao mes" name="data-conclusao")
+              option Janeiro
+              option Fevereiro
+              option Março
+              option Abril
+              option Maio
+              option Junho
+              option Julho
+              option Agosto
+              option Setembro
+              option Outubro
+              option Novembro
+              option Dezembro
+            select(class="data-conclusao ano" name="data-conclusao")
+              option 2015
+              option 2016
+              option 2017
+              option 2018
+              option 2019
+              option 2020
+              option 2021
+              option 2022
+          hr
+          div(class="form-group selecionar_servico")
+            div#status-message
+            div(class="selecionar_servico_modelo")
+              h3 Serviço 
+                a(href="#", class="botao-remover-servico") (Remover Serviço)
+              div(class="subtotal")
+                p Subtotal: R$ 
+                  span 0,0
+              label(for="message-text", class="control-label") Serviço:
+              br/
+              select(class="servico")
+                option
+                each servico in params.servicos
+                  option(data-preco="#{servico.valor_mao_obra}") #{servico.nome}
+              br/
+              label(for="message-text", class="control-label") Peças:
+              br/
+              div(class="selecionar_peca")
+                div(class="selecionar_peca_modelo")
+                  select(class="peca")
+                    option
+                    each peca in params.pecas
+                      option(data-preco="#{peca.preco}") #{peca.nome}
+                a(href="#", class="botao-adicionar-peca") (Adicionar Peça) 
+              hr
+          p
+            a(href="#", class="botao-adicionar-servico") (Novo Serviço) 
+
+          div(class="form-group")
+            div(class="selecionar_mecanicos")
+              h3 Mecanicos
+              label(for="message-text", class="control-label") Equipe:
+              br/
+              select(class="mecanico 1", required)
+                option
+                each equipe in params.equipes
+                  option(id="#{equipe.id_equipe}") #{equipe.id_equipe} - #{equipe.nome1} e #{equipe.nome2}
+              //- br/
+              //- label(for="message-text", class="control-label") Mecanico 2:
+              //- br/
+              //- select(class="mecanico 2", required)
+              //-   option
+              //-   each mecanico in params.mecanicos
+              //-     option(id="#{mecanico.codigo_mecanico}") #{mecanico.nome} 
+              //- br/
+
+      div(class="modal-footer")
+        button(type="button", class="btn btn-primary" id="botao-abrir-os") Abrir OS
