@@ -104,7 +104,7 @@ function todosAgendamentosCliente(callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var query = client.query({
-          text: 'SELECT cliente.nome, agendamento.id, veiculo.marca, veiculo.modelo '+
+          text: "SELECT cliente.nome, agendamento.id, to_char(agendamento.data, 'dd/mm/YY') as data, agendamento.hora, veiculo.marca, veiculo.modelo "+
                 'FROM agendamento '+
                 'INNER JOIN veiculo '+
                 'ON agendamento.renavam_veiculo = veiculo.renavam '+
@@ -115,6 +115,48 @@ function todosAgendamentosCliente(callback){
           name: 'todos_agendamentos_cliente'
       });
       query.on('row', function(row, result) {
+          switch ( row.hora ){
+            case 1 :{
+              row.hora = "08:00 - 09:00";
+              break;
+            }
+            case 2 :{
+              row.hora = "09:00 - 10:00";
+              break;
+            }
+            case 3 :{
+              row.hora = "10:00 - 11:00";
+              break;
+            }
+            case 4 :{
+              row.hora = "11:00 - 12:00";
+              break;
+            }
+            case 5 :{
+              row.hora = "12:00 - 13:00";
+              break;
+            }
+            case 6 :{
+              row.hora = "13:00 - 14:00";
+              break;
+            }
+            case 7 :{
+              row.hora = "14:00 - 15:00";
+              break;
+            }
+            case 8 :{
+              row.hora = "15:00 - 16:00";
+              break;
+            }
+            case 9 :{
+              row.hora = "16:00 - 17:00";
+              break;
+            }
+            case 10:{
+              row.hora = "17:00 - 18:00";
+              break;
+            }
+          }
           result.addRow(row);
       });
       query.on('error', function(error) {

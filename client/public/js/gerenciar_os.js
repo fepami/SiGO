@@ -6,7 +6,17 @@ $('body').on('click', 'button.aprovar-os', function(e){
 	
 	$.getJSON("../os/autorizar?nos=" + numeroOs, function(res, status){	
 		
-		$('div#container-tabela').load(document.URL +  ' table.table');
+          $('div#container-tabela').load(document.URL +  ' table.table', function(){
+               $('.os').each(function(){
+                    if($(this).find('.status').html().replace(/\s/g, '') == "FINALIZADA" || $(this).find('.status').html().replace(/\s/g, '') == "SUSPENSA"){
+                         $(this).find('.finalizar-os').hide();
+                         $(this).find('.aprovar-os').hide();
+                         $(this).find('.suspender-os').hide();
+                    }else if($(this).find('.status').html().replace(/\s/g, '') == "APROVADA"){
+                         $(this).find('.aprovar-os').hide();
+                    }
+               });
+          });
 
 		if(res != false){
      			$("#status-message").attr({ class 	: "alert alert-success",
@@ -25,10 +35,21 @@ $('body').on('click', 'button.aprovar-os', function(e){
 $('body').on('click', 'button.finalizar-os', function(e){
 
 	numeroOs = $(this).parents("tr.os").attr("data-numero-os");
+     var that = $(this);
 	
 	$.getJSON("../os/finalizar?nos=" + numeroOs, function(res, status){	
 		
-		$('div#container-tabela').load(document.URL +  ' table.table');
+          $('div#container-tabela').load(document.URL +  ' table.table', function(){
+               $('.os').each(function(){
+                    if($(this).find('.status').html().replace(/\s/g, '') == "FINALIZADA" || $(this).find('.status').html().replace(/\s/g, '') == "SUSPENSA"){
+                         $(this).find('.finalizar-os').hide();
+                         $(this).find('.aprovar-os').hide();
+                         $(this).find('.suspender-os').hide();
+                    }else if($(this).find('.status').html().replace(/\s/g, '') == "APROVADA"){
+                         $(this).find('.aprovar-os').hide();
+                    }
+               });
+          });
 
 		if(res != false){
      			$("#status-message").attr({ class 	: "alert alert-success",
@@ -49,7 +70,8 @@ $('body').on('click', 'button.suspender-os', function(e){
 	numeroOs = $(this).parents("tr.os").attr("data-numero-os");
 });	
 
-$('body').on('click', 'button#botao-suspender-os', function(e){
+$('#form-suspender-os').submit(function(event){
+     event.preventDefault();
 
 	var motivo   = $("select.motivo option:selected").attr("id");
 	console.log("nos: "+ numeroOs + "\nmotivo: " + motivo)
@@ -59,7 +81,17 @@ $('body').on('click', 'button#botao-suspender-os', function(e){
 	$.getJSON("../os/suspender?m="   + motivo +
 							 "&nos=" + numeroOs, function(res, status){	
 		
-		$('div#container-tabela').load(document.URL +  ' table.table');
+		$('div#container-tabela').load(document.URL +  ' table.table', function(){
+               $('.os').each(function(){
+                    if($(this).find('.status').html().replace(/\s/g, '') == "FINALIZADA" || $(this).find('.status').html().replace(/\s/g, '') == "SUSPENSA"){
+                         $(this).find('.finalizar-os').hide();
+                         $(this).find('.aprovar-os').hide();
+                         $(this).find('.suspender-os').hide();
+                    }else if($(this).find('.status').html().replace(/\s/g, '') == "APROVADA"){
+                         $(this).find('.aprovar-os').hide();
+                    }
+               });
+          });
 
 		if(res != false){
      			$("#status-message").attr({ class 	: "alert alert-success",

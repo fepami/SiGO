@@ -6,13 +6,12 @@ div(class="modal fade", id="modal-suspender-os", tabindex="-1", role="dialog", a
           span(aria-hidden="true") &times;
         h4(class="modal-title", id="exampleModalLabel") Suspender OS
       div(class="modal-body")
-        form
+        form(id="form-suspender-os", action="#")
           div(class="selecionar-agendamento")
             label(for="recipient-name", class="control-label") Selecione o motivo:
             br/
-            select(class="motivo")
+            select(class="motivo", required)
               option(id="1") Valor
-              option(id="2") Prazo do Servico
-                
-      div(class="modal-footer")
-        button(type="button", class="btn btn-primary" id="botao-suspender-os") Suspender OS
+              option(id="2") Prazo do Servico 
+          div(class="modal-footer")
+            input.btn.btn-primary(type="submit", value="Suspender OS", id="botao-suspender-os")

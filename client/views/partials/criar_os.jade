@@ -6,20 +6,21 @@ div(class="modal fade", id="modal-criar-os", tabindex="-1", role="dialog", aria-
           span(aria-hidden="true") &times;
         h4(class="modal-title", id="exampleModalLabel") Abrir OS
       div(class="modal-body")
-        form
+        div(id="modal-status-message")
+        form(id="form-abrir-os", action="#")
           div(class="selecionar-agendamento")
             label(for="recipient-name", class="control-label") Selecione um agendamento:
             br/
-            select(class="agendamento")
+            select(class="agendamento", required)
                 option
                 each agendamento in params.agendamentos
-                  option(id="#{agendamento.id}") #{agendamento.nome} (#{agendamento.marca} #{agendamento.modelo})
+                  option(id="#{agendamento.id}") #{agendamento.nome} (#{agendamento.marca} #{agendamento.modelo}) - #{agendamento.data} #{agendamento.hora}
             hr
             br/
           div(class="form-group")
             label(for="recipient-name", class="control-label") Data de Conclusao:
             br/
-            select(class="data-conclusao dia" name="data-conclusao")
+            select(class="data-conclusao dia" name="data-conclusao", required)
               option 01
               option 02
               option 03
@@ -41,7 +42,7 @@ div(class="modal fade", id="modal-criar-os", tabindex="-1", role="dialog", aria-
               option 29
               option 30
               option 31
-            select(class="data-conclusao mes" name="data-conclusao")
+            select(class="data-conclusao mes" name="data-conclusao", required)
               option Janeiro
               option Fevereiro
               option Março
@@ -54,7 +55,7 @@ div(class="modal fade", id="modal-criar-os", tabindex="-1", role="dialog", aria-
               option Outubro
               option Novembro
               option Dezembro
-            select(class="data-conclusao ano" name="data-conclusao")
+            select(class="data-conclusao ano" name="data-conclusao", required)
               option 2015
               option 2016
               option 2017
@@ -74,7 +75,7 @@ div(class="modal fade", id="modal-criar-os", tabindex="-1", role="dialog", aria-
                   span 0,0
               label(for="message-text", class="control-label") Serviço:
               br/
-              select(class="servico")
+              select(class="servico", required)
                 option
                 each servico in params.servicos
                   option(data-preco="#{servico.valor_mao_obra}") #{servico.nome}
@@ -109,6 +110,5 @@ div(class="modal fade", id="modal-criar-os", tabindex="-1", role="dialog", aria-
               //-   each mecanico in params.mecanicos
               //-     option(id="#{mecanico.codigo_mecanico}") #{mecanico.nome} 
               //- br/
-
-      div(class="modal-footer")
-        button(type="button", class="btn btn-primary" id="botao-abrir-os") Abrir OS
+          div(class="modal-footer")
+            input.btn.btn-primary(type="submit", value="Abrir OS", id="confirmar_cadastro")

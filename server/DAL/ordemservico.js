@@ -4,7 +4,7 @@ function todasOS(callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var query = client.query({
-          text: 'SELECT os.numero_os, os.data_emissao, os.data_conclusao, os.status, os.motivo_suspensao, os.id_equipe, veiculo.placa '+
+          text: "SELECT os.numero_os, to_char(os.data_emissao, 'dd/mm/YY') as data_emissao, to_char(os.data_conclusao, 'dd/mm/YY') as data_conclusao, os.status, os.motivo_suspensao, os.id_equipe, veiculo.placa "+
                 'FROM os '+
                 'INNER JOIN agendamento '+
                 'ON os.id_agendamento = agendamento.id '+
@@ -51,7 +51,7 @@ function todasOS(callback){
           result.addRow(row);
       });
       query.on('error', function(error) {
-          db.checkQueryError(error, client, done, callback);
+        db.checkQueryError(error, client, done, callback);
       });
       query.on('end', function(result) {
            done();
@@ -64,8 +64,8 @@ function criarOS(os, callback){
   db.connect(function(err, client, done){
     db.checkConnectionError(err, callback);
       var queryOS = client.query({
-        text: 'INSERT INTO os (data_emissao,data_conclusao,status,motivo_suspensao,id_equipe,id_agendamento)' +
-              'VALUES ($1,$2,0,0,$3,$4) RETURNING numero_os',
+        text: "INSERT INTO os (data_emissao,data_conclusao,status,motivo_suspensao,id_equipe,id_agendamento)" +
+              "VALUES (to_date($1, 'dd/mm/YY'),to_date($2, 'dd/mm/YY'),0,0,$3,$4) RETURNING numero_os" ,
         values: [os.dataEmissao, os.dataConclusao, os.mecanico1, os.agendamento],
         name: 'criar_os'
       });

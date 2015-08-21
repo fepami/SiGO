@@ -7,6 +7,15 @@ $(window).load(function(){
 
     novoServicoAppend = $(".selecionar_servico").html();
     novaPecaAppend    = $(".selecionar_peca_modelo").html();
+    $('.os').each(function(){
+    	if($(this).find('.status').html().replace(/\s/g, '') == "FINALIZADA" || $(this).find('.status').html().replace(/\s/g, '') == "SUSPENSA"){
+    		$(this).find('.finalizar-os').hide();
+			$(this).find('.aprovar-os').hide();
+    		$(this).find('.suspender-os').hide();
+    	}else if($(this).find('.status').html().replace(/\s/g, '') == "APROVADA"){
+    		$(this).find('.aprovar-os').hide();
+    	}
+    });
 });
 
 $(function () {
@@ -47,7 +56,36 @@ $('body').on('click', 'a.botao-adicionar-peca', function(e){
 $('body').on('click', 'a.botao-remover-servico', function(e){
 	$(this).parent().parent().remove();
 });
-$('#botao-abrir-os').click(function(){
+
+function toggle_enable(bool){
+	$('a.botao-remover-servico').parent().parent().remove();
+	$(".selecionar_servico").html(function(){
+    	$(this).append(novoServicoAppend);
+    });
+	$(".modal-body select").attr("disabled", !bool);
+
+	$(".modal-body select").val("");
+	if(bool){
+		$(".modal-body a").show();
+		$('#confirmar_cadastro').show();
+	}
+	else{
+		$(".modal-body a").hide();
+		$('#confirmar_cadastro').hide();
+	}
+}
+
+$('.visualizar-os').click(function(event){
+	// debugger;
+	toggle_enable(false);
+});
+
+$('#criar-os').click(function(event){
+	toggle_enable(true);
+});
+
+$('#form-abrir-os').submit(function(event){
+	event.preventDefault();
 	var dataConclusao = {};
 	dataConclusao.dia = $(".dia option:selected").text();
 	dataConclusao.mes = $(".mes option:selected").text();
@@ -127,10 +165,11 @@ $('#botao-abrir-os').click(function(){
 			  			 "&de="+ dataEmissao.dia+"/"+dataEmissao.mes+"/"+dataEmissao.ano, function(res, status){	
 		
 		if(res == false){
-     			$("#status-message").attr({ class 	: "alert alert-danger",
+				debugger;
+     			$(".modal-body #modal-status-message").attr({ class 	: "alert alert-danger",
      										role	: "alert"
      			});
-     			$("#status-message").html("Erro ao criar OS, por favor selecione uma equipe valida!");
+     			$(".modal-body #modal-status-message").html("Erro ao criar OS, por favor verifique os dados!");
 
      	} else {
      		$("#status-message").attr({ class 	: "alert alert-success",
@@ -152,10 +191,10 @@ $('#botao-abrir-os').click(function(){
 			  		 						 "&nos=" + numeroOs, function(res, status){
 
 			  		if(res == false){
-     					$("#status-message").attr({ class 	: "alert alert-danger",
+     					$(".modal-body #modal-status-message").attr({ class 	: "alert alert-danger",
      												role	: "alert"
      					});
-     					$("#status-message").html("Erro ao criar OS, por favor selecione um servico valido!");
+     					$(".modal-body #modal-status-message").html("Erro ao criar OS, por favor selecione um servico valido!");
 
      				} else {
      					idServico = res.servico[0].id;
@@ -170,6 +209,18 @@ $('#botao-abrir-os').click(function(){
      				}
 			  	});
 			});
+			$('#modal-criar-os').modal('hide');
+			$('div#container-tabela').load(document.URL +  ' table.table', function(){
+               $('.os').each(function(){
+                    if($(this).find('.status').html().replace(/\s/g, '') == "FINALIZADA" || $(this).find('.status').html().replace(/\s/g, '') == "SUSPENSA"){
+                         $(this).find('.finalizar-os').hide();
+                         $(this).find('.aprovar-os').hide();
+                         $(this).find('.suspender-os').hide();
+                    }else if($(this).find('.status').html().replace(/\s/g, '') == "APROVADA"){
+                         $(this).find('.aprovar-os').hide();
+                    }
+               });
+          });
      	}
 	});
 });

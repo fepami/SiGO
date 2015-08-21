@@ -32,12 +32,12 @@ html
                       span(class="glyphicon glyphicon-ok", aria-hidden="true")
                     button(type="button", class="btn btn-default btn-circle finalizar-os", data-toggle="tooltip", title="Finalizar OS", data-placement="top") 
                       span(class="glyphicon glyphicon-flag", aria-hidden="true")    
-                    button(type="button", class="btn btn-default btn-circle suspender-os" , data-target="#modal-suspender-os", data-toggle="modal", title="Suspender OS", data-placement="top") 
+                    button(id="botao-consultar-os", type="button", class="btn btn-default btn-circle suspender-os" , data-target="#modal-suspender-os", data-toggle="modal", title="Suspender OS", data-placement="top") 
                       span(class="glyphicon glyphicon-remove", aria-hidden="true")
-                    button(type="button", class="btn btn-default btn-circle visualizar-os" , data-toggle="tooltip", title="Visualizar OS", data-placement="top") 
+                    button(type="button", class="btn btn-default btn-circle visualizar-os" , data-toggle="modal", title="Visualizar OS", data-target="#modal-criar-os", data-placement="top") 
                       span(class="glyphicon glyphicon-eye-open", aria-hidden="true")
 
-      button(type="button", class="btn btn-primary", data-toggle="modal", data-target="#modal-criar-os") Abrir OS
+      button(id="criar-os", type="button", class="btn btn-primary", data-toggle="modal", data-target="#modal-criar-os") Abrir OS
     include ../partials/criar_os.jade
     include ../partials/suspender_os.jade
     script(src='../js/gerenciar_os.js')
